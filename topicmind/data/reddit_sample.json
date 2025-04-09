@@ -1,0 +1,22 @@
+[
+  {
+    "id": "thread1",
+    "text": "This is the first document about machine learning and AI. It discusses various models and techniques. Deep learning is a key focus. We need good data."
+  },
+  {
+    "id": "thread2",
+    "text": "The second document talks about data privacy concerns. With AI becoming more prevalent, ensuring user data privacy is crucial. Regulations like GDPR are important."
+  },
+  {
+    "id": "thread3",
+    "text": "Another post discussing AI ethics. Bias in machine learning models can have significant social impact. Fairness and transparency are necessary."
+  },
+  {
+    "id": "thread4",
+    "text": "This thread focuses on natural language processing. Techniques like summarization and text generation are advancing rapidly thanks to models like BART and GPT. Understanding language is hard."
+  },
+  {
+    "id": "thread5",
+    "text": "Let's talk about deploying machine learning models. MLOps practices help streamline the process from training to production. Scalability and monitoring are challenges."
+  }
+]

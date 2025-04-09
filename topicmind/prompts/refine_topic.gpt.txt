@@ -1,0 +1,5 @@
+Based on the following keywords extracted from a text corpus, please provide a concise and descriptive topic name (1-3 words maximum) that best represents the underlying theme.
+
+Keywords: {keywords}
+
+Topic Name:
