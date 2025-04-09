@@ -1,0 +1,10 @@
+Flask>=2.0
+streamlit>=1.0
+gensim>=4.0
+transformers>=4.0
+torch>=1.8 # Or torchvision/torchaudio depending on your system/CUDA setup
+nltk>=3.5
+openai>=1.0
+python-dotenv>=0.15
+scikit-learn>=1.0 # Often useful with gensim/topic modeling
+pandas>=1.3 # For potential data handling
