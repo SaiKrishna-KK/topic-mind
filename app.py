@@ -3,6 +3,10 @@ import logging
 import nltk
 from flask import Flask, request, jsonify
 from collections import defaultdict
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -34,9 +38,13 @@ app = Flask(__name__)
 lda_model, dictionary = None, None
 summarizer_model_loaded = False
 
-@app.before_first_request
+@app.before_request
 def load_models():
+    # Check if models are already loaded to avoid reloading on every request
     global lda_model, dictionary, summarizer_model_loaded
+    if lda_model is not None and dictionary is not None and summarizer_model_loaded:
+        return # Models already loaded
+
     logging.info("Loading models...")
     # Load LDA Model
     lda_model, dictionary = load_lda_model_and_dict() # Uses default paths in lda_topic_model.py
@@ -166,9 +174,9 @@ def analyze_text():
 
 if __name__ == '__main__':
     # Ensure models are loaded before running
-    # Note: @app.before_first_request handles this, but explicit call might be needed
+    # Note: @app.before_request handles this, but explicit call might be needed
     # depending on WSGI server used if not using `flask run`
-    # load_models() # Typically not needed with @before_first_request
+    # load_models() # Typically not needed with @before_request
 
     logging.info("Starting Flask server...")
     # Use waitress or gunicorn in production instead of Flask development server
