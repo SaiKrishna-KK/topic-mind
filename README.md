@@ -63,13 +63,13 @@ topicMind/
     ```
 3.  **Install dependencies:**
     ```bash
-    pip install -r topicmind/requirements.txt
+    pip install -r requirements.txt
     ```
     _(You might need to install additional libraries like `transformers`, `torch`, `nltk`, `openai`, `scikit-learn` if not already included in requirements.txt)_.
 
 4.  **Run the Streamlit application:**
     ```bash
-    streamlit run topicmind/frontend/streamlit_app.py
+    streamlit run frontend/streamlit_app.py
     ```
 
 ## Usage
