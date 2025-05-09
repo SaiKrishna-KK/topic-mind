@@ -32,18 +32,26 @@ def clean_reddit_content(text: str) -> str:
     Cleans Reddit-style post content by removing irrelevant elements like:
     - Upvote/downvote counts
     - Award/Share buttons
-    - Timestamps (e.g., "3y ago")
     - Comment navigation elements
-    - Username indicators
+    
+    Preserves:
+    - User comments and their content
+    - Basic structure for topic modeling
+    - Username mentions (converted to standard format)
     
     Args:
         text: Raw Reddit post/comment content
         
     Returns:
-        Cleaned content with Reddit UI elements removed
+        Cleaned content with Reddit UI elements removed but preserving comment content
     """
     if not isinstance(text, str):
         return ""
+    
+    # Replace usernames with standardized format first (before other removals)
+    # This preserves the username as context but in a cleaner format
+    text = re.sub(r'u/([a-zA-Z0-9_-]+) avatar', r'@\1:', text)
+    text = re.sub(r'u/([a-zA-Z0-9_-]+)', r'@\1', text)
     
     # Remove media player time indicators
     text = re.sub(r'\d+:\d+\s*/\s*\d+:\d+', '', text)
@@ -51,31 +59,21 @@ def clean_reddit_content(text: str) -> str:
     # Remove UI indicators (like "Video", "Archived post", etc.)
     text = re.sub(r'Video|Archived post\.|New comments cannot be posted and votes cannot be cast\.', '', text)
     
-    # Remove "Go to comments" line
+    # Remove navigation elements
     text = re.sub(r'Go to comments', '', text)
-    
-    # Remove Sort by: lines
     text = re.sub(r'Sort by:.*?\n', '', text)
-    
-    # Remove "Search Comments" and "Expand comment search" lines
     text = re.sub(r'Search Comments|Expand comment search', '', text)
-    
-    # Remove "Comments Section" line
     text = re.sub(r'Comments Section', '', text)
+    text = re.sub(r'Join the conversation', '', text)
     
-    # Remove upvote/downvote counts
+    # Remove voting UI elements
     text = re.sub(r'Upvote\s*[\dKMk\.]*', '', text)
     text = re.sub(r'Downvote\s*[\dKMk\.]*', '', text)
-    
-    # Remove award/share buttons
     text = re.sub(r'Award|Share', '', text)
     
-    # Remove username avatar lines and prefix
-    text = re.sub(r'u/[a-zA-Z0-9_-]+ avatar', '', text)
-    text = re.sub(r'u/[a-zA-Z0-9_-]+', '', text)
-    
-    # Remove timestamp indicators (e.g., "• 3y ago")
-    text = re.sub(r'[•·]\s*\d+[ymwd]\s*ago', '', text)
+    # Handle timestamps but preserve sentence boundaries
+    text = re.sub(r'[•·]\s*\d+[ymwd]\s*ago', '.', text)  # Replace with period to maintain sentence boundary
+    text = re.sub(r'Edited\s+\d+[ymwd]\s*ago', '', text)
     
     # Remove reply navigation (e.g., "15 more replies")
     text = re.sub(r'\d+\s*(more)?\s*replies', '', text)
@@ -84,8 +82,17 @@ def clean_reddit_content(text: str) -> str:
     text = re.sub(r'^\s*\d+\s*$', '', text, flags=re.MULTILINE)  # Standalone numbers (like vote counts)
     
     # Clean double newlines and spaces
-    text = re.sub(r'\n{2,}', '\n', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)  # Keep some paragraph structure
     text = re.sub(r' {2,}', ' ', text)
+    
+    # Add periods to lines that might be sentence fragments without proper ending
+    lines = text.split('\n')
+    for i in range(len(lines)):
+        line = lines[i].strip()
+        if line and not line.endswith(('.', '!', '?', ':', ';')):
+            lines[i] = line + '.'
+    
+    text = '\n'.join(lines)
     
     return text.strip()
 
