@@ -136,3 +136,13 @@ venv.bak/
 .Trashes
 ehthumbs.db
 Thumbs.db 
+.env
+
+*.csv
+
+# Project specific files and folders
+BERTopic Model/
+torch_hub/
+models/__pycache__/
+utils/__pycache__/
+*.pyc

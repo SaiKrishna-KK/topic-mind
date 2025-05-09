@@ -31,7 +31,19 @@ else:
 
 # --- Input Area ---
 st.subheader("Input Text")
-input_text = st.text_area("Paste your Reddit thread or long text here:", height=250, placeholder="Enter a long piece of text...")
+input_text = st.text_area("Paste your text content here:", height=250, placeholder="Enter a long piece of text...")
+
+# Configuration options
+st.subheader("Analysis Options")
+col1, col2 = st.columns(2)
+
+with col1:
+    is_reddit_content = st.checkbox("Clean Reddit UI elements", 
+                                    help="Enable this if your text contains Reddit posts/comments with UI elements like upvote counts, timestamps, etc.")
+    
+with col2:
+    num_topics = st.slider("Number of topics to extract", min_value=2, max_value=10, value=5, 
+                           help="The maximum number of topics to identify. A smaller text might yield fewer topics regardless of this setting.")
 
 analyze_button = st.button("Analyze Text", type="primary")
 
@@ -43,7 +55,11 @@ if analyze_button and input_text:
         with st.spinner("Analyzing text... This might take a moment depending on the text length and model processing."):
             try:
                 # Prepare the request payload
-                payload = json.dumps({"text": input_text})
+                payload = json.dumps({
+                    "text": input_text,
+                    "is_reddit_content": is_reddit_content,
+                    "num_topics": num_topics
+                })
                 headers = {'Content-Type': 'application/json'}
 
                 # Send request to backend
@@ -59,7 +75,12 @@ if analyze_button and input_text:
                 if results:
                     st.success(f"Found {len(results)} topics.")
                     for i, result in enumerate(results):
-                        with st.expander(f"**Topic {i+1}: {result.get('topic', 'N/A')}**", expanded=True):
+                        topic_name = result.get('topic', 'Unnamed Topic')
+                        keywords = result.get('keywords', [])
+                        keyword_text = ", ".join(keywords) if keywords else "No keywords available"
+                        
+                        with st.expander(f"**Topic {i+1}: {topic_name}**", expanded=True):
+                            st.caption(f"Keywords: {keyword_text}")
                             st.write(result.get('summary', 'No summary available.'))
                         st.divider()
                 else:
@@ -82,4 +103,11 @@ elif analyze_button:
 
 # --- Footer/Instructions ---
 st.markdown("---")
-st.caption("How to use: Paste text (e.g., from a Reddit comment thread) into the box and click 'Analyze Text'.")
+st.caption("""
+How to use:
+1. **Paste text** into the box (e.g., from a Reddit thread, article, or other long-form content)
+2. **Configure options**:
+   - Enable "Clean Reddit UI elements" if you're pasting Reddit content with upvotes/timestamps/etc.
+   - Adjust the number of topics to extract based on your content length
+3. **Click 'Analyze Text'** to process and view the results
+""")
