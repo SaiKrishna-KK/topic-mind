@@ -73,6 +73,25 @@ if analyze_button and input_text:
 
                 st.subheader("Analysis Results")
                 if results:
+                    # Get the error message if present (for short text cases)
+                    if "error" in results_data:
+                        st.warning(results_data["error"])
+                    
+                    # Show backend message about topic count if available    
+                    if "topic_count_info" in results_data:
+                        st.info(f"⚠️ {results_data['topic_count_info']}. \n\n" +
+                               "This can happen when:\n" +
+                               "- The text doesn't contain enough distinct themes to form more topics\n" + 
+                               "- There aren't enough sentences to distribute among more topics (aim for 3+ sentences per topic)\n" +
+                               "- The content is focused on a limited set of closely related subjects")
+                    # Otherwise check if we got fewer topics than requested
+                    elif 1 <= len(results) < num_topics:
+                        st.info(f"⚠️ Found {len(results)} topics instead of the requested {num_topics}. \n\n" +
+                               "This can happen when:\n" +
+                               "- The text doesn't contain enough distinct themes to form more topics\n" + 
+                               "- There aren't enough sentences to distribute among more topics (aim for 3+ sentences per topic)\n" +
+                               "- The content is focused on a limited set of closely related subjects")
+                    
                     st.success(f"Found {len(results)} topics.")
                     for i, result in enumerate(results):
                         topic_name = result.get('topic', 'Unnamed Topic')
@@ -85,6 +104,17 @@ if analyze_button and input_text:
                         st.divider()
                 else:
                     st.info("No topics were identified in the provided text.")
+                    st.markdown("""
+                    **Possible reasons:**
+                    - The text might be too short - try adding more content
+                    - The text might not contain enough variation to form distinct topics
+                    - You may need to adjust the number of topics (try a smaller number for shorter texts)
+                    
+                    **Try:**
+                    - Adding more text
+                    - If using Reddit content, make sure to check the "Clean Reddit UI elements" box
+                    - Reduce the number of requested topics
+                    """)
 
             except requests.exceptions.Timeout:
                 st.error("Request timed out. The backend might be taking too long to process the text.")
