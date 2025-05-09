@@ -1,12 +1,45 @@
 import os
 import logging
 import nltk
+import sys
 from flask import Flask, request, jsonify
 from collections import defaultdict
 from dotenv import load_dotenv
 
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 # Force CPU-only mode for Mac M1 compatibility with models
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
+# Check for dependencies
+logging.info("Checking dependencies...")
+try:
+    import torch
+    logging.info(f"PyTorch version {torch.__version__} available.")
+except ImportError:
+    logging.error("PyTorch not installed. Please install with: pip install torch")
+    sys.exit(1)
+
+try:
+    import tensorflow as tf
+    logging.info(f"TensorFlow version {tf.__version__} available.")
+except ImportError:
+    logging.warning("TensorFlow not installed. Some features may not work properly.")
+
+try:
+    from transformers import BartTokenizer, BartForConditionalGeneration
+    logging.info("Hugging Face Transformers available for BART model.")
+except ImportError:
+    logging.error("Transformers not installed. Please install with: pip install transformers")
+    sys.exit(1)
+
+try:
+    from sentence_transformers import SentenceTransformer
+    logging.info("SentenceTransformers available for embedding generation.")
+except ImportError:
+    logging.error("SentenceTransformers not installed. Please install with: pip install sentence-transformers")
+    sys.exit(1)
 
 # Load environment variables from .env file
 load_dotenv()
@@ -20,9 +53,6 @@ if not openai_api_key or openai_api_key == "your_openai_api_key_here":
     print("Set OPENAI_API_KEY in your environment or .env file.")
     print("*" * 80)
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 # --- Import TopicMind Components ---
 # Ensure utils and models are importable (e.g., by running from the root directory or setting PYTHONPATH)
 try:
@@ -31,6 +61,7 @@ try:
     from models.bertopic_model_simple import analyze_topics_in_text, get_topic_top_words
     from utils.topic_refiner import refine_topic_name # Assumes OPENAI_API_KEY is set in environment
     from models.bart_summarizer import load_summarizer_model, summarize_text
+    logging.info("Successfully imported all TopicMind components.")
 except ImportError as e:
     logging.error(f"Error importing TopicMind components: {e}. Ensure PYTHONPATH is set or run from project root.")
     # Exit or handle gracefully if components are missing
@@ -40,6 +71,7 @@ except ImportError as e:
 # User needs to run this once manually or integrate into setup
 try:
     nltk.data.find('tokenizers/punkt')
+    logging.info("NLTK punkt tokenizer already available.")
 except nltk.downloader.DownloadError:
     logging.info("NLTK 'punkt' tokenizer not found. Downloading...")
     nltk.download('punkt')
@@ -86,12 +118,25 @@ def analyze_text():
         return jsonify({"error": "Missing 'text' in request body"}), 400
 
     input_text = request.json['text']
-    num_topics = request.json.get('num_topics', 5)  # Default to 5 topics if not specified
+    num_topics = int(request.json.get('num_topics', 5))  # Default to 5 topics if not specified
     is_reddit_content = request.json.get('is_reddit_content', False)  # Is this Reddit-style content?
+
+    # Ensure num_topics is within reasonable range
+    num_topics = max(1, min(num_topics, 10))  # Clamp between 1-10
+    logging.info(f"Requested {num_topics} topics for analysis")
 
     if not input_text or not input_text.strip():
         logging.warning("Request received with empty 'text' field.")
         return jsonify({"error": "Input text cannot be empty"}), 400
+
+    # Check for minimum text length
+    min_text_length = 100  # Character minimum
+    if len(input_text.strip()) < min_text_length:
+        logging.warning(f"Text too short: {len(input_text.strip())} chars, minimum {min_text_length}")
+        return jsonify({
+            "error": f"Input text is too short ({len(input_text.strip())} chars). Please provide at least {min_text_length} characters for meaningful analysis.",
+            "results": []
+        }), 200
 
     try:
         # 1. Preprocess text
@@ -156,7 +201,14 @@ def analyze_text():
             })
 
         logging.info(f"Analysis complete. Returning {len(results)} topic-summary pairs.")
-        return jsonify({"results": results}), 200
+        
+        # If we got fewer topics than requested, include an explanation
+        response_data = {"results": results}
+        if results and len(results) < num_topics:
+            response_data["topic_count_info"] = f"Found {len(results)} topics instead of the requested {num_topics}"
+            logging.info(f"Note: Found {len(results)} topics instead of requested {num_topics}")
+            
+        return jsonify(response_data), 200
 
     except Exception as e:
         logging.exception(f"An unexpected error occurred during text analysis: {e}")  # Log full traceback
