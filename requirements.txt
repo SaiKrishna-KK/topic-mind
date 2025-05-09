@@ -8,3 +8,7 @@ openai>=1.0
 python-dotenv>=0.15
 scikit-learn>=1.0 # Often useful with gensim/topic modeling
 pandas>=1.3 # For potential data handling
+bertopic>=0.15 # Added for BERTopic model support
+sentence-transformers>=2.2.0 # Required by BERTopic for embeddings
+hdbscan>=0.8.29 # Required by BERTopic for clustering
+umap-learn>=0.5.3 # Required by BERTopic for dimensionality reduction

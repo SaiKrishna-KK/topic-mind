@@ -1,5 +1,8 @@
-Based on the following keywords extracted from a text corpus, please provide a concise and descriptive topic name (1-3 words maximum) that best represents the underlying theme.
+You are an expert at analyzing and naming topics.
 
-Keywords: {keywords}
+Given the following list of keywords that represent a single topic: {keywords}
 
-Topic Name:
+Please provide a SHORT, clear, and concise name for this topic (3-5 words maximum). 
+The name should accurately capture the essence of what these keywords collectively represent.
+
+Your response should be ONLY the topic name, with no additional explanation or commentary. 

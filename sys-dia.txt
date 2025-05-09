@@ -1,0 +1,113 @@
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                FRONTEND LAYER                                                    │
+│                                           (frontend/streamlit_app.py)                                            │
+│                                                                                                                  │
+│   ┌─────────────────────┐      ┌───────────────────────┐      ┌─────────────────────┐      ┌──────────────────┐ │
+│   │   Text Input Box    │      │ Configuration Options  │      │  Analysis Controls  │      │  Results Display  │ │
+│   │                     │      │ - Number of Topics     │      │  - Analyze Button   │      │ - Topic Names     │ │
+│   │ (Large Text Area)   │      │ - Clean Reddit UI      │      │                     │      │ - Summaries       │ │
+│   │                     │      │                        │      │                     │      │ - Keywords        │ │
+│   └─────────────────────┘      └───────────────────────┘      └─────────────────────┘      └──────────────────┘ │
+│                                                                                                                  │
+└───────────────────────────────────────┬─────────────────────────────────────────────────────────────────────────┘
+                                         │ HTTP POST /analyze
+                                         │ (JSON: text, num_topics, is_reddit_content)
+                                         ▼
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                               BACKEND LAYER                                                      │
+│                                                  (app.py)                                                        │
+│                                                                                                                  │
+│   ┌─────────────────────┐      ┌───────────────────────┐      ┌─────────────────────┐      ┌──────────────────┐ │
+│   │   Request Handler   │      │  Dependency Checker   │      │   Model Loading     │      │  Response Handler │ │
+│   │   - Flask Routes    │      │  - PyTorch            │      │   - BART Model      │      │  - Format Results │ │
+│   │   - Param Validation│      │  - Transformers       │      │   - SentenceTransf. │      │  - JSON Response  │ │
+│   └─────────────────────┘      └───────────────────────┘      └─────────────────────┘      └──────────────────┘ │
+│                                                                                                                  │
+└───────────────────┬───────────────────────────────────┬───────────────────────────────────┬────────────────────┘
+                    │                                   │                                   │
+                    ▼                                   ▼                                   ▼
+┌─────────────────────────────┐      ┌─────────────────────────────┐      ┌─────────────────────────────────────┐
+│  TEXT PREPROCESSING LAYER   │      │     TOPIC MODELING LAYER     │      │       SUMMARIZATION LAYER           │
+│    (utils/preprocessor.py)  │      │(models/bertopic_model_simple)│      │     (models/bart_summarizer.py)     │
+│                             │      │                              │      │                                     │
+│  ┌─────────────────────┐    │      │  ┌─────────────────────┐     │      │  ┌─────────────────────────┐       │
+│  │  Text Cleaning      │    │      │  │  Sentence Embedding │     │      │  │  Topic-focused          │       │
+│  │  - Remove URLs      │    │      │  │  - SentenceTransf.  │     │      │  │  Summarization         │       │
+│  │  - Remove Markdown  │    │      │  │  - all-mpnet-base-v2│     │      │  │  - BART Model          │       │
+│  │  - Normalize Text   │    │      │  │  - CPU Compatibility│     │      │  │  - facebook/bart-large │       │
+│  └─────────────────────┘    │      │  └─────────────────────┘     │      │  └─────────────────────────┘       │
+│                             │      │                              │      │                                     │
+│  ┌─────────────────────┐    │      │  ┌─────────────────────┐     │      │  ┌─────────────────────────┐       │
+│  │  Reddit Cleaner     │    │      │  │  Sentence Clustering│     │      │  │  Abstractive            │       │
+│  │  - Remove UI        │    │      │  │  - K-means          │     │      │  │  Summary Generation     │       │
+│  │  - Filter Metadata  │    │      │  │  - Topic Assignment │     │      │  │  - Min/Max Length       │       │
+│  │  - Format Content   │    │      │  │  - Topic Mapping    │     │      │  │  - Beam Search          │       │
+│  └─────────────────────┘    │      │  └─────────────────────┘     │      │  └─────────────────────────┘       │
+│                             │      │                              │      │                                     │
+│  ┌─────────────────────┐    │      │  ┌─────────────────────┐     │      │  ┌─────────────────────────┐       │
+│  │  Sentence Splitting │    │      │  │  Keyword Extraction │     │      │  │  Error Handling         │       │
+│  │  - NLTK Tokenizer   │    │      │  │  - TF-IDF Approach  │     │      │  │  - Fallback Mechanisms  │       │
+│  │  - Punkt Model      │    │      │  │  - Top N Keywords   │     │      │  │  - Length Validation    │       │
+│  └─────────────────────┘    │      │  └─────────────────────┘     │      │  └─────────────────────────┘       │
+│                             │      │                              │      │                                     │
+└──────────────┬──────────────┘      └─────────────┬───────────────┘      └──────────────────┬──────────────────┘
+               │                                    │                                         │
+               │                                    ▼                                         │
+               │                     ┌─────────────────────────────┐                         │
+               │                     │    TOPIC REFINEMENT LAYER   │                         │
+               │                     │     (utils/topic_refiner.py)│                         │
+               │                     │                             │                         │
+               │                     │  ┌─────────────────────┐    │                         │
+               │                     │  │   OpenAI API        │    │                         │
+               │                     │  │   Integration       │    │                         │
+               │                     │  │   - gpt-3.5-turbo   │    │                         │
+               │                     │  │   - Topic Naming    │    │                         │
+               │                     │  └─────────────────────┘    │                         │
+               │                     │                             │                         │
+               │                     │  ┌─────────────────────┐    │                         │
+               │                     │  │   Prompt Template   │    │                         │
+               │                     │  │   - Keywords Input  │    │                         │
+               │                     │  │   - Short Names     │    │                         │
+               │                     │  │   - Fallback Logic  │    │                         │
+               │                     │  └─────────────────────┘    │                         │
+               │                     │                             │                         │
+               │                     └─────────────┬───────────────┘                         │
+               │                                   │                                         │
+               └───────────────────────────┬──────┴─────────────────────────────────────────┘
+                                           │
+                                           ▼
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                        RESULT INTEGRATION LAYER                                                  │
+│                                                 (app.py)                                                         │
+│                                                                                                                  │
+│     ┌─────────────────────────────────────────────────────────────────────────────────────────┐                 │
+│     │  Final Result Object:                                                                    │                 │
+│     │  {                                                                                       │                 │
+│     │    "results": [                                                                          │                 │
+│     │      {                                                                                   │                 │
+│     │        "topic": "Human-friendly topic name from OpenAI",                                 │                 │
+│     │        "summary": "Abstractive summary generated by BART model for this topic",          │                 │
+│     │        "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"]          │                 │
+│     │      },                                                                                  │                 │
+│     │      ...                                                                                 │                 │
+│     │    ]                                                                                     │                 │
+│     │  }                                                                                       │                 │
+│     └─────────────────────────────────────────────────────────────────────────────────────────┘                 │
+│                                                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+                                           │
+                                           │ HTTP 200 Response (JSON)
+                                           ▼
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                              FRONTEND DISPLAY                                                    │
+│                                           (frontend/streamlit_app.py)                                            │
+│                                                                                                                  │
+│     ┌─────────────────────────────────────────────────────────────────────────────────────────┐                 │
+│     │  For each topic in results:                                                              │                 │
+│     │    - Display expandable section with topic name as header                                │                 │
+│     │    - Show keywords as caption                                                            │                 │
+│     │    - Display summary text                                                                │                 │
+│     │    - Add divider between topics                                                          │                 │
+│     └─────────────────────────────────────────────────────────────────────────────────────────┘                 │
+│                                                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘

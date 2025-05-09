@@ -1,5 +1,13 @@
+import os
 from transformers import BartTokenizer, BartForConditionalGeneration
 import torch
+import logging
+
+# Force CPU-only mode for Mac M1 compatibility
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Model name
 MODEL_NAME = "facebook/bart-large-cnn"
@@ -13,20 +21,23 @@ def load_summarizer_model():
     """Loads the BART model and tokenizer. Call this once during application startup."""
     global _tokenizer, _model
     if _tokenizer is None or _model is None:
-        print(f"Loading BART model ({MODEL_NAME})... This may take a moment.")
+        logging.info(f"Loading BART model ({MODEL_NAME})... This may take a moment.")
         try:
+            # Set default device to CPU for Mac M1 compatibility
+            torch.set_default_device('cpu')
+            
             _tokenizer = BartTokenizer.from_pretrained(MODEL_NAME)
-            # Check for GPU availability
-            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            print(f"Using device: {device}")
+            
+            # Explicitly set device to CPU for Mac M1 compatibility
+            device = torch.device("cpu")
+            logging.info(f"Using device: {device} (forced for Mac M1 compatibility)")
+            
             _model = BartForConditionalGeneration.from_pretrained(MODEL_NAME).to(device)
-            print("BART model loaded successfully.")
+            logging.info("BART model loaded successfully on CPU.")
         except Exception as e:
-            print(f"Error loading BART model: {e}")
-            # Handle error appropriately - maybe raise, maybe set models to None
+            logging.error(f"Error loading BART model: {e}")
             _tokenizer = None
             _model = None
-            # TODO: Consider adding fallback mechanisms or clearer error propagation
 
 
 def summarize_text(text: str | list[str], max_length: int = 100, min_length: int = 30, num_beams: int = 4) -> str:
@@ -40,14 +51,14 @@ def summarize_text(text: str | list[str], max_length: int = 100, min_length: int
         num_beams: Number of beams for beam search. Higher values can improve quality but are slower.
 
     Returns:
-        The generated summary string, or an empty string if summarization fails.
+        The generated summary string, or an error message if summarization fails.
     """
     if _tokenizer is None or _model is None:
-        print("Error: Summarizer model not loaded. Call load_summarizer_model() first.")
-        # Attempt to load now? Or just fail?
-        # load_summarizer_model() # Potentially load here, but might be slow on first request
-        # if _tokenizer is None or _model is None: # Check again after attempting load
-        return "Error: Summarizer model unavailable." # Return error message
+        logging.error("Summarizer model not loaded. Call load_summarizer_model() first.")
+        # Attempt to load now
+        load_summarizer_model()
+        if _tokenizer is None or _model is None: # Check again after attempting load
+            return "Error: Summarizer model unavailable."
 
     # If input is a list of sentences, join them.
     if isinstance(text, list):
@@ -55,16 +66,22 @@ def summarize_text(text: str | list[str], max_length: int = 100, min_length: int
     elif isinstance(text, str):
         input_text = text
     else:
-        print(f"Warning: Invalid input type for summarization: {type(text)}. Expected str or list[str].")
-        return ""
+        logging.warning(f"Invalid input type for summarization: {type(text)}. Expected str or list[str].")
+        return "Error: Invalid input type for summarization."
 
     if not input_text.strip():
-        print("Warning: Input text for summarization is empty.")
-        return "" # Return empty string for empty input
+        logging.warning("Input text for summarization is empty.")
+        return "Error: Empty input text."
+
+    # If text is too short, don't summarize
+    if len(input_text.split()) < min_length:
+        logging.info(f"Text too short ({len(input_text.split())} words) for summarization. Returning original.")
+        # Return a truncated version of the original text if it's very short
+        return input_text[:max_length * 5] if len(input_text) > max_length * 5 else input_text
 
     try:
-        # Determine the device the model is on
-        device = _model.device
+        # Ensure we're using the CPU device
+        device = torch.device("cpu")
 
         # Prepare the input text
         inputs = _tokenizer([input_text], max_length=1024, return_tensors='pt', truncation=True).to(device)
@@ -84,9 +101,8 @@ def summarize_text(text: str | list[str], max_length: int = 100, min_length: int
         return summary
 
     except Exception as e:
-        print(f"Error during text summarization: {e}")
-        # TODO: Add more specific error handling (e.g., for OOM errors)
-        return "Error generating summary."
+        logging.error(f"Error during text summarization: {e}")
+        return f"Error: Failed to generate summary. {str(e)}"
 
 # Example usage (optional)
 # if __name__ == "__main__":
