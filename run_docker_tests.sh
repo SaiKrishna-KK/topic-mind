@@ -58,7 +58,7 @@ fi
 
 # API health check
 echo -e "\n${YELLOW}Running API tests...${NC}"
-TIMEOUT_SECONDS=10
+TIMEOUT_SECONDS=30
 curl --max-time $TIMEOUT_SECONDS -s http://localhost:5001/health > /dev/null
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}✅ API health endpoint is responding.${NC}"

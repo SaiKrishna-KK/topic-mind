@@ -1,7 +1,7 @@
 import os
 import logging
 from typing import Union, List, Optional
-from openai import OpenAI
+import openai
 from dotenv import load_dotenv
 
 # Configure logging
@@ -11,28 +11,20 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 load_dotenv()
 
 # Initialize OpenAI client
-# It's good practice to handle the case where the key is missing
+# Use the simplest possible initialization to avoid compatibility issues
+client = None
 try:
-    # Explicitly get the API key from environment 
     api_key = os.environ.get('OPENAI_API_KEY')
-    
     if not api_key:
         logging.error("OPENAI_API_KEY environment variable is not set")
-        client = None
     else:
         logging.info("Initializing OpenAI client with API key")
-        client = OpenAI(api_key=api_key)
-        # Verify the API key works with a simple call
-        try:
-            models = client.models.list()
-            logging.info(f"OpenAI API connection successful: {len(models.data)} models available")
-        except Exception as e:
-            logging.error(f"API key verification failed: {e}")
-            client = None
+        # Use the simplest possible initialization
+        openai.api_key = api_key
+        client = openai
 except Exception as e:
-    logging.error(f"Failed to initialize OpenAI client: {e}")
+    logging.error(f"Failed to initialize OpenAI client: {str(e)}")
     logging.error("Please ensure your OPENAI_API_KEY environment variable is set correctly.")
-    client = None  # Indicate client is not available
 
 PROMPT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'prompts')
 DEFAULT_PROMPT_PATH = os.path.join(PROMPT_DIR, 'refine_topic.gpt.txt')

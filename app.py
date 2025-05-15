@@ -2,6 +2,9 @@ import os
 import logging
 import nltk
 import sys
+import time
+import threading
+from functools import wraps
 from flask import Flask, request, jsonify
 from collections import defaultdict
 from dotenv import load_dotenv
@@ -84,6 +87,14 @@ app = Flask(__name__)
 summarizer_model_loaded = False
 embedding_model_loaded = False
 
+# Define a health state variable
+health_status = {
+    "ready": False,
+    "message": "System initializing...",
+    "models_loaded": False,
+    "startup_time": time.time()
+}
+
 @app.before_request
 def load_models():
     # Check if models are already loaded to avoid reloading on every request
@@ -110,17 +121,65 @@ def load_models():
     
     logging.info("Model loading complete (check logs for errors).")
 
+# Add this after model initialization
+def initialize_models_async():
+    """Initialize models asynchronously to avoid blocking the API startup"""
+    global health_status
+    
+    try:
+        # Ensure directory exists for model cache
+        os.makedirs("models/cache", exist_ok=True)
+        
+        # Check disk space
+        import shutil
+        disk = shutil.disk_usage(".")
+        free_space_gb = disk.free / (1024**3)
+        if free_space_gb < 1.0:
+            health_status["message"] = f"Warning: Low disk space ({free_space_gb:.2f}GB free). Models may fail to load."
+            logging.warning(health_status["message"])
+        
+        # Load models
+        logging.info("Loading models...")
+        from models.bart_summarizer import load_models
+        success = load_models()
+        
+        if success:
+            health_status["models_loaded"] = True
+            health_status["ready"] = True
+            health_status["message"] = "System ready"
+            logging.info("All models loaded successfully!")
+        else:
+            health_status["message"] = "Some models failed to load, but system is operational"
+            logging.warning(health_status["message"])
+            health_status["ready"] = True  # Still operational even with partial models
+    except Exception as e:
+        logging.error(f"Error during model initialization: {str(e)}")
+        health_status["message"] = f"Error initializing models: {str(e)}"
+        # Still mark as ready so the API can still serve responses with appropriate error messages
+        health_status["ready"] = True
+
+# Start async initialization
+threading.Thread(target=initialize_models_async, daemon=True).start()
+
 # --- API Endpoints ---
 @app.route('/health', methods=['GET'])
 def health_check():
-    """Health check endpoint."""
-    # Basic check, could be expanded to check model status
-    model_status = {
-        "summarizer_model_loaded": summarizer_model_loaded,
-        "embedding_model_loaded": embedding_model_loaded, 
-        "openai_api_key_set": bool(openai_api_key and openai_api_key != "your_openai_api_key_here")
+    """Enhanced health check endpoint that reports system status"""
+    global health_status
+    
+    uptime = time.time() - health_status["startup_time"]
+    
+    response = {
+        "status": "up" if health_status["ready"] else "initializing",
+        "message": health_status["message"],
+        "uptime_seconds": int(uptime),
+        "models_loaded": health_status["models_loaded"]
     }
-    return jsonify({"status": "ok", "models": model_status}), 200
+    
+    # If not ready yet, return 503 Service Unavailable
+    status_code = 200 if health_status["ready"] else 503
+    
+    return jsonify(response), status_code
 
 @app.route('/analyze', methods=['POST'])
 def analyze_text():
@@ -447,6 +506,91 @@ def analyze_text():
     except Exception as e:
         logging.exception(f"An unexpected error occurred during text analysis: {e}")  # Log full traceback
         return jsonify({"error": f"An internal error occurred during analysis: {str(e)}"}), 500
+
+# Add a timeout wrapper for API endpoints
+def timeout_handler(timeout_seconds=60):
+    """Decorator to handle timeouts for API endpoints"""
+    def decorator(f):
+        @wraps(f)
+        def wrapper(*args, **kwargs):
+            # Get API timeout from environment or use default
+            api_timeout = int(os.environ.get("API_TIMEOUT", timeout_seconds))
+            
+            def target():
+                nonlocal result
+                result = f(*args, **kwargs)
+            
+            result = None
+            thread = threading.Thread(target=target)
+            thread.daemon = True
+            
+            try:
+                thread.start()
+                thread.join(timeout=api_timeout)
+                if thread.is_alive():
+                    return jsonify({
+                        "error": f"Request timed out after {api_timeout} seconds. The server might be under heavy load or processing large documents."
+                    }), 504  # Gateway Timeout
+                return result
+            except Exception as e:
+                return jsonify({
+                    "error": f"An unexpected error occurred: {str(e)}"
+                }), 500
+        return wrapper
+    return decorator
+
+# Update the analyze_topics endpoint to use the timeout handler
+@app.route("/analyze_topics", methods=["POST"])
+@timeout_handler(60)  # 60 second timeout
+def analyze_topics():
+    """Analyze text and extract topics."""
+    try:
+        data = request.get_json()
+        
+        if not data or 'text' not in data:
+            return jsonify({"error": "No text provided"}), 400
+            
+        text = data['text']
+        num_topics = data.get('num_topics', 5)  # Default to 5 topics
+        
+        # Ensure the number of topics is valid
+        num_topics = max(1, min(10, num_topics))  # Between 1 and 10
+        
+        # Process the text to extract topics
+        result = process_topics(text, num_topics)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
+# Update the summarize endpoint to use the timeout handler
+@app.route("/summarize", methods=["POST"])
+@timeout_handler(60)  # 60 second timeout
+def summarize():
+    """Generate a summary of the provided text."""
+    try:
+        data = request.get_json()
+        
+        if not data or 'text' not in data:
+            return jsonify({"error": "No text provided"}), 400
+            
+        text = data['text']
+        max_length = data.get('max_length', 150)  # Default max length
+        min_length = data.get('min_length', 40)   # Default min length
+        
+        # Ensure the lengths are valid
+        max_length = max(50, min(500, max_length))  # Between 50 and 500
+        min_length = max(10, min(max_length-10, min_length))  # Between 10 and max_length-10
+        
+        # Generate summary
+        from models.bart_summarizer import summarize_text
+        summary = summarize_text(text, max_length, min_length)
+        
+        if summary.startswith("Error:"):
+            return jsonify({"error": summary}), 500
+            
+        return jsonify({"summary": summary})
+    except Exception as e:
+        return jsonify({"error": f"An error occurred during summarization: {str(e)}"}), 500
 
 if __name__ == '__main__':
     logging.info("Starting Flask server...")

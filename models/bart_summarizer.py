@@ -6,13 +6,14 @@ import re
 import time
 from datetime import datetime
 from typing import List, Dict, Tuple, Union, Optional, Any
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, BartTokenizer, BartForConditionalGeneration
 from sklearn.feature_extraction.text import TfidfVectorizer
 import nltk
 from nltk.tokenize import sent_tokenize
 import numpy as np
 from dotenv import load_dotenv
 from sklearn.metrics.pairwise import cosine_similarity
+from sentence_transformers import SentenceTransformer
 
 # Load environment variables from .env file
 load_dotenv()
@@ -86,37 +87,75 @@ _tokenizer = None
 _model = None
 _sentence_transformer = None  # Added for caching the sentence transformer
 
-def load_summarizer_model() -> Tuple[bool, str]:
-    """
-    Loads the DistilBART model and tokenizer. Call this once during application startup.
+# Get device - use GPU if available
+device = os.environ.get('MODEL_DEVICE', 'cpu')
+if device == 'cuda' and not torch.cuda.is_available():
+    logging.warning("CUDA requested but not available. Using CPU instead.")
+    device = 'cpu'
 
-    Returns:
-        Tuple of (success: bool, message: str)
-    """
-    global _tokenizer, _model
-    if _tokenizer is not None and _model is not None:
-        return True, "Model already loaded"
-        
+# Check available disk space before loading models
+def check_disk_space(required_mb=1000) -> bool:
+    """Check if there's enough disk space available"""
     try:
-        # Set default device to CPU for Mac M1 compatibility
-        torch.set_default_device('cpu')
-        
-        logger.info(f"Loading DistilBART model ({MODEL_NAME})... This may take a moment.")
-        
-        # Explicitly set device to CPU for Mac M1 compatibility
-        device = torch.device("cpu")
-        logger.info(f"Using device: {device} (forced for Mac M1 compatibility)")
-        
-        _tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-        _model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME).to(device)
-        
-        logger.info("DistilBART model loaded successfully on CPU.")
-        return True, "Model loaded successfully"
+        import shutil
+        # Get the disk usage statistics for the current directory
+        total, used, free = shutil.disk_usage('.')
+        free_mb = free / (1024 * 1024)  # Convert to MB
+        if free_mb < required_mb:
+            logging.error(f"Not enough disk space available. Need {required_mb}MB, but only {free_mb:.2f}MB free.")
+            return False
+        return True
     except Exception as e:
-        logger.error(f"Error loading DistilBART model: {e}")
-        _tokenizer = None
-        _model = None
-        return False, f"Error: {str(e)}"
+        logging.error(f"Error checking disk space: {str(e)}")
+        return True  # Assume enough space if check fails
+
+# Load models with fallback
+def load_models():
+    """Load the required models with error handling and fallbacks"""
+    global _tokenizer, _model, _sentence_transformer
+    
+    # Check disk space before loading models
+    if not check_disk_space(1000):  # Need at least 1GB free
+        return False
+    
+    try:
+        # Load DistilBART model and tokenizer
+        logging.info("Loading DistilBART model for summarization (this may take a moment)...")
+        model_name = "sshleifer/distilbart-cnn-12-6"
+        _tokenizer = BartTokenizer.from_pretrained(model_name)
+        _model = BartForConditionalGeneration.from_pretrained(model_name).to(device)
+        logging.info("DistilBART model loaded successfully.")
+    except Exception as e:
+        logging.error(f"Error loading DistilBART model: {str(e)}")
+        try:
+            # Fallback to smaller model if available
+            logging.info("Trying fallback to smaller model...")
+            model_name = "facebook/bart-large-cnn"
+            _tokenizer = BartTokenizer.from_pretrained(model_name)
+            _model = BartForConditionalGeneration.from_pretrained(model_name).to(device)
+            logging.info("Fallback BART model loaded successfully.")
+        except Exception as e2:
+            logging.error(f"Error loading fallback model: {str(e2)}")
+            return False
+    
+    try:
+        # Load SentenceTransformer for embeddings
+        logging.info("Loading SentenceTransformer for embeddings (this may take a moment)...")
+        _sentence_transformer = SentenceTransformer('all-mpnet-base-v2')
+        logging.info("SentenceTransformer loaded successfully.")
+    except Exception as e:
+        logging.error(f"Error loading SentenceTransformer: {str(e)}")
+        return False
+    
+    return True
+
+# Initialize models
+_tokenizer = None
+_model = None
+_sentence_transformer = None
+
+# Attempt to load models at module import
+models_loaded = load_models()
 
 def get_sentence_transformer():
     """
@@ -344,7 +383,7 @@ def summarize_chunk(text: str, max_length: int = 100, min_length: int = 30, prom
         return "Error: Empty input text."
         
     if not _model or not _tokenizer:
-        success, message = load_summarizer_model()
+        success, message = load_models()
         if not success:
             return f"Error: No summarization model loaded. {message}"
     
@@ -823,9 +862,9 @@ def summarize_sentence_dicts(sentence_dicts: List[Dict[str, Any]],
         Dictionary with summary and metadata
     """
     if _tokenizer is None or _model is None:
-        logger.error("Summarizer model not loaded. Call load_summarizer_model() first.")
+        logger.error("Summarizer model not loaded. Call load_models() first.")
         # Attempt to load now
-        success, message = load_summarizer_model()
+        success, message = load_models()
         if not success:
             return {"error": message}
     
