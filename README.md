@@ -1,3 +1,44 @@
+# TopicMind
+
+**Version 1.1.0** - Topic extraction and summarization platform
+
+## Overview
+TopicMind extracts key topics from text content and generates concise, informative summaries. It uses a combination of natural language processing, topic modeling, and neural summarization techniques to analyze and distill information from large texts.
+
+## Features
+- Extract multiple topics from a single document
+- Generate comprehensive summaries for each topic
+- Process content from various sources (articles, Reddit threads, forums)
+- Interactive web UI for easy use
+- API for integration with other applications
+
+## Getting Started
+
+### Prerequisites
+- Python 3.9+ 
+- Required libraries (install via `pip install -r requirements.txt`)
+
+### Running the Application
+Simply use the start script:
+
+```bash
+./start_topicmind.sh
+```
+
+The script will:
+1. Check for port conflicts and resolve them
+2. Start the backend API server (port 5002)
+3. Start the Streamlit frontend (port 8502)
+4. Provide status information as services initialize
+
+Access the web interface at http://localhost:8502
+
+### API Endpoints
+- `http://localhost:5002/health` - Check API health
+- `http://localhost:5002/analyze` - Process and summarize text
+- `http://localhost:5002/analyze_topics` - Extract topics from text
+- `http://localhost:5002/summarize` - Summarize text without topic extraction
+
 # TopicMind: Smart Text Summarization
 
 <p align="center">
