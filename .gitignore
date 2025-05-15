@@ -145,4 +145,4 @@ BERTopic Model/
 torch_hub/
 models/__pycache__/
 utils/__pycache__/
-*.pyc
+*.pycfix_*.py
