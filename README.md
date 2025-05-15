@@ -68,7 +68,7 @@ TopicMind is an advanced text analysis tool that uses state-of-the-art NLP techn
 The simplest way to run TopicMind is using the included launch script:
 
 ```bash
-./run_topicmind.sh
+./start_topicmind.sh
 ```
 
 This script will:
