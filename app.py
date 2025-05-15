@@ -81,18 +81,32 @@ app = Flask(__name__)
 
 # --- Load Models on Startup ---
 summarizer_model_loaded = False
+embedding_model_loaded = False
 
 @app.before_request
 def load_models():
     # Check if models are already loaded to avoid reloading on every request
-    global summarizer_model_loaded
-    if summarizer_model_loaded:
+    global summarizer_model_loaded, embedding_model_loaded
+    if summarizer_model_loaded and embedding_model_loaded:
         return # Models already loaded
 
     logging.info("Loading models...")
     # Load BART Summarizer
     load_summarizer_model() # This function handles its own logging/errors
     summarizer_model_loaded = True # Assume loaded unless error logged by the function
+    
+    # Load SentenceTransformer for embeddings (caching it)
+    try:
+        from models.bart_summarizer import get_sentence_transformer
+        embedding_model = get_sentence_transformer()
+        if embedding_model:
+            embedding_model_loaded = True
+            logging.info("SentenceTransformer model loaded and cached.")
+        else:
+            logging.warning("SentenceTransformer model not loaded. Some features may not work optimally.")
+    except Exception as e:
+        logging.error(f"Error loading SentenceTransformer model: {e}")
+    
     logging.info("Model loading complete (check logs for errors).")
 
 # --- API Endpoints ---
@@ -102,6 +116,7 @@ def health_check():
     # Basic check, could be expanded to check model status
     model_status = {
         "summarizer_model_loaded": summarizer_model_loaded,
+        "embedding_model_loaded": embedding_model_loaded, 
         "openai_api_key_set": bool(openai_api_key and openai_api_key != "your_openai_api_key_here")
     }
     return jsonify({"status": "ok", "models": model_status}), 200
@@ -109,21 +124,32 @@ def health_check():
 @app.route('/analyze', methods=['POST'])
 def analyze_text():
     """
-    Endpoint to analyze text, extract topics, and generate summaries.
-    Expects JSON input: {"text": "...", "num_topics": 5, "is_reddit_content": false}
-    Returns JSON output: {"results": [{"topic": "...", "summary": "..."}, ...]} or {"error": "..."}
+    Endpoint to analyze text and generate topic-based summaries.
+    Expects JSON input: {"text": "...", "is_reddit_content": false, "num_topics": 3}
+    Returns JSON output: {"results": [{"topic": "Topic Name", "summary": "..."}]} or {"error": "..."}
     """
     if not request.json or 'text' not in request.json:
         logging.warning("Request received without 'text' field.")
         return jsonify({"error": "Missing 'text' in request body"}), 400
 
     input_text = request.json['text']
-    num_topics = int(request.json.get('num_topics', 5))  # Default to 5 topics if not specified
     is_reddit_content = request.json.get('is_reddit_content', False)  # Is this Reddit-style content?
-
-    # Ensure num_topics is within reasonable range
-    num_topics = max(1, min(num_topics, 10))  # Clamp between 1-10
-    logging.info(f"Requested {num_topics} topics for analysis")
+    
+    # Options for display in frontend
+    show_pre_summary_sentences = request.json.get('show_pre_summary_sentences', False)
+    show_chunk_summaries = request.json.get('show_chunk_summaries', False)
+    
+    # Dev mode option to limit processing
+    dev_mode = request.json.get('dev_mode', False)
+    
+    # Topic settings
+    num_topics = int(request.json.get('num_topics', 3))  # Default to 3 topics
+    
+    # Chunking and compression options
+    chunked_summarization = request.json.get('chunked_summarization', True)
+    final_compression = request.json.get('final_compression', True)
+    chunk_size = int(request.json.get('chunk_size', 10))
+    max_sentences = int(request.json.get('max_sentences_per_topic', 25))
 
     if not input_text or not input_text.strip():
         logging.warning("Request received with empty 'text' field.")
@@ -151,64 +177,271 @@ def analyze_text():
         cleaned_text = clean_text(input_text, remove_stopwords_flag=False)  # Keep stopwords for sentence context
         logging.info("Text preprocessing complete.")
 
-        # 2. Analyze topics
+        # 2. Extract sentences
         try:
-            # Use the new analyze_topics_in_text function which handles sentence splitting and topic modeling
-            logging.info(f"Analyzing text with {num_topics} topics")
-            sentence_topics, topic_keywords = analyze_topics_in_text(cleaned_text, num_topics=num_topics)
+            # Get all sentences from the text
+            sentences = nltk.sent_tokenize(cleaned_text)
             
-            if not sentence_topics:
-                logging.info("No topics found in the text.")
-                return jsonify({"results": []}), 200
+            # Filter out very short sentences (likely fragments)
+            sentences = [s for s in sentences if len(s.split()) >= 5]
+            
+            # Limit to max_sentences for processing efficiency
+            if len(sentences) > max_sentences * num_topics:
+                logging.info(f"Limiting analysis to {max_sentences * num_topics} sentences (from {len(sentences)} total)")
+                sentences = sentences[:max_sentences * num_topics]
                 
-            logging.info(f"Split into sentences and grouped into {len(sentence_topics)} topics")
+            logging.info(f"Extracted {len(sentences)} sentences for analysis")
             
         except LookupError:
             logging.error("NLTK 'punkt' tokenizer data not found. Cannot split into sentences.")
             return jsonify({"error": "Server configuration error: NLTK data missing."}), 500
 
-        # 3. Refine topics and Summarize
+        # Results array for multiple topics
         results = []
-        for topic_id, topic_sentences in sentence_topics.items():
-            logging.info(f"Processing Topic ID: {topic_id} ({len(topic_sentences)} sentences)")
-            # Get keywords for refinement
-            keywords = topic_keywords.get(topic_id, [])
-
-            if not keywords:
-                logging.warning(f"No keywords found for Topic ID: {topic_id}. Using default name.")
-                refined_topic_name = f"Topic {topic_id}"  # Fallback name
-            else:
-                # Refine topic name via OpenAI
-                refined_topic_name = refine_topic_name(keywords)
-                logging.info(f"Refined Topic ID {topic_id} (Keywords: {keywords[:5]}) to: '{refined_topic_name}'.")
-
-            # Summarize sentences for this topic
-            # Join sentences into a single block for summarization
-            text_to_summarize = " ".join(topic_sentences)
-            summary = summarize_text(text_to_summarize, max_length=150, min_length=40)  # Adjust lengths as needed
-
-            # Check for summarization errors
-            if summary.startswith("Error:"):
-                logging.error(f"Summarization failed for Topic ID {topic_id}: {summary}")
-                continue  # Skip this topic if summary failed
-            else:
-                logging.info(f"Generated summary for Topic '{refined_topic_name}'.")
-
-            results.append({
-                "topic": refined_topic_name,
-                "summary": summary,
-                "keywords": keywords[:5]  # Include top 5 keywords in the response
-            })
-
-        logging.info(f"Analysis complete. Returning {len(results)} topic-summary pairs.")
         
-        # If we got fewer topics than requested, include an explanation
-        response_data = {"results": results}
-        if results and len(results) < num_topics:
-            response_data["topic_count_info"] = f"Found {len(results)} topics instead of the requested {num_topics}"
-            logging.info(f"Note: Found {len(results)} topics instead of requested {num_topics}")
+        # If requesting multiple topics, use topic extraction
+        if num_topics > 1:
+            try:
+                # Call topic analysis function (analyze_topics_in_text)
+                topic_sentences, topic_keywords = analyze_topics_in_text(cleaned_text, num_topics=num_topics)
+                
+                # topic_sentences is a dict mapping topic IDs to sentence lists
+                # topic_keywords is a dict mapping topic IDs to keyword lists
+                logging.info(f"Extracted {len(topic_sentences)} topics")
+                
+                # Check if we got fewer topics than requested
+                if len(topic_sentences) < num_topics:
+                    topic_count_info = f"Found {len(topic_sentences)} topics instead of the requested {num_topics}"
+                    logging.info(topic_count_info)
+                
+                # Process each topic
+                for topic_id, sentences in topic_sentences.items():
+                    # Get the keywords for this topic
+                    words = topic_keywords.get(topic_id, [])
+                    
+                    # Only use topic_refiner if we have a valid OpenAI API key
+                    if openai_api_key and openai_api_key != "your_openai_api_key_here":
+                        try:
+                            # Try to refine the topic name using OpenAI
+                            refined_name = refine_topic_name(words)
+                            topic_name = refined_name
+                            logging.info(f"Using OpenAI refined topic name: {topic_name}")
+                        except Exception as e:
+                            # Fall back to simple format if refinement fails
+                            topic_name = f"Topic: {', '.join(words[:3])}"
+                            logging.warning(f"Topic refinement failed: {e}, using fallback name")
+                    else:
+                        # No valid API key, use simple format
+                        topic_name = f"Topic: {', '.join(words[:3])}"
+                        logging.info("No valid OpenAI API key, using keyword-based topic name")
+                    
+                    # Create result object for this topic
+                    topic_result = {
+                        "topic": topic_name,
+                        "keywords": words
+                    }
+                    
+                    # Add source sentences if requested
+                    if show_pre_summary_sentences:
+                        source_sentences = [{"text": sent, "source": f"t{topic_id}_s{i}"} 
+                                          for i, sent in enumerate(sentences)]
+                        topic_result["source_sentences"] = source_sentences
+                    
+                    # Summarize the topic using the same chunking logic
+                    if sentences:
+                        # Similar chunking and summarization as in the single-topic case
+                        if chunked_summarization and len(sentences) > chunk_size:
+                            chunks = [sentences[i:i + chunk_size] 
+                                    for i in range(0, len(sentences), chunk_size)]
+                            
+                            # Limit chunks in dev mode
+                            if dev_mode and len(chunks) > 3:
+                                chunks = chunks[:3]
+                                topic_result["dev_mode_limited"] = True
+                            
+                            # Add chunks to result if showing source sentences
+                            if show_pre_summary_sentences:
+                                chunk_data = []
+                                for chunk_idx, chunk in enumerate(chunks):
+                                    chunk_sentences = [{"text": sent, "source": f"t{topic_id}_s{i+chunk_idx*chunk_size}"} 
+                                                    for i, sent in enumerate(chunk)]
+                                    chunk_data.append(chunk_sentences)
+                                topic_result["chunks"] = chunk_data
+                            
+                            # Summarize each chunk
+                            chunk_summaries = []
+                            for chunk_idx, chunk in enumerate(chunks):
+                                chunk_text = " ".join(chunk)
+                                chunk_summary = summarize_text(
+                                    chunk_text, 
+                                    max_length=100, 
+                                    min_length=30,
+                                    keywords=words,
+                                    topic_name=topic_name,
+                                    prompt_prefix=f"Summarize this content about {topic_name}:"
+                                )
+                                if not chunk_summary.startswith("Error:"):
+                                    chunk_summaries.append(chunk_summary)
+                            
+                            # Add chunk summaries if requested
+                            if show_chunk_summaries:
+                                topic_result["chunk_summaries"] = chunk_summaries
+                            
+                            # Apply final compression if enabled
+                            if final_compression and chunk_summaries:
+                                combined_text = " ".join(chunk_summaries)
+                                final_summary = summarize_text(
+                                    combined_text, 
+                                    max_length=150, 
+                                    min_length=40,
+                                    keywords=words,
+                                    topic_name=topic_name,
+                                    prompt_prefix=f"Create a coherent summary about {topic_name}:"
+                                )
+                                if not final_summary.startswith("Error:"):
+                                    topic_result["summary"] = final_summary
+                                    topic_result["final_compressed"] = True
+                                else:
+                                    topic_result["summary"] = " ".join(chunk_summaries)
+                                    topic_result["final_compressed"] = False
+                            else:
+                                topic_result["summary"] = " ".join(chunk_summaries)
+                                topic_result["final_compressed"] = False
+                        else:
+                            # No chunking, summarize all sentences together
+                            text_to_summarize = " ".join(sentences)
+                            summary = summarize_text(
+                                text_to_summarize, 
+                                max_length=150, 
+                                min_length=40,
+                                keywords=words,
+                                topic_name=topic_name,
+                                prompt_prefix=f"Provide a concise summary about {topic_name}:"
+                            )
+                            if not summary.startswith("Error:"):
+                                topic_result["summary"] = summary
+                            else:
+                                topic_result["summary"] = f"Failed to summarize topic: {topic_name}"
+            else:
+                        topic_result["summary"] = f"No sentences found for topic: {topic_name}"
+                    
+                    # Add this topic's result
+                    results.append(topic_result)
+                
+                # Return results
+                response_data = {"results": results}
+                if len(results) < num_topics:
+                    response_data["topic_count_info"] = f"Found {len(results)} topics instead of the requested {num_topics}"
+                
+                return jsonify(response_data), 200
+                
+            except Exception as e:
+                logging.exception(f"Error in topic extraction: {e}")
+                # Fall back to single topic mode if topic extraction fails
+                logging.info("Falling back to single topic mode due to error")
+                num_topics = 1
+        
+        # Single topic mode (either by request or fallback)
+        if num_topics == 1 or not results:
+            # 3. Generate a comprehensive summary
+            # Prepare result object
+            result = {
+                "topic": "Complete Summary",
+                "keywords": []  # We'll add keywords if available
+            }
             
-        return jsonify(response_data), 200
+            # Add source sentences if requested
+            if show_pre_summary_sentences:
+                source_sentences = [{"text": sent, "source": f"s{i}"} for i, sent in enumerate(sentences)]
+                result["source_sentences"] = source_sentences
+            
+            # Implement chunking if enabled and enough sentences
+            if chunked_summarization and len(sentences) > chunk_size:
+                # Split sentences into chunks
+                chunks = [sentences[i:i + chunk_size] for i in range(0, len(sentences), chunk_size)]
+                logging.info(f"Split {len(sentences)} sentences into {len(chunks)} chunks of max size {chunk_size}")
+                
+                # Limit the number of chunks in dev mode
+                if dev_mode and len(chunks) > 3:
+                    logging.info(f"DEV MODE: Limiting to first 3 chunks instead of {len(chunks)}")
+                    chunks = chunks[:3]
+                    # Inform the frontend that we limited processing
+                    result["dev_mode_limited"] = True
+                
+                # Add chunks to result if showing source sentences
+                if show_pre_summary_sentences:
+                    # Format chunks with metadata
+                    chunk_data = []
+                    for chunk_idx, chunk in enumerate(chunks):
+                        chunk_sentences = [{"text": sent, "source": f"s{i+chunk_idx*chunk_size}"} 
+                                          for i, sent in enumerate(chunk)]
+                        chunk_data.append(chunk_sentences)
+                    result["chunks"] = chunk_data
+                
+                # Summarize each chunk
+                chunk_summaries = []
+                for chunk_idx, chunk in enumerate(chunks):
+                    chunk_text = " ".join(chunk)
+                    # Use a neutral prompt for summarization
+                    chunk_summary = summarize_text(
+                        chunk_text, 
+                        max_length=100, 
+                        min_length=30,
+                        prompt_prefix="Summarize this text concisely:"
+                    )
+                    if not chunk_summary.startswith("Error:"):
+                        chunk_summaries.append(chunk_summary)
+                        logging.info(f"Generated summary for chunk {chunk_idx+1}/{len(chunks)}")
+                
+                # Add chunk summaries if requested
+                if show_chunk_summaries:
+                    result["chunk_summaries"] = chunk_summaries
+                
+                # Apply final compression if enabled
+                if final_compression and chunk_summaries:
+                    combined_text = " ".join(chunk_summaries)
+                    # Use a neutral prompt for final summarization
+                    final_summary = summarize_text(
+                        combined_text, 
+                        max_length=150, 
+                        min_length=40,
+                        prompt_prefix="Integrate these summaries into a coherent overview:"
+                    )
+                    if not final_summary.startswith("Error:"):
+                        result["summary"] = final_summary
+                        result["final_compressed"] = True
+                        logging.info("Generated final compressed summary.")
+                    else:
+                        # No compression, just join chunk summaries
+                        result["summary"] = " ".join(chunk_summaries)
+                        result["final_compressed"] = False
+                else:
+                    # No compression, just join chunk summaries
+                    result["summary"] = " ".join(chunk_summaries)
+                    result["final_compressed"] = False
+            else:
+                # No chunking, summarize all sentences together
+                text_to_summarize = " ".join(sentences)
+                # Use a neutral prompt
+                summary = summarize_text(
+                    text_to_summarize, 
+                    max_length=150, 
+                    min_length=40,
+                    prompt_prefix="Provide a concise summary of this text:"
+                )
+                
+                # Check for summarization errors
+                if not summary.startswith("Error:"):
+                    result["summary"] = summary
+                    logging.info("Generated direct summary.")
+                else:
+                    result["summary"] = "Summarization failed."
+                    logging.error(f"Summarization failed: {summary}")
+            
+            # Return a single result in the results array for backward compatibility
+            return jsonify({"results": [result]}), 200
+
+        logging.info("Analysis complete. Returning summary.")
 
     except Exception as e:
         logging.exception(f"An unexpected error occurred during text analysis: {e}")  # Log full traceback

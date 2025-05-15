@@ -33,6 +33,8 @@ def clean_reddit_content(text: str) -> str:
     - Upvote/downvote counts
     - Award/Share buttons
     - Comment navigation elements
+    - Time indicators (e.g., "14h ago")
+    - UI interaction elements (e.g., "reply")
     
     Preserves:
     - User comments and their content
@@ -53,11 +55,23 @@ def clean_reddit_content(text: str) -> str:
     text = re.sub(r'u/([a-zA-Z0-9_-]+) avatar', r'@\1:', text)
     text = re.sub(r'u/([a-zA-Z0-9_-]+)', r'@\1', text)
     
+    # Remove time indicators (both with and without bullets/dots)
+    text = re.sub(r'[•·]?\s*\d+[ymwdh]\s*ago', '', text)
+    text = re.sub(r'\b\d+[ymwdh]\s*ago\b', '', text)  # Match standalone time indicators
+    text = re.sub(r'Posted\s+\d+[ymwdh]\s*ago', '', text)
+    text = re.sub(r'Edited\s+\d+[ymwdh]\s*ago', '', text)
+    
     # Remove media player time indicators
     text = re.sub(r'\d+:\d+\s*/\s*\d+:\d+', '', text)
     
-    # Remove UI indicators (like "Video", "Archived post", etc.)
-    text = re.sub(r'Video|Archived post\.|New comments cannot be posted and votes cannot be cast\.', '', text)
+    # Remove UI indicators and interaction elements
+    text = re.sub(r'\breply\b', '', text, flags=re.IGNORECASE)  # Remove "reply" buttons
+    text = re.sub(r'\bshare\b', '', text, flags=re.IGNORECASE)  # Remove "share" buttons
+    text = re.sub(r'\breport\b', '', text, flags=re.IGNORECASE)  # Remove "report" buttons
+    text = re.sub(r'\bsave\b', '', text, flags=re.IGNORECASE)  # Remove "save" buttons
+    text = re.sub(r'\baward\b', '', text, flags=re.IGNORECASE)  # Remove "award" text
+    text = re.sub(r'\bfollow\b', '', text, flags=re.IGNORECASE)  # Remove "follow" buttons
+    text = re.sub(r'\bVideo\b|\bArchived post\.|New comments cannot be posted and votes cannot be cast\.', '', text)
     
     # Remove navigation elements
     text = re.sub(r'Go to comments', '', text)
@@ -65,18 +79,26 @@ def clean_reddit_content(text: str) -> str:
     text = re.sub(r'Search Comments|Expand comment search', '', text)
     text = re.sub(r'Comments Section', '', text)
     text = re.sub(r'Join the conversation', '', text)
+    text = re.sub(r'View all comments', '', text)
+    text = re.sub(r'Continue this thread', '', text)
+    text = re.sub(r'Collapse thread', '', text)
     
     # Remove voting UI elements
     text = re.sub(r'Upvote\s*[\dKMk\.]*', '', text)
     text = re.sub(r'Downvote\s*[\dKMk\.]*', '', text)
+    text = re.sub(r'Comment\s*[\dKMk\.]*', '', text)
     text = re.sub(r'Award|Share', '', text)
     
-    # Handle timestamps but preserve sentence boundaries
-    text = re.sub(r'[•·]\s*\d+[ymwd]\s*ago', '.', text)  # Replace with period to maintain sentence boundary
-    text = re.sub(r'Edited\s+\d+[ymwd]\s*ago', '', text)
+    # Remove point counts and indicators
+    text = re.sub(r'\b\d+\s*points?\b', '', text)
+    text = re.sub(r'\b\d+\s*k\s*points?\b', '', text, flags=re.IGNORECASE)
     
     # Remove reply navigation (e.g., "15 more replies")
     text = re.sub(r'\d+\s*(more)?\s*replies', '', text)
+    text = re.sub(r'see all replies', '', text, flags=re.IGNORECASE)
+    
+    # Remove single dots that might be UI separators
+    text = re.sub(r'(?<!\w)\.(?!\w)', ' ', text)
     
     # Clean specific patterns in the example
     text = re.sub(r'^\s*\d+\s*$', '', text, flags=re.MULTILINE)  # Standalone numbers (like vote counts)
@@ -93,6 +115,9 @@ def clean_reddit_content(text: str) -> str:
             lines[i] = line + '.'
     
     text = '\n'.join(lines)
+    
+    # Final cleanup - remove any empty lines or spaces at beginning/end
+    text = '\n'.join(line for line in text.split('\n') if line.strip())
     
     return text.strip()
 
