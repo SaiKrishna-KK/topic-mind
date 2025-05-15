@@ -1,238 +1,435 @@
-# TopicMind: Key Topic Identification and Summarization
+# TopicMind: Smart Text Summarization
 
-TopicMind is an NLP system designed to identify the main topics within extensive text collections (like Reddit threads) and generate concise, topic-focused summaries. It helps users quickly grasp the core ideas buried in lengthy discussions by filtering out noise and highlighting essential themes.
+<p align="center">
+  <img src="static/topicmind_logo.png" alt="TopicMind Logo" width="180"/>
+</p>
 
-## Problem Solved
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#how-it-works">How It Works</a> •
+  <a href="#text-preprocessing">Text Preprocessing</a> •
+  <a href="#development-progress">Development Progress</a> •
+  <a href="#performance-optimizations">Performance Optimizations</a> •
+  <a href="#testing">Testing</a> •
+  <a href="#development">Development</a> •
+  <a href="#license">License</a>
+</p>
 
-Addresses the challenge of information overload in large text datasets (e.g., online forums, articles) by automatically extracting key topics and providing summaries for each, saving users time and effort.
+TopicMind is an advanced text analysis tool that uses state-of-the-art NLP techniques to extract key topics and generate high-quality summaries from long-form text discussions. It's particularly effective for processing online discussions, forum threads, and comment sections where information is scattered across multiple messages.
 
 ## Features
 
-*   **Topic Detection:** Uncovers latent themes in text using:
-    *   Fine-tuned BERTopic model (based on "all-mpnet-base-v2") trained on 300k+ Reddit comments from our `kaggle_RC_2019-05.csv` dataset.
-    *   Sophisticated clustering and embedding techniques for semantically coherent topic grouping.
-*   **Topic Name Refinement:** Uses OpenAI API to generate human-friendly topic names from the keywords extracted by our fine-tuned model.
-*   **Topic-Based Summarization:** Generates abstractive summaries focused on specific identified topics using BART (facebook/bart-large-cnn). Fine-tuning on Reddit content is in progress, with plans to use the more efficient `sshleifer/distilbart-cnn-12-6` model.
-*   **Web Interface:** Provides a simple interface (built with Streamlit) to input text and view the analysis results.
-*   **Mac M1 Compatibility:** Specifically optimized for both GPU and non-GPU environments (including Apple Silicon).
+- 🔍 **Smart Topic Extraction**: Identifies distinct topics in large text bodies
+- 📝 **Context-Aware Summarization**: Groups related sentences for coherent summaries
+- 🔄 **Two-Pass Summarization**: First summarizes chunks, then integrates them for overall context
+- 🧠 **Domain-Agnostic Processing**: Works with diverse content (medical, tech, relationship advice, etc.)
+- 🌐 **BERTopic Integration**: Automatically extracts topic names and keywords
+- 🤖 **GPT-4o Quality Evaluation**: Optional automated assessment of summary quality
+- 📱 **Modern Web Interface**: User-friendly Streamlit dashboard with export functionality
+- 🔧 **Highly Configurable**: Adjustable parameters for fine-tuning the summarization process
 
-## Evolution from Previous Approach
+## Installation
 
-Our system has evolved significantly from its initial implementation:
+### Prerequisites
 
-### Previous Approach
-- Used **Latent Dirichlet Allocation (LDA)** for topic modeling, which struggled with coherence in conversational text
-- Relied heavily on generic models without domain-specific fine-tuning
-- Faced compatibility issues on Apple Silicon hardware
-- Used a single-stage summarization process that didn't properly separate topics
+- Python 3.9+
+- pip (Python package manager)
 
-### Current Approach
-- Implemented **BERTopic with advanced embeddings (all-mpnet-base-v2)** for dramatically improved topic coherence
-- **Fine-tuned BERTopic model on 300k+ Reddit comments** for domain adaptation to social media content
-- Created a **Mac-optimized architecture** with specific code paths for CPU-only and future MPS (Metal Performance Shaders) support
-- Developed a **two-stage process**:
-  1. Topic identification and keyword extraction (BERTopic)
-  2. Per-topic summarization (BART)
-- Added specialized **Reddit content preprocessing** to clean UI elements and formatting
+### Setup
 
-### Why These Changes Matter
-- **Topic Quality:** The move from LDA to fine-tuned BERTopic provides significantly more coherent and interpretable topics
-- **Hardware Compatibility:** Optimization for Apple Silicon ensures the system works on modern Macs without GPU requirements
-- **Focused Summarization:** By clustering similar sentences first, summaries are more focused on specific topics rather than mixing themes
-- **Efficient API Usage:** OpenAI is used only for the specialized task of topic naming, reducing API costs and dependencies
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/topicmind.git
+   cd topicmind
+   ```
 
-## Tech Stack
-
-*   **Backend:** Python, Flask
-*   **NLP/ML:** 
-    *   Fine-tuned BERTopic (with sentence-transformers) for topic modeling
-    *   BART (facebook/bart-large-cnn) for topic-specific summarization (fine-tuning planned with `sshleifer/distilbart-cnn-12-6`)
-    *   NLTK (for preprocessing)
-    *   OpenAI API (only for topic name refinement, not for core analysis)
-*   **Frontend:** Streamlit
-*   **Data:** Trained on over 300k Reddit comments from the Kaggle Reddit Comments dataset (May 2019).
-
-## Project Structure
-
-```
-topicMind/
-├── app.py                 # Flask backend application
-├── requirements.txt       # Project dependencies
-├── README.md              # This file
-├── .env                   # Environment variables (contains OpenAI API key)
-├── BERTopic Model/        # Pre-trained models
-│   ├── bertopic_model_300k_all-mpnet-base-v2  # Fine-tuned BERTopic model
-│   └── bertopic_model_paraphrase-MiniLM-L12-v2  # Alternative model (smaller)
-├── data/                  # Training and sample data
-│   ├── kaggle_RC_2019-05.csv  # Reddit Comments dataset used for training
-│   └── reddit_sample.json     # Sample data for testing
-├── frontend/              # Streamlit UI code
-│   └── streamlit_app.py   # Streamlit frontend application
-├── models/                # Model loading and inference
-│   ├── bertopic_model_simple.py  # BERTopic model loading & inference
-│   └── bart_summarizer.py        # BART summarization logic
-├── prompts/               # Prompts for LLM refinement
-│   └── refine_topic.gpt.txt  # Prompt template for OpenAI topic refinement
-└── utils/                 # Utility scripts
-    ├── preprocessor.py    # Text preprocessing logic
-    └── topic_refiner.py   # OpenAI integration for topic refinement
-```
-
-## OpenAI Integration - Topic Refinement Only
-
-It's important to note that OpenAI API is used **only for topic name refinement**, not for the core analysis:
-
-1. Our fine-tuned BERTopic model extracts keywords and groups sentences
-2. BART model generates the summaries (transitioning to `sshleifer/distilbart-cnn-12-6` for efficiency)
-3. OpenAI API receives only the keywords from each topic to generate a human-friendly topic name
-
-The prompt template used for OpenAI can be found in `prompts/refine_topic.gpt.txt`:
-
-```
-You are an expert at analyzing and naming topics.
-
-Given the following list of keywords that represent a single topic: {keywords}
-
-Please provide a SHORT, clear, and concise name for this topic (3-5 words maximum). 
-The name should accurately capture the essence of what these keywords collectively represent.
-
-Your response should be ONLY the topic name, with no additional explanation or commentary.
-```
-
-This approach ensures:
-- We get human-friendly topic names 
-- We maintain control over the core analysis using our models
-- The OpenAI API is used efficiently (small prompts, minimal tokens)
-
-## Frontend Interface (Streamlit)
-
-This section outlines the inputs and outputs for the Streamlit frontend.
-
-**Input:**
-
-1.  **Primary Input:**
-    *   **Text Data:** A main text area for pasting large blocks of text (e.g., forum threads, articles).
-2.  **Configuration Parameters:**
-    *   **Number of Topics:** Slider to select desired number of topics (1-10).
-    *   **Clean Reddit UI:** Option to clean Reddit-specific UI elements from input.
-
-**Output:**
-
-1.  **Identified Topics:**
-    *   Display a list of identified topic labels, refined using OpenAI.
-2.  **Topic Summaries:**
-    *   Show the concise, abstractive summary generated by BART model for each corresponding topic.
-3.  **Keywords:**
-    *   Display the top keywords that represent each topic.
-
-## Dataset Information
-
-The models were fine-tuned using the Kaggle Reddit Comments dataset from May 2019 (`data/kaggle_RC_2019-05.csv`), containing over 300,000 comments from various subreddits. This dataset was chosen because:
-
-1. It contains diverse topics and writing styles
-2. It represents real-world conversational content
-3. It includes challenging linguistic patterns (slang, abbreviations, nested discussions)
-
-The dataset was preprocessed to remove noise, clean Reddit-specific formatting, and normalize text before being used for fine-tuning.
-
-## Getting Started
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/SaiKrishna-KK/topic-mind.git
-    cd topicMind
-    ```
-2.  **Create and activate a virtual environment (recommended):**
+2. Create a virtual environment (recommended):
     ```bash
     python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   source venv/bin/activate  # On Windows, use: venv\Scripts\activate
     ```
-3.  **Install dependencies:**
+
+3. Install dependencies:
     ```bash
     pip install -r requirements.txt
     ```
-    NOTE: For Mac M1/M2 users, ensure PyTorch is installed for CPU:
-    ```bash
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-    ```
 
-4.  **Set up environment variables:**
-    Create a `.env` file in the project root with your OpenAI API key:
-    ```
-    OPENAI_API_KEY=your_openai_api_key_here
-    ```
-
-5.  **Run the application:**
-    
-    **Option 1:** Use the all-in-one launcher script:
-    ```bash
-    ./run_topicmind.sh
-    ```
-    This script:
-    - Starts the backend and shows dependency loading (PyTorch, TensorFlow, etc.)
-    - Waits for the backend to fully initialize and checks its health
-    - Only starts the frontend after confirming the backend is ready
-    - Provides clean shutdown with Ctrl+C
-    
-    **Option 2:** Start services separately:
-    ```bash
-    # Start the backend
-    python app.py
-    
-    # In a separate terminal (after backend is fully initialized)
-    streamlit run frontend/streamlit_app.py
+4. (Optional) For GPT-4o evaluation, add your OpenAI API key to a `.env` file:
+   ```
+   OPENAI_API_KEY=your_api_key_here
     ```
 
 ## Usage
 
-1.  Navigate to the Streamlit URL provided after running the command above (typically http://localhost:8501).
-2.  Paste the text you want to analyze into the input text area.
-3.  Adjust the "Number of topics" slider as needed.
-4.  Check "Clean Reddit UI elements" if analyzing Reddit content.
-5.  Click the "Analyze" button.
-6.  View the identified topics and their corresponding summaries.
+### Web Interface
 
-## Mac M1/M2 Compatibility
+The simplest way to run TopicMind is using the included launch script:
 
-TopicMind has been specifically optimized to work on Apple Silicon (M1/M2) Macs:
+```bash
+./run_topicmind.sh
+```
 
-* All PyTorch operations run in CPU-only mode
-* The BERTopic model is loaded in a way that's compatible with CPU environments
-* The application will automatically detect and handle the non-CUDA environment
-* Future releases will include MPS (Metal Performance Shaders) support for GPU acceleration
+This script will:
+1. Start the Flask backend server
+2. Check that all models are loaded correctly
+3. Start the Streamlit frontend
+4. Provide a clean shutdown with Ctrl+C
 
-## Team
+Alternatively, you can start the components separately:
 
-*   Sai Krishna Vishnumolakala (Pipeline Integration)
-*   Harsha Reddy Palapala (Data Collection & Cleaning)
-*   Gagana Vivekananda (BERTopic Implementation & Fine-tuning)
-*   Bhavitha Kakumanu (BART Summarizer Fine-tuning)
-*   Balakrishna Mangala (Evaluation & Testing)
+Start the backend service:
 
-## TODOs / Future Work
+```bash
+python app.py
+```
 
-**Immediate Priorities:**
+Then in a new terminal:
 
-1.  **GPU Optimization for Apple Silicon:**
-    *   Implement MPS (Metal Performance Shaders) support for M1/M2 Macs
-    *   Optimize model loading and inference for GPU acceleration
-2.  **BART Fine-tuning:**
-    *   Use `sshleifer/distilbart-cnn-12-6` instead of facebook/bart-large-cnn (80% as strong, but 50% faster to train)
-    *   Fine-tune the lightweight DistilBART model on Reddit content for more accurate, contextually appropriate summaries
-    *   Leverage the model's zero-shot capabilities for minimal latency in production
+```bash
+streamlit run frontend/streamlit_app.py
+```
 
-**Next Steps:**
+Open your browser to http://localhost:8501 to access the web interface.
 
-*   **UI Improvements:** 
-    *   Add topic visualization (word clouds, topic weights)
-    *   Implement file upload functionality
-*   **Model Enhancements:**
-    *   Further improve performance through hyperparameter optimization
-    *   Explore more advanced clustering techniques beyond K-means
+### Command Line
 
-**Future Enhancements:**
+For direct testing or batch processing, use the test script:
 
-*   Add multi-language support for global content analysis
-*   Develop a local alternative to OpenAI for topic refinement
-*   Chrome extension based page ingestion and auto-scrapping rather than copy-paste. 
-*   Create a more interactive interface for exploring topic relationships 
+```bash
+python test_thread_pipeline.py --input your_text_file.txt
+```
+
+Advanced options:
+```bash
+# Test with specific parameters
+python test_thread_pipeline.py --input reddit_thread.txt --chunk-size 5 --max-sentences 15
+
+# Test without final compression (single-pass summarization)
+python test_thread_pipeline.py --input reddit_thread.txt --no-compression
+
+# Batch testing across multiple content types
+python test_thread_pipeline.py --batch-test
+```
+
+## How It Works
+
+TopicMind uses a multi-stage pipeline to process text:
+
+1. **Preprocessing**: Cleans and normalizes text, handling Reddit-specific formatting if needed
+2. **Topic Extraction**: Uses BERTopic to identify key themes in the content
+3. **Sentence Refinement**: Selects the most relevant sentences for each topic
+4. **Context-Aware Chunking**: Groups semantically related sentences together
+5. **Two-Pass Summarization**: 
+   - First pass: Summarizes each chunk independently
+   - Second pass: Integrates chunk summaries into a coherent final summary
+6. **Quality Evaluation**: (Optional) Uses GPT-4o to assess summary quality
+
+![TopicMind Pipeline](static/pipeline_diagram.png)
+
+## Pipeline Architecture
+
+The TopicMind pipeline processes text through several specialized components:
+
+1. **Text Cleaning (Preprocessor)**: Handles Reddit-specific formatting, removes UI elements, and standardizes text
+2. **Topic Extraction (BERTopic Model)**: Sentence embedding and clustering to identify key themes
+3. **Thread Refiner**: Selects contextually important sentences for each topic
+4. **Chunking Engine**: Groups related sentences for more coherent summaries
+5. **BART Summarizer**: Two-pass summarization system for high-quality output
+6. **Evaluation Module**: Optional GPT-4o assessment of summary quality
+
+### Data Flow
+
+```
+Raw Text → Preprocessor → Topic Extractor → Thread Refiner → 
+  → Chunking Engine → First-Pass Summarization → Second-Pass Integration → Final Summary
+```
+
+Each component maintains provenance tracking to ensure the original context is preserved throughout processing.
+
+## Text Preprocessing
+
+The text preprocessing module is a critical component that prepares raw text for effective analysis:
+
+### Preprocessing Steps
+
+1. **Initial Cleaning**
+   - Removes HTML tags, URLs, and special characters
+   - Normalizes whitespace and line breaks
+   - Fixes common encoding issues
+   
+2. **Reddit-Specific Processing** (when enabled)
+   - Strips UI elements like upvote counts (e.g., "[+123]")
+   - Removes username mentions and timestamp markers
+   - Cleans up formatting artifacts from Reddit's markdown
+   - Preserves important formatting like paragraphs and lists
+
+3. **Sentence Segmentation**
+   - Splits text into sentences using NLTK's sentence tokenizer
+   - Preserves sentence context and relationships
+   - Handles special cases like bulleted lists and quotes
+
+4. **Noise Filtering**
+   - Removes sentences that are too short (< 5 words)
+   - Filters out sentences with very little information content
+   - Eliminates duplicate or near-duplicate sentences
+
+5. **Semantic Enrichment** (when enabled)
+   - Computes semantic embeddings for sentences
+   - Enhances content relevance determination
+   - Improves topical grouping through semantic similarity
+
+Each preprocessing step is configurable via the UI or command-line options, allowing users to tailor the pipeline to specific content types.
+
+## Performance Optimizations
+
+TopicMind has been optimized for performance and usability with several key improvements:
+
+### UI Performance Enhancements
+
+1. **Progress Tracking**
+   - Added real-time progress bars and status updates in the Streamlit UI
+   - Implemented step-by-step status reporting during long operations
+   - Created a clear visual indication when processing multi-stage operations
+
+2. **Development Mode**
+   - Added a "Dev Mode" toggle to limit processing for faster testing
+   - Restricts chunk processing to a maximum of 3 chunks in development mode
+   - Provides clear indication when processing is limited
+
+3. **Model Caching**
+   - Implemented efficient caching for the Sentence Transformer model
+   - Single load at application startup rather than per-request loading
+   - Reduced redundant embedding calculations through caching
+
+4. **Streamlined UI**
+   - Removed documentation sidebar for a cleaner, more focused interface
+   - Fixed nested expander compatibility issues by using tabs
+   - Improved error handling and user feedback
+
+### Backend Optimizations
+
+1. **Efficient Embedding Generation**
+   - Cached sentence embeddings to prevent redundant calculations
+   - Implemented batch processing for embedding generation
+   - Reduced memory usage through optimized tensor handling
+
+2. **Selective GPT Integration**
+   - Made OpenAI API integration optional with graceful fallbacks
+   - Disabled GPT evaluation by default to improve response time
+   - Added configurable topic refinement that only uses OpenAI when available
+
+3. **Chunking Optimizations**
+   - Implemented more efficient context-aware sentence chunking
+   - Enhanced deduplication to prevent redundancy across chunks
+   - Optimized chunk sizes based on content complexity
+
+## Development Progress
+
+### Recent Enhancements
+
+#### Enhanced Thread Refiner
+- Created `utils/thread_refiner.py` as a generalization of the Reddit semantic refiner
+- Added sentence provenance tracking with unique hash IDs
+- Made refiner model-agnostic with optional model parameter
+- Ensured backward compatibility with previous functions
+- Added JSON logging of sentences with provenance information
+
+#### Improved BART Summarizer with Chunk-Based Processing
+- Updated `models/bart_summarizer.py` to support sentence dictionaries with provenance
+- Added chunk-based summarization for long sentence lists
+- Implemented intelligent sentence chunking and summary merging
+- Modified summarization to track sentence provenance
+- Added a backward-compatible `summarize_text()` facade method
+- Updated logging to improve visibility of chunking process
+
+#### UI Enhancements
+- Added "Enable semantic refinement" toggle
+- Implemented progress tracking for long-running operations
+- Added dev mode for faster testing
+- Improved error handling and feedback
+- Created a cleaner, more focused interface
+
+#### Pipeline Improvements
+- Implemented sentence provenance tracking through the entire pipeline
+- Added chunk-based summarization with configurable chunk size
+- Created model-agnostic design that accepts external models
+- Enhanced logging and evaluation
+
+### Summarizer Evolution
+
+The summarization system has evolved through several iterations:
+
+1. **Initial TF-IDF + DistilBART Implementation**
+   - Keyword-based sentence filtering
+   - Basic single-pass summarization
+
+2. **Enhanced Two-Pass System**
+   - First pass: Summarize content chunks
+   - Second pass: Integrate chunk summaries
+
+3. **Context-Aware Architecture**
+   - Semantic chunking based on content relationships
+   - Enhanced deduplication across chunks
+   - Improved sentence selection
+
+4. **Full Pipeline Integration**
+   - Seamless flow from preprocessing to final summary
+   - Comprehensive logging and evaluation
+   - Configurable parameters throughout the pipeline
+
+### Example Summaries
+
+#### Machine Learning Topic
+
+```
+Machine learning is transforming how we interact with technology. Ethical considerations should be central to AI development. Data collection practices need more transparency according to critics. The benefits of AI are vast, from healthcare to climate science.
+```
+
+#### Gaming Community Topic
+
+```
+Reddit discussions on gaming often focus on new releases. Nostalgia for classic games is a common theme in gaming subreddits. Competitive gaming and esports have growing discussion communities. Mobile gaming is sometimes viewed with skepticism by traditional gamers.
+```
+
+## Testing
+
+TopicMind includes a comprehensive testing framework to verify performance across different content types and with various configuration settings.
+
+### Quick Test Commands
+
+```bash
+# Test with default settings (auto-generated topic name)
+python test_thread_pipeline.py --input reddit_thread.txt
+
+# Test with a specific chunk size
+python test_thread_pipeline.py --input reddit_thread.txt --chunk-size 5
+
+# Test without final compression (no second pass summarization)
+python test_thread_pipeline.py --input reddit_thread.txt --no-compression
+
+# Test with a custom prompt
+python test_thread_pipeline.py --input reddit_thread.txt --prompt "Summarize this discussion clearly in 2-3 sentences:"
+```
+
+### Batch Testing
+
+The script supports batch testing across multiple thread types:
+
+```bash
+# Run tests on multiple files with auto-generated topic names and prompts
+python test_thread_pipeline.py --batch-test
+```
+
+This will test against:
+- `reddit_thread_medical.txt` 
+- `reddit_thread_relationship.txt`
+- `reddit_thread_career.txt`
+- `reddit_thread_gaming.txt`
+
+### Test Features
+
+The enhanced testing pipeline includes:
+
+1. **Domain-Agnostic Prompt Generation**: Tests how prompts are generated for different content types
+2. **Topic Name Fallback**: Tests the system's ability to generate names automatically
+3. **Comprehensive Logging**: Captures generated prompts, topic names, and evaluation scores
+4. **Quality Assessment**: Uses GPT-4o to evaluate summaries on clarity, coherence, and relevance
+
+### Reviewing Test Results
+
+After running tests, check:
+
+1. **Console Output**: Shows prompts used, summaries generated, and evaluation scores
+2. **Log Files**:
+   - `logs/summaries/final/enhanced_pipeline_result_*.json`: Complete JSON results
+   - `logs/eval/reports/enhanced_pipeline_report_*.txt`: Human-readable report
+   - `logs/summaries/chunks/chunk_pass_log_*.json`: First-pass chunk summaries
+   - `logs/summaries/final/final_summary_pass_*.txt`: Final summary details
+
+## Examples
+
+### Medical Discussion Summary
+
+**Input**: A lengthy Reddit thread about sepsis symptoms and warning signs
+
+**Output**:
+```
+Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis. Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection that can lead to sepsis if untreated.
+```
+
+### Relationship Advice Summary
+
+**Input**: A discussion about relationship communication issues
+
+**Output**:
+```
+Wedding planning often reveals deeper issues in relationships because it involves money, family dynamics, personal values and the ability to problem-solve together. If he regularly dismisses your opinions and preferences, you might want to reconsider the whole relationship, not just the wedding plans.
+```
+
+### Gaming Recommendations Summary
+
+**Input**: A thread discussing PlayStation 5 vs PC gaming
+
+**Output**:
+```
+Don't let FOMO (fear of missing out) on a hypothetical PS5 Pro rob you of 1-2 years of great gaming. The regular PS5 already runs everything beautifully, and by the time the Pro comes out, we'll be 2+ years closer to PS6.
+```
+
+## Development
+
+### Project Structure
+
+```
+topicmind/
+├── app.py                 # Flask backend
+├── frontend/
+│   └── streamlit_app.py   # Streamlit UI
+├── models/
+│   ├── bart_summarizer.py # Summarization model
+│   └── bertopic_model.py  # Topic extraction model
+├── utils/
+│   ├── preprocessor.py    # Text cleaning utilities
+│   ├── thread_refiner.py  # Content filtering
+│   └── organize_logs.py   # Log organization utility
+├── test_thread_pipeline.py # Testing pipeline
+└── logs/                  # Organized log directories
+    ├── gpt/               # GPT evaluation logs
+    ├── semantic/          # Semantic processing logs 
+    ├── summaries/         # Generated summaries
+    └── eval/              # Evaluation reports
+```
+
+### Log Organization
+
+The project includes a log organization utility that keeps all output files neatly structured:
+
+```bash
+python utils/organize_logs.py
+```
+
+This will organize logs into appropriate subdirectories and create an index for easy browsing.
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b new-feature`
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+- Thanks to the creators of BERTopic, DistilBART, and other open-source models used in this project
+- GPT-4o evaluation capability powered by OpenAI's API
+
+---
+
+<p align="center">
+Made with ❤️ by [Your Name]
+</p> 
