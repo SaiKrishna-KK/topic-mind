@@ -471,22 +471,38 @@ Don't let FOMO (fear of missing out) on a hypothetical PS5 Pro rob you of 1-2 ye
 
 ```
 topicmind/
-├── app.py                 # Flask backend
+├── app.py                     # Flask backend
 ├── frontend/
-│   └── streamlit_app.py   # Streamlit UI
+│   └── streamlit_app.py       # Streamlit UI
 ├── models/
-│   ├── bart_summarizer.py # Summarization model
-│   └── bertopic_model.py  # Topic extraction model
+│   ├── bart_summarizer.py     # Summarization model
+│   ├── bertopic_model_simple.py # Topic extraction model
+│   ├── lda_model.pkl          # Pre-trained LDA model
+│   └── lda_dictionary.pkl     # Dictionary for LDA model
 ├── utils/
-│   ├── preprocessor.py    # Text cleaning utilities
-│   ├── thread_refiner.py  # Content filtering
-│   └── organize_logs.py   # Log organization utility
-├── test_thread_pipeline.py # Testing pipeline
-└── logs/                  # Organized log directories
-    ├── gpt/               # GPT evaluation logs
-    ├── semantic/          # Semantic processing logs 
-    ├── summaries/         # Generated summaries
-    └── eval/              # Evaluation reports
+│   ├── preprocessor.py        # Text cleaning utilities
+│   ├── thread_refiner.py      # Content filtering
+│   ├── reddit_semantic_refiner.py # Reddit-specific refiner
+│   ├── topic_refiner.py       # Topic refinement tools
+│   └── organize_logs.py       # Log organization utility
+├── tests/
+│   ├── test_thread_pipeline.py # Testing pipeline
+│   ├── test_summarizer.py     # Summarizer tests
+│   ├── test_semantic_refiner.py # Refiner tests
+│   ├── ui_test.py             # UI testing
+│   └── api_test.py            # API testing
+├── prompts/
+│   └── refine_topic.gpt.txt   # GPT prompt templates
+├── data/
+│   └── reddit_sample.json     # Sample data for testing
+├── start_topicmind.sh         # Startup script
+└── logs/                      # Organized log directories
+    ├── gpt/                   # GPT evaluation logs
+    ├── semantic/              # Semantic processing logs 
+    ├── summaries/             # Generated summaries
+    ├── eval/                  # Evaluation reports
+    ├── pipeline/              # Pipeline process logs
+    └── streamlit/             # UI-related logs
 ```
 
 ### Log Organization
