@@ -305,7 +305,7 @@ def group_sentences_by_context(sentences_with_metadata: List[Dict[str, Any]], ma
                         most_similar_idx = max(avg_similarities.items(), key=lambda x: x[1])[0]
                         current_subgroup.append(most_similar_idx)
                         remaining_indices.remove(most_similar_idx)
-    else:
+                    if remaining_indices:
                         break
                 
                 # Add this subgroup to our list
@@ -360,14 +360,14 @@ def summarize_chunk(text: str, max_length: int = 100, min_length: int = 30, prom
 
         # Generate summary
         with torch.no_grad():
-        summary_ids = _model.generate(
-            inputs['input_ids'],
-            max_length=max_length,
-            min_length=min_length,
+                summary_ids = _model.generate(
+                inputs['input_ids'],
+                max_length=max_length,
+                min_length=min_length,
                 length_penalty=2.0,
                 num_beams=4,
-            early_stopping=True
-        )
+                early_stopping=True
+            )
 
         # Decode the summary
         summary = _tokenizer.decode(summary_ids[0], skip_special_tokens=True)

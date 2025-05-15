@@ -41,8 +41,9 @@ except ImportError:
     logging.error("SentenceTransformers not installed. Please install with: pip install sentence-transformers")
     sys.exit(1)
 
-# Load environment variables from .env file
-load_dotenv()
+# Load environment variables from .env file (if it exists)
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'), verbose=True)
+# If .env file wasn't found, python-dotenv will print a message but won't throw an error
 
 # Check for OpenAI API key and warn if missing
 openai_api_key = os.environ.get('OPENAI_API_KEY', None)
@@ -322,7 +323,7 @@ def analyze_text():
                                 topic_result["summary"] = summary
                             else:
                                 topic_result["summary"] = f"Failed to summarize topic: {topic_name}"
-            else:
+                    else:
                         topic_result["summary"] = f"No sentences found for topic: {topic_name}"
                     
                     # Add this topic's result
