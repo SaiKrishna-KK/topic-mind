@@ -434,7 +434,7 @@ def analyze_text():
                     chunk_data = []
                     for chunk_idx, chunk in enumerate(chunks):
                         chunk_sentences = [{"text": sent, "source": f"s{i+chunk_idx*chunk_size}"} 
-                                          for i, sent in enumerate(chunk)]
+                                           for i, sent in enumerate(chunk)]
                         chunk_data.append(chunk_sentences)
                     result["chunks"] = chunk_data
                 
@@ -562,6 +562,58 @@ def analyze_topics():
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
+# Function to process topics from text
+def process_topics(text, num_topics=5):
+    """
+    Process text to extract topics using topic modeling.
+    
+    Args:
+        text: The text to analyze
+        num_topics: Number of topics to extract
+        
+    Returns:
+        Dictionary with topic information
+    """
+    try:
+        # Clean the text
+        cleaned_text = clean_text(text)
+        
+        # Use topic modeling to extract topics
+        topic_sentences, topic_keywords = analyze_topics_in_text(cleaned_text, num_topics=num_topics)
+        
+        # Format results for API response
+        results = []
+        for topic_id, keywords in topic_keywords.items():
+            # Try to refine the topic name if OpenAI API key is available
+            if openai_api_key and openai_api_key != "your_openai_api_key_here":
+                try:
+                    topic_name = refine_topic_name(keywords)
+                except Exception:
+                    topic_name = f"Topic: {', '.join(keywords[:3])}"
+            else:
+                topic_name = f"Topic: {', '.join(keywords[:3])}"
+                
+            # Get sentences for this topic
+            sentences = topic_sentences.get(topic_id, [])
+            
+            # Add to results
+            results.append({
+                "topic_id": topic_id,
+                "topic_name": topic_name,
+                "keywords": keywords,
+                "sentence_count": len(sentences),
+                "sentences": sentences[:5]  # Include a sample of sentences
+            })
+            
+        return {
+            "topic_count": len(results),
+            "topics": results
+        }
+        
+    except Exception as e:
+        logging.exception(f"Error processing topics: {e}")
+        return {"error": str(e)}
+
 # Update the summarize endpoint to use the timeout handler
 @app.route("/summarize", methods=["POST"])
 @timeout_handler(60)  # 60 second timeout
@@ -572,27 +624,16 @@ def summarize():
         
         if not data or 'text' not in data:
             return jsonify({"error": "No text provided"}), 400
-            
+        
         text = data['text']
-        max_length = data.get('max_length', 150)  # Default max length
-        min_length = data.get('min_length', 40)   # Default min length
+        max_length = data.get('max_length', 150)
+        min_length = data.get('min_length', 40)
         
-        # Ensure the lengths are valid
-        max_length = max(50, min(500, max_length))  # Between 50 and 500
-        min_length = max(10, min(max_length-10, min_length))  # Between 10 and max_length-10
-        
-        # Generate summary
-        from models.bart_summarizer import summarize_text
-        summary = summarize_text(text, max_length, min_length)
-        
-        if summary.startswith("Error:"):
-            return jsonify({"error": summary}), 500
-            
-        return jsonify({"summary": summary})
+        result = summarize_text(text, max_length=max_length, min_length=min_length)
+        return jsonify({"summary": result})
     except Exception as e:
-        return jsonify({"error": f"An error occurred during summarization: {str(e)}"}), 500
+        return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
+# Run the Flask app
 if __name__ == '__main__':
-    logging.info("Starting Flask server...")
-    # Use waitress or gunicorn in production instead of Flask development server
-    app.run(host='0.0.0.0', port=5001, debug=False)  # Set debug=False for production/testing load
+    app.run(host='0.0.0.0', port=5002)

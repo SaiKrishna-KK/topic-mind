@@ -117,7 +117,7 @@ def load_models():
     # Check disk space before loading models
     if not check_disk_space(1000):  # Need at least 1GB free
         return False
-    
+        
     try:
         # Load DistilBART model and tokenizer
         logging.info("Loading DistilBART model for summarization (this may take a moment)...")
@@ -148,6 +148,13 @@ def load_models():
         return False
     
     return True
+
+# Add a function to load the summarizer model (for compatibility with app.py)
+def load_summarizer_model():
+    """
+    Load the summarizer model (wrapper around load_models for compatibility).
+    """
+    return load_models()
 
 # Initialize models
 _tokenizer = None
@@ -397,9 +404,9 @@ def summarize_chunk(text: str, max_length: int = 100, min_length: int = 30, prom
         # Encode input text
         inputs = _tokenizer([input_text], max_length=1024, truncation=True, return_tensors='pt')
 
-        # Generate summary
+                # Generate summary
         with torch.no_grad():
-                summary_ids = _model.generate(
+            summary_ids = _model.generate(
                 inputs['input_ids'],
                 max_length=max_length,
                 min_length=min_length,
