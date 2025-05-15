@@ -1,5 +1,6 @@
 import os
 import logging
+from typing import Union, List, Optional
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -36,7 +37,7 @@ except Exception as e:
 PROMPT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'prompts')
 DEFAULT_PROMPT_PATH = os.path.join(PROMPT_DIR, 'refine_topic.gpt.txt')
 
-def load_prompt_template(prompt_path: str = DEFAULT_PROMPT_PATH) -> str | None:
+def load_prompt_template(prompt_path: str = DEFAULT_PROMPT_PATH) -> Optional[str]:
     """Loads the prompt template from the specified file."""
     try:
         with open(prompt_path, 'r') as f:
@@ -48,7 +49,7 @@ def load_prompt_template(prompt_path: str = DEFAULT_PROMPT_PATH) -> str | None:
         logging.error(f"Error loading prompt template: {e}")
         return None
 
-def refine_topic_name(keywords: list[str], model: str = "gpt-3.5-turbo", prompt_template: str | None = None) -> str:
+def refine_topic_name(keywords: List[str], model: str = "gpt-3.5-turbo", prompt_template: Optional[str] = None) -> str:
     """
     Uses OpenAI's GPT model to generate a refined topic name from a list of keywords.
 
