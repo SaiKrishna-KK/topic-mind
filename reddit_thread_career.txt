@@ -1,0 +1,118 @@
+r/careerguidance - Just got laid off after 5 years at the same company. Feeling lost at 35. Where do I go from here?
+
+I (35M) just got laid off from my job as a marketing manager at a mid-sized tech company after 5 years. Our entire department (12 people) was let go as part of a "restructuring." I knew the company wasn't doing great, but this still blindsided me.
+
+Now I'm feeling completely lost. When I was hired, I was just 30 with some decent experience. Now I'm 35 with 5 years at a single company that's known for being somewhat old-fashioned in their marketing approach.
+
+I'm worried my skills are outdated. Everyone's talking about AI content generation, advanced analytics, and social media algorithms that I haven't really worked with. My company was very traditional - we did trade shows, print collateral, and basic digital campaigns.
+
+My questions:
+1. Should I take any job I can get quickly, or hold out for something that's a good fit?
+2. Should I invest time in learning new marketing skills before applying? If so, which ones?
+3. Is 35 too old to make a bigger career change? I've always been interested in UX design.
+
+I have about 4 months of expenses saved, plus I'll get 6 weeks of severance. Located in a major city with decent job market. No kids, but have a mortgage.
+
+Any advice from people who've navigated a mid-career layoff would be appreciated.
+
+---
+
+JobSearchCoach [Score: 1.3k]
+I'm a career coach who works with many clients in your situation. 
+
+First, being laid off in a restructuring is NOT a reflection of your value. Remove any shame from the equation - this happens to excellent performers all the time.
+
+Given your runway (4 months savings + 6 weeks severance), you have time to be strategic:
+
+1. Take 1 week to process the emotional impact. It's real and needs acknowledgment.
+2. Spend 2-3 weeks updating your skills - focus on LinkedIn Learning or Coursera courses in digital marketing analytics and AI marketing tools. Just enough to speak intelligently about them.
+3. Start applying while continuing to learn. Most skills are learned on the job anyway.
+
+At 35, you're NOT too old to pivot to UX design, but it would likely require more dedicated training (3-6 months) and possibly an internship or junior role. If you're passionate about it, now is actually an ideal time.
+
+Finally, leverage your network aggressively. Over 70% of jobs at your level come through connections, not applications.
+
+---
+
+MarketingDirector [Score: 984]
+I run a marketing department at a SaaS company, and I hire people regularly. Here's my perspective:
+
+1. Your traditional marketing experience is still valuable. Not everything is digital. Companies still need people who understand fundamental marketing principles.
+
+2. That said, upskilling is important. Focus on:
+   - Google Analytics 4 (since it replaced Universal Analytics)
+   - Basic marketing automation (HubSpot certification is easy and respected)
+   - Content marketing frameworks
+   - A basic understanding of how AI fits into marketing workflows
+
+3. In your interviews, emphasize your RESULTS, not just activities. "Led trade show strategy resulting in $X in pipeline" is better than "Managed trade shows."
+
+Don't take just any job. Bad jobs drain your energy and make it harder to find good ones. Be selective but practical.
+
+And no, 35 is definitely not too old for UX design. Some of my best UX designers came from marketing backgrounds because they understand user psychology.
+
+---
+
+SurvivingLayoffs [Score: 872]
+I was laid off at 39 from a job I'd had for 7 years. Truly understand the feeling of being "behind" while also feeling like my experience should count for something.
+
+My advice:
+1. Update your LinkedIn immediately and set to "open to work" - I got 3 interviews just from that
+2. File for unemployment right away - it takes time to process
+3. Use this as an opportunity to target companies you actually WANT to work for
+
+For skills, look at 10-15 job descriptions that interest you. Make a list of the most common required skills. Prioritize learning those.
+
+What helped me most was creating a simple website portfolio showcasing projects and results from my previous job. This demonstrated my capabilities better than my resume alone.
+
+I ended up landing a better job with a 15% pay increase 2.5 months after being laid off. The key was staying structured in my approach and treating the job search like a job itself.
+
+---
+
+UXDesigner42 [Score: 753]
+UX Designer here who switched from marketing at age 37!
+
+If you're interested in UX design, now is a PERFECT time to explore it. Your marketing background is actually valuable in UX - you understand audiences, messaging, and how to influence behavior.
+
+The route I took:
+1. Google UX Design Certificate (took me 4 months part-time)
+2. Built a portfolio with 3 case studies
+3. Did 1 volunteer project for a non-profit to get real-world experience
+4. Networked like crazy with UX professionals (coffee chats, events)
+
+My first UX role was actually a hybrid marketing/UX position that valued both skill sets, which made the transition smoother.
+
+Happy to chat more if you want to explore this path! It's been incredibly rewarding for me.
+
+---
+
+RecruitingInsider [Score: 641]
+Recruiter here. When I see candidates with 5 years at one company, I don't think "outdated" - I think "stable and committed." That's a positive in today's job-hopping environment.
+
+Quick tips:
+1. Don't hide the layoff - it was a restructuring, not performance based
+2. Reach out to recruiters in your industry - we often know about unadvertised opportunities
+3. Consider contract work while you're searching - it keeps income flowing and can lead to permanent roles
+4. Use AI to your advantage - use ChatGPT to help update your resume and craft compelling cover letters
+
+Regarding age: 35 is YOUNG in the overall career span. I regularly place people in their 40s and 50s in new career paths. The key is demonstrating adaptability and enthusiasm for learning.
+
+Job searching takes longer than it used to - national average is about 4-5 months for mid-senior roles. Plan accordingly and don't get discouraged.
+
+---
+
+TechMarketingPro [Score: 589]
+I was in a similar position 2 years ago. Traditional marketing background, laid off at 38, feeling behind on trends.
+
+What worked for me:
+1. I signed up for HubSpot Academy and got certified in their marketing tools (free)
+2. Took a Google Analytics course (also free)
+3. Did a paid workshop on AI content tools ($200 but worth it)
+
+Then I completely rewrote my resume to emphasize TRANSFERABLE skills rather than specific tools. Leadership, strategy, audience understanding, messaging, etc.
+
+In interviews, I was honest about my learning journey. "I've been focusing on modernizing my skill set with X, Y, Z courses and am excited to apply these new perspectives along with my solid marketing foundation."
+
+I actually found that companies appreciated my traditional background combined with a demonstrated willingness to learn new approaches.
+
+Got a new role after 3 months with a small salary bump. Good luck! 
