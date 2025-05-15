@@ -104,8 +104,13 @@ def load_models():
 
     logging.info("Loading models...")
     # Load BART Summarizer
-    load_summarizer_model() # This function handles its own logging/errors
-    summarizer_model_loaded = True # Assume loaded unless error logged by the function
+    success, message = load_summarizer_model()  # Now returns tuple (success, message)
+    if success:
+        summarizer_model_loaded = True
+        logging.info(f"BART Summarizer loaded successfully: {message}")
+    else:
+        logging.error(f"BART Summarizer failed to load: {message}")
+        summarizer_model_loaded = False
     
     # Load SentenceTransformer for embeddings (caching it)
     try:

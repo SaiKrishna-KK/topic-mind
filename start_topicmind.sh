@@ -217,8 +217,36 @@ if [ "$HAS_CURL" = true ]; then
             if [[ $HEALTH_CHECK == *"\"models_loaded\""* ]]; then
                 if [[ $HEALTH_CHECK == *"\"models_loaded\":true"* ]]; then
                     echo -e "  ✓ ${GREEN}Models loaded successfully${NC}"
+                    
+                    # Check BART model loading status in the logs
+                    if grep -q "DistilBART model loaded successfully" $BACKEND_LOG; then
+                        echo -e "  ✓ ${GREEN}BART summarization model loaded successfully${NC}"
+                        # Get model size if available
+                        MODEL_SIZE=$(grep "DistilBART model loaded successfully. Model size:" $BACKEND_LOG | sed 's/.*Model size: //')
+                        if [ -n "$MODEL_SIZE" ]; then
+                            echo -e "     Model size: $MODEL_SIZE"
+                        fi
+                    elif grep -q "Fallback BART model loaded successfully" $BACKEND_LOG; then
+                        echo -e "  ⚠ ${YELLOW}Using fallback BART model${NC}"
+                        # Get model size if available
+                        MODEL_SIZE=$(grep "Fallback BART model loaded successfully. Model size:" $BACKEND_LOG | sed 's/.*Model size: //')
+                        if [ -n "$MODEL_SIZE" ]; then
+                            echo -e "     Model size: $MODEL_SIZE"
+                        fi
+                    else
+                        echo -e "  ✗ ${RED}BART model loading issue detected${NC}"
+                        echo -e "     Check logs for details: tail -f $BACKEND_LOG | grep -i bart"
+                    fi
+                    
+                    # Check SentenceTransformer loading status
+                    if grep -q "SentenceTransformer loaded successfully" $BACKEND_LOG; then
+                        echo -e "  ✓ ${GREEN}Sentence embeddings model loaded successfully${NC}"
+                    else
+                        echo -e "  ✗ ${RED}Sentence embeddings model loading issue detected${NC}"
+                    fi
                 else
                     echo -e "  ✗ ${YELLOW}Models not fully loaded${NC}"
+                    echo -e "     Check backend logs for details: tail -f $BACKEND_LOG"
                 fi
             fi
             

@@ -3,6 +3,7 @@ import requests
 import json
 import datetime
 import os
+import logging
 
 # Backend API endpoint
 # Make sure the Flask app (app.py) is running
@@ -292,7 +293,20 @@ if analyze_button and input_text:
                         topic_name = result.get('topic', 'Unnamed Topic')
                         keywords = result.get('keywords', [])
                         keyword_text = ", ".join(keywords) if keywords else "No keywords available"
-                        summary = result.get('summary', 'No summary available.')
+                        summary = result.get('summary', '')
+                        
+                        # Check for blank or error summaries
+                        if not summary or not summary.strip():
+                            st.warning(f"Empty summary detected for Topic {i+1}: {topic_name}")
+                            summary = "No summary was generated. This may indicate a processing error or insufficient content for this topic."
+                            logging.warning(f"Blank summary for topic '{topic_name}' with keywords {keywords}")
+                        
+                        # Check if summary contains error message
+                        if summary.startswith("Error:"):
+                            st.error(f"Error in summary for Topic {i+1}: {topic_name}")
+                            # Keep the error message but add guidance
+                            summary = f"{summary}\n\nPlease try adjusting your settings or using different content."
+                            logging.error(f"Error summary for topic '{topic_name}': {summary}")
                         
                         # Add to export data
                         export_data["topics"].append({
@@ -313,7 +327,36 @@ if analyze_button and input_text:
                             
                             # Display the summary
                             st.markdown("### Summary")
-                            st.markdown(f"<div class='summary-box'>{summary}</div>", unsafe_allow_html=True)
+                            
+                            # Check if summary exists and is valid before displaying
+                            if summary and not summary.startswith("Error:"):
+                                st.markdown(f"<div class='summary-box'>{summary}</div>", unsafe_allow_html=True)
+                                
+                                # Add summary length info
+                                summary_length = result.get('summary_length', len(summary))
+                                summary_word_count = result.get('summary_word_count', len(summary.split()))
+                                st.caption(f"Summary length: {summary_length} characters / {summary_word_count} words")
+                            else:
+                                # Display a placeholder with error styling if empty or error
+                                st.markdown(f"<div class='summary-box' style='border-left: 3px solid #ff4b4b;'>{summary}</div>", 
+                                            unsafe_allow_html=True)
+                                
+                                # Add troubleshooting tips
+                                with st.expander("Troubleshooting Tips"):
+                                    st.markdown("""
+                                    **Why is my summary empty or showing an error?**
+                                    
+                                    This could be due to:
+                                    - Not enough content for this specific topic
+                                    - Processing timeout during summarization
+                                    - Model loading issues
+                                    
+                                    **Try:**
+                                    - Reducing the number of topics
+                                    - Using Dev Mode for faster processing
+                                    - Providing more content about this specific topic
+                                    - Using smaller chunk sizes
+                                    """)
                             
                             # Add export button for individual topic summary
                             summary_text = f"TopicMind Summary - {topic_name}\n\nKeywords: {', '.join(keywords)}\n\n{summary}"

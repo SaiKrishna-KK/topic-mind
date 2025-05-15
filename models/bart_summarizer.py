@@ -116,35 +116,48 @@ def load_models():
     
     # Check disk space before loading models
     if not check_disk_space(1000):  # Need at least 1GB free
+        logger.error("Model loading failed: Insufficient disk space")
         return False
         
     try:
         # Load DistilBART model and tokenizer
-        logging.info("Loading DistilBART model for summarization (this may take a moment)...")
+        logger.info("Loading DistilBART model for summarization (this may take a moment)...")
         model_name = "sshleifer/distilbart-cnn-12-6"
         _tokenizer = BartTokenizer.from_pretrained(model_name)
         _model = BartForConditionalGeneration.from_pretrained(model_name).to(device)
-        logging.info("DistilBART model loaded successfully.")
+        
+        # Verify model was loaded properly
+        if _model is None or _tokenizer is None:
+            logger.error("DistilBART model or tokenizer failed to load properly")
+            return False
+            
+        logger.info(f"DistilBART model loaded successfully. Model size: {sum(p.numel() for p in _model.parameters())/1000000:.2f}M parameters")
     except Exception as e:
-        logging.error(f"Error loading DistilBART model: {str(e)}")
+        logger.error(f"Error loading DistilBART model: {str(e)}")
         try:
             # Fallback to smaller model if available
-            logging.info("Trying fallback to smaller model...")
+            logger.info("Trying fallback to smaller model...")
             model_name = "facebook/bart-large-cnn"
             _tokenizer = BartTokenizer.from_pretrained(model_name)
             _model = BartForConditionalGeneration.from_pretrained(model_name).to(device)
-            logging.info("Fallback BART model loaded successfully.")
+            
+            # Verify fallback model loaded
+            if _model is None or _tokenizer is None:
+                logger.error("Fallback BART model or tokenizer failed to load properly")
+                return False
+                
+            logger.info(f"Fallback BART model loaded successfully. Model size: {sum(p.numel() for p in _model.parameters())/1000000:.2f}M parameters")
         except Exception as e2:
-            logging.error(f"Error loading fallback model: {str(e2)}")
+            logger.error(f"Error loading fallback model: {str(e2)}")
             return False
     
     try:
         # Load SentenceTransformer for embeddings
-        logging.info("Loading SentenceTransformer for embeddings (this may take a moment)...")
+        logger.info("Loading SentenceTransformer for embeddings (this may take a moment)...")
         _sentence_transformer = SentenceTransformer('all-mpnet-base-v2')
-        logging.info("SentenceTransformer loaded successfully.")
+        logger.info(f"SentenceTransformer loaded successfully. Model size: {sum(p.numel() for p in _sentence_transformer.parameters())/1000000:.2f}M parameters")
     except Exception as e:
-        logging.error(f"Error loading SentenceTransformer: {str(e)}")
+        logger.error(f"Error loading SentenceTransformer: {str(e)}")
         return False
     
     return True
@@ -153,8 +166,13 @@ def load_models():
 def load_summarizer_model():
     """
     Load the summarizer model (wrapper around load_models for compatibility).
+    Returns a tuple of (success, message) to provide more detailed status.
     """
-    return load_models()
+    success = load_models()
+    if success:
+        return True, "Models loaded successfully"
+    else:
+        return False, "Failed to load models"
 
 # Initialize models
 _tokenizer = None
@@ -376,65 +394,62 @@ def summarize_chunk(text: str, max_length: int = 100, min_length: int = 30, prom
     Summarize a chunk of text using the BART model.
     
     Args:
-        text: The text to summarize
-        max_length: The maximum length of the summary
-        min_length: The minimum length of the summary
-        prompt_prefix: Optional custom prompt to guide summarization
+        text: Text to summarize
+        max_length: Maximum length of the summary
+        min_length: Minimum length of the summary
+        prompt_prefix: Optional prefix for guided summarization
         
     Returns:
-        The generated summary or an error message
+        Generated summary or error message
     """
-    global _model, _tokenizer
+    global _tokenizer, _model
+    if _tokenizer is None or _model is None:
+        return "Error: Summarizer model not loaded. Please initialize the model first."
     
     if not text or not text.strip():
-        return "Error: Empty input text."
-        
-    if not _model or not _tokenizer:
-        success, message = load_models()
-        if not success:
-            return f"Error: No summarization model loaded. {message}"
+        logger.warning("Empty text provided to summarize_chunk")
+        return "Error: No text provided for summarization."
     
     try:
-        # Add the prompt if provided
+        # Preprocess - add prompt if provided
         if prompt_prefix:
-            input_text = f"{prompt_prefix} {text}" 
+            # Add prompt to guide the model
+            full_text = f"{prompt_prefix}\n\n{text}"
         else:
-            input_text = text
+            full_text = text
             
-        # Encode input text
-        inputs = _tokenizer([input_text], max_length=1024, truncation=True, return_tensors='pt')
-
-                # Generate summary
+        # Tokenize
+        inputs = _tokenizer(full_text, return_tensors="pt", max_length=1024, truncation=True).to(device)
+        
+        # Generate summary
         with torch.no_grad():
             summary_ids = _model.generate(
-                inputs['input_ids'],
+                inputs["input_ids"],
                 max_length=max_length,
                 min_length=min_length,
-                length_penalty=2.0,
                 num_beams=4,
-                early_stopping=True
+                length_penalty=2.0,
+                early_stopping=True,
+                no_repeat_ngram_size=3
             )
-
-        # Decode the summary
+            
+        # Decode
         summary = _tokenizer.decode(summary_ids[0], skip_special_tokens=True)
         
-        # Remove the prompt from the summary if it was included
-        if prompt_prefix and summary.startswith(prompt_prefix):
-            summary = summary[len(prompt_prefix):].strip()
-        
-        # Ensure summary ends with proper punctuation
-        if summary and not summary[-1] in ['.', '!', '?']:
-            summary += '.'
-        
-        # Remove any odd artifacts from the model's output
-        summary = re.sub(r'\[START_SUMMARY\]|\[END_SUMMARY\]', '', summary).strip()
-        
+        # Verify summary is not empty
+        if not summary or not summary.strip():
+            logger.warning(f"Model generated empty summary for input text: {text[:100]}...")
+            summary = "Error: Model generated empty summary."
+        else:
+            # Log successful summary generation with length information
+            logger.info(f"Generated summary of length {len(summary)} chars / ~{len(summary.split())} words")
+            
         return summary
-
+        
     except Exception as e:
-        error_message = f"Error during summarization: {str(e)}"
-        logger.error(error_message)
-        return f"Error: {error_message}"
+        error_msg = f"Error in summarization: {str(e)}"
+        logger.error(error_msg)
+        return f"Error: {str(e)}"
 
 def deduplicate_and_clean_summaries(summaries: List[str]) -> List[str]:
     """
@@ -871,12 +886,13 @@ def summarize_sentence_dicts(sentence_dicts: List[Dict[str, Any]],
     if _tokenizer is None or _model is None:
         logger.error("Summarizer model not loaded. Call load_models() first.")
         # Attempt to load now
-        success, message = load_models()
+        success = load_models()
         if not success:
-            return {"error": message}
+            return {"error": "Summarizer model failed to load", "summary": "Error: Unable to generate summary due to model loading failure."}
     
     if not sentence_dicts:
-        return {"error": "No sentences provided for summarization."}
+        logger.warning("No sentences provided for summarization")
+        return {"error": "No sentences provided for summarization.", "summary": "No content available to summarize."}
         
     # Extract just the text from the dictionaries
     sentences = [s['text'] for s in sentence_dicts]
@@ -903,7 +919,7 @@ def summarize_sentence_dicts(sentence_dicts: List[Dict[str, Any]],
     logger.info(f"Using final prompt: {final_prompt}")
     
     try:
-        logger.info(f"Starting summarization of {len(sentences)} sentences")
+        logger.info(f"Starting summarization of {len(sentences)} sentences for topic '{topic_name}'")
         
         # STAGE 1: Context-aware chunking
         # Group sentences by context for better coherence
@@ -947,10 +963,17 @@ def summarize_sentence_dicts(sentence_dicts: List[Dict[str, Any]],
                 })
         
         if not chunk_summaries:
-            return {"error": "Failed to generate summary for any chunk."}
+            logger.error("Failed to generate summary for any chunk")
+            return {
+                "error": "Failed to generate summary for any chunk.",
+                "summary": "Error: Unable to generate summary. Please try again with different content or settings.",
+                "topic_name": topic_name,
+                "keywords": keywords
+            }
         
         # Log first-pass summaries
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        os.makedirs("logs/pipeline", exist_ok=True)
         with open(f"logs/pipeline/chunk_pass_log_{timestamp}.json", "w") as f:
             json.dump(chunk_log, f, indent=2)
         
@@ -995,7 +1018,17 @@ def summarize_sentence_dicts(sentence_dicts: List[Dict[str, Any]],
             if not final_summary[0].isupper():
                 final_summary = final_summary[0].upper() + final_summary[1:]
         
+        # Verify final summary isn't empty
+        if not final_summary or not final_summary.strip():
+            logger.error(f"Empty final summary generated for topic '{topic_name}'")
+            # Create a fallback summary from the merged chunk summaries
+            final_summary = "The system was unable to generate a proper summary. Please try again with different settings."
+        
+        # Log summary length
+        logger.info(f"Generated final summary for topic '{topic_name}' - Length: {len(final_summary)} chars / ~{len(final_summary.split())} words")
+        
         # Log final summary
+        os.makedirs("logs/pipeline", exist_ok=True)
         with open(f"logs/pipeline/final_summary_pass_{timestamp}.txt", "w") as f:
             f.write(f"Topic: {topic_name or 'Unknown'}\n")
             f.write(f"Keywords: {', '.join(keywords)}\n\n")
@@ -1008,6 +1041,8 @@ def summarize_sentence_dicts(sentence_dicts: List[Dict[str, Any]],
         # Create result with provenance tracking and all summary stages
         result = {
             "summary": final_summary,
+            "summary_length": len(final_summary),
+            "summary_word_count": len(final_summary.split()),
             "source_sentences": sentence_dicts,
             "keywords": keywords,
             "topic_name": topic_name,
