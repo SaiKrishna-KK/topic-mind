@@ -60,6 +60,18 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
+# TopicMind specific logs and output
+logs/pipeline/
+logs/gpt/
+logs/semantic/
+logs/summaries/
+logs/eval/
+*_output.log
+backend_log.txt
+frontend_log.txt
+backend.log
+frontend.log
+
 # Flask stuff:
 instance/
 .webassets-cache
