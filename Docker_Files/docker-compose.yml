@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  topicmind:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"  # Flask API
+      - "8501:8501"  # Streamlit interface
+    volumes:
+      # For persistent logs
+      - ./logs:/app/logs
+      # For model storage
+      - topicmind_models:/app/models/cache
+      # Uncomment the line below and create a .env file if you want to use your API key
+      # - ./.env:/app/.env
+    environment:
+      # You can override the OPENAI API key here instead of using .env
+      # - OPENAI_API_KEY=your_key_here
+      - PYTHONUNBUFFERED=1  # For better logging
+      - MODEL_DEVICE=cpu    # Force CPU for containerized environment
+      - API_TIMEOUT=180     # Increase timeout for API requests
+      - USE_SMALL_MODELS=true  # Use smaller models for containerized environment
+    # Add memory and CPU limits
+    deploy:
+      resources:
+        limits:
+          memory: 12G  # Increase memory limit to 12GB
+          cpus: '4'    # Increase to 4 CPUs
+    # Add health check with longer start period
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 2m
+      timeout: 30s
+      retries: 5
+      start_period: 5m  # Allow 5 minutes for startup
+    restart: unless-stopped
+
+volumes:
+  topicmind_models:
+    # This creates a named volume that persists between container restarts
+    driver: local 
