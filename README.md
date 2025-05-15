@@ -249,6 +249,53 @@ TopicMind has been optimized for performance and usability with several key impr
    - Fixed nested expander compatibility issues by using tabs
    - Improved error handling and user feedback
 
+
+### Advanced Features in the UI
+
+TopicMind allows customization of how topics are labeled and how summaries are generated through optional input fields in the Streamlit interface.
+
+
+
+##### Custom Summarization Prompt
+
+Enable:
+
+> "Use custom summarization prompt"
+
+You may insert `{topic}` in your prompt, which will automatically be replaced by the actual topic name during summarization.
+
+##### Example:
+
+```
+Summarize the following discussion about {topic} into 2–3 clear sentences.
+```
+
+If no prompt is provided, the system auto-generates one using the topic's keyword cluster.
+
+---
+
+#### Manual Topic Name Input
+
+Enable:
+
+> "Set custom topic names"
+
+This feature allows users to provide their own **topic names manually** — useful when they already know the thematic structure or want full control over labels.
+
+If enabled, the system will **ignore BERTopic-generated names** and use the ones entered by the user.
+
+##### Example:
+
+You can type:
+
+```
+Career Transitions
+Healthcare Stories
+Productivity Hacks
+```
+
+These names will be applied in the order of topics detected.
+
 ### Backend Optimizations
 
 1. **Efficient Embedding Generation**
