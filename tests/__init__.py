@@ -1,0 +1,3 @@
+"""
+TopicMind test package
+""" 
