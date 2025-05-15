@@ -6,8 +6,8 @@ import os
 
 # Backend API endpoint
 # Make sure the Flask app (app.py) is running
-BACKEND_URL = "http://127.0.0.1:5001/analyze"
-HEALTH_CHECK_URL = "http://127.0.0.1:5001/health"
+BACKEND_URL = "http://127.0.0.1:5002/analyze"
+HEALTH_CHECK_URL = "http://127.0.0.1:5002/health"
 
 # --- UI Configuration ---
 st.set_page_config(
@@ -62,7 +62,7 @@ st.markdown('<p class="info-text">Extract key topics and generate comprehensive 
 def check_backend_health():
     try:
         response = requests.get(HEALTH_CHECK_URL, timeout=5)
-        return response.status_code == 200 and response.json().get("status") == "ok"
+        return response.status_code == 200 and response.json().get("status") == "up"
     except requests.exceptions.RequestException as e:
         print(f"Backend health check failed: {e}") # Log for debugging
         return False
