@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  topicmind:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"  # Flask API
+      - "8501:8501"  # Streamlit interface
+    volumes:
+      # For persistent logs
+      - ./logs:/app/logs
+      # Uncomment the line below and create a .env file if you want to use your API key
+      # - ./.env:/app/.env
+    environment:
+      # You can override the OPENAI API key here instead of using .env
+      # - OPENAI_API_KEY=your_key_here
+      - PYTHONUNBUFFERED=1  # For better logging
+    restart: unless-stopped 
