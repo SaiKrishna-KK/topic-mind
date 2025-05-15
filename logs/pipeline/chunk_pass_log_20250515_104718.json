@@ -1,0 +1,91 @@
+{
+  "timestamp": "20250515_104709",
+  "topic_id": null,
+  "topic_name": "Breast infection/sepsis symptoms",
+  "keywords": [
+    "er",
+    "infection",
+    "like",
+    "breast",
+    "people",
+    "going",
+    "red",
+    "said",
+    "sepsis",
+    "weeks"
+  ],
+  "chunk_prompt": "Create a coherent summary about Breast infection/sepsis symptoms:",
+  "final_prompt": "Create a coherent summary about Breast infection/sepsis symptoms:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "What is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the er?",
+          "source": "s_0"
+        },
+        {
+          "text": "sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.",
+          "source": "s_13"
+        },
+        {
+          "text": "Breast infection/sepsis symptoms: get it checked out.",
+          "source": "s_10"
+        },
+        {
+          "text": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis.",
+          "source": "s_12"
+        },
+        {
+          "text": "If you notice a red spot on one breast that isn\u2019t going away, if you have new orange-peel-like dimpling, or one breast appears swollen, can be a sign of inflammatory breast cancer.",
+          "source": "s_7"
+        },
+        {
+          "text": "rolled sleeve all the way up and they saw red streaks going from the infected area up towards arm pit.",
+          "source": "s_5"
+        },
+        {
+          "text": "Symptoms include a severe headache, sudden hearing loss in one ear and a dilated pupil.",
+          "source": "s_9"
+        },
+        {
+          "text": "Symptoms include muscle tetany (felt like pins/needles) in feet, arms, chest and weirdly enough what felt like nose.",
+          "source": "s_11"
+        },
+        {
+          "text": "A stroke is not always accompanied by the other well known symptoms such as a bloodshot eye.",
+          "source": "s_8"
+        },
+        {
+          "text": "superficial burns to the face typically from bbq or stove lighting accidents.",
+          "source": "s_1"
+        }
+      ],
+      "raw_summary": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis . Symptoms include a severe headache, sudden hearing loss in one ear and dilated pupil .",
+      "cleaned_summary": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis. Symptoms include a severe headache, sudden hearing loss in one ear and dilated pupil."
+    },
+    {
+      "chunk_id": 1,
+      "sentences": [
+        {
+          "text": "Most people present with normal breathing, but as the injured tissues swell, it can close the airway.",
+          "source": "s_2"
+        },
+        {
+          "text": "figured needed antibiotics, so made an appointment with doctor.",
+          "source": "s_3"
+        },
+        {
+          "text": "when talking to mom, who is a nurse, on the phone she said it\u2019s serious and if can\u2019t see the doctor that same day then need to go to urgent care.",
+          "source": "s_4"
+        },
+        {
+          "text": "was very surprised what happened next.",
+          "source": "s_6"
+        }
+      ],
+      "raw_summary": "Most people present with normal breathing, but as the injured tissues swell, it can close the airway . figured needed antibiotics, so made an appointment with doctor . when talking to mom, who is a nurse, on the phone she said it\u2019s serious and if can\u2019t see the doctor that same day then need to go to urgent care .",
+      "cleaned_summary": "Most people present with normal breathing, but as the injured tissues swell, it can close the airway. figured needed antibiotics, so made an appointment with doctor. when talking to mom, who is a nurse, on the phone she said it\u2019s serious and if can\u2019t see the doctor that same day then need to go to urgent care."
+    }
+  ]
+}

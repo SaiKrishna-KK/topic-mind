@@ -1,0 +1,62 @@
+{
+  "timestamp": "20250515_095331",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "a few days later i had a dark red bump with what looked like a pimple on it where the scratch had been.",
+          "source": "s_0"
+        },
+        {
+          "text": "i figured it could be an infection, but there was no pain or discomfort so i figured it would heal.",
+          "source": "s_1"
+        },
+        {
+          "text": "after a few days of it remaining the same, it suddenly grew larger and nastier looking.",
+          "source": "s_2"
+        },
+        {
+          "text": "still no pain or discomfort.",
+          "source": "s_3"
+        },
+        {
+          "text": "i figured i needed antibiotics, so i made an appointment with my doctor.",
+          "source": "s_4"
+        },
+        {
+          "text": "it was going to be a few days.",
+          "source": "s_5"
+        },
+        {
+          "text": "when talking to my mom, who is a nurse, on the phone she said it\u2019s serious and if i can\u2019t see the doctor that same day then i need to go to urgent care.",
+          "source": "s_6"
+        },
+        {
+          "text": "i went to urgent care and the nurse practitioner didn\u2019t seem too worried.",
+          "source": "s_7"
+        },
+        {
+          "text": "then i rolled my sleeve all the way up and they saw red streaks going from the infected area up towards my arm pit.",
+          "source": "s_8"
+        },
+        {
+          "text": "i was very surprised what happened next since i imagine people in urgent care see all sorts of bad stuff.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": " A few days later i had a dark red bump with what looked like a pimple on it where the scratch had been . There was no pain or discomfort so i figured it would heal . After a few days of it remaining the same, it suddenly grew larger and nastier looking . i figured i needed antibiotics so i made an appointment with my doctor .",
+      "cleaned_summary": "A few days later There was no pain or discomfort so figured it would heal. After a few days of it remaining the same, it suddenly grew larger and nastier looking. figured needed antibiotics so made an appointment with doctor."
+    }
+  ]
+}

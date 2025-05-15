@@ -1,0 +1,92 @@
+{
+  "timestamp": "20250515_084447",
+  "topic_id": null,
+  "topic_name": "Sepsis and Emergency Warning Signs",
+  "keywords": [
+    "sepsis",
+    "infection",
+    "emergency",
+    "urgent care",
+    "symptoms"
+  ],
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis.",
+          "source": "s_175_0f4bb1e5"
+        },
+        {
+          "text": "I know two people who had no other symptoms besides the streaks both were admitted for sepsis and in hospital for a while.",
+          "source": "s_176_401c2b95"
+        },
+        {
+          "text": "Sepsis is no joke.",
+          "source": "s_48_89386d72"
+        },
+        {
+          "text": "They said I may have to stay for a couple days on IV antibiotics because I had sepsis, an infection spreading through my blood stream.",
+          "source": "s_39_f2157e61"
+        },
+        {
+          "text": "My sister died from a antibiotic resistant blood infection back in 2021.",
+          "source": "s_49_0c69f697"
+        }
+      ],
+      "summary": " Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis . Sepsis is no joke. My sister died from a antibiotic resistant blood infection back in 2021 ."
+    },
+    {
+      "chunk_id": 1,
+      "sentences": [
+        {
+          "text": "When talking to my mom, who is a nurse, on the phone she said it\u2019s serious and if I can\u2019t see the doctor that same day then I need to go to urgent care.",
+          "source": "s_32_4754f012"
+        },
+        {
+          "text": "I went to urgent care and the nurse practitioner didn\u2019t seem too worried.",
+          "source": "s_33_eee98bfd"
+        },
+        {
+          "text": "I was very surprised what happened next since I imagine people in urgent care see all sorts of bad stuff.",
+          "source": "s_35_d00e386f"
+        },
+        {
+          "text": "Apparently it was so serious because once the infection passes a certain threshold, people go from feeling fine like I did to deathly ill in minutes.",
+          "source": "s_41_29891950"
+        },
+        {
+          "text": "Apparently a stroke is not always accompanied by the other well known symptoms.",
+          "source": "s_75_dc77ecc9"
+        }
+      ],
+      "summary": " When talking to her mom, who is a nurse, on the phone she said it\u2019s serious and if I can\u2019t see the doctor that same day then I need to go to urgent care . Summarize these"
+    },
+    {
+      "chunk_id": 2,
+      "sentences": [
+        {
+          "text": "Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.",
+          "source": "s_183_5edc001f"
+        },
+        {
+          "text": "[Serious] What is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the ER?",
+          "source": "s_0_08e91ded"
+        },
+        {
+          "text": "I figured it could be an infection, but there was no pain or discomfort so I figured it would heal.",
+          "source": "s_27_3f5bf245"
+        },
+        {
+          "text": "If you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured spleen (though you\u2019ll most likely experience other symptoms).",
+          "source": "s_147_e9dd3ad3"
+        },
+        {
+          "text": "They freaked out saying I needed to go to the emergency room immediately.",
+          "source": "s_36_dbbfd298"
+        }
+      ],
+      "summary": " Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection . If you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured"
+    }
+  ]
+}

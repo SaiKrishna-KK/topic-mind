@@ -1,0 +1,43 @@
+{
+  "timestamp": "20250515_085716",
+  "topic_id": "0",
+  "topic_name": "relationship dating partner",
+  "keywords": [
+    "relationship",
+    "dating",
+    "partner",
+    "breakup",
+    "marriage"
+  ],
+  "chunk_prompt": "Summarize the following discussion about relationship dating partner into 2-3 clear, complete sentences:",
+  "final_prompt": "Create a coherent 2-3 sentence summary about relationship dating partner. Focus on the most important information and ensure it flows well:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "Wedding planning often reveals deeper issues in relationships because it involves money, family dynamics, personal values, and the ability to problem-solve together.",
+          "source": "s_39_00df7d9f"
+        },
+        {
+          "text": "r/relationship_advice - My (28F) boyfriend (30M) refuses to compromise on our wedding plans.",
+          "source": "s_0_fb5a33a8"
+        },
+        {
+          "text": "If he regularly dismisses your opinions and preferences, you might want to reconsider the whole relationship, not just the wedding plans.",
+          "source": "s_22_9a248471"
+        },
+        {
+          "text": "His response to that suggestion will tell you a lot about how he views conflict resolution in your relationship.",
+          "source": "s_74_db957e21"
+        },
+        {
+          "text": "RelationshipCoach [Score: 422].",
+          "source": "s_68_46958970"
+        }
+      ],
+      "raw_summary": " Wedding planning often reveals deeper issues in relationships because it involves money, family dynamics, personal values and the ability to problem-solve together . If he regularly dismisses your opinions and preferences, you might want to reconsider the whole relationship, not just the wedding plans .",
+      "cleaned_summary": "Wedding planning often reveals deeper issues in relationships because it involves money, family dynamics, personal values and the ability to problem-solve together. If he regularly dismisses your opinions and preferences, you might want to reconsider the whole relationship, not just the wedding plans."
+    }
+  ]
+}

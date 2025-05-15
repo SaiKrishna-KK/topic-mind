@@ -1,0 +1,52 @@
+{
+  "timestamp": "20250515_103708",
+  "topic_id": null,
+  "topic_name": "Topic: er, infection, like",
+  "keywords": [
+    "er",
+    "infection",
+    "like",
+    "breast",
+    "people",
+    "going",
+    "red",
+    "said",
+    "sepsis",
+    "weeks"
+  ],
+  "chunk_prompt": "Summarize this content about Topic: er, infection, like:",
+  "final_prompt": "Summarize this content about Topic: er, infection, like:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "not an \"omg you gonna die\" but definitely take a trip soon to get any cat bites checked.",
+          "source": "s_0"
+        },
+        {
+          "text": "if you've been strangled always go to the er after.",
+          "source": "s_1"
+        },
+        {
+          "text": "red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis.",
+          "source": "s_2"
+        },
+        {
+          "text": "i know two people who had no other symptoms besides the streaks both were admitted for sepsis and in hospital for a while.",
+          "source": "s_3"
+        },
+        {
+          "text": "sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.",
+          "source": "s_4"
+        },
+        {
+          "text": "if it is that, antibiotics will fix it.",
+          "source": "s_5"
+        }
+      ],
+      "raw_summary": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis . sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection .",
+      "cleaned_summary": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis. sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection."
+    }
+  ]
+}

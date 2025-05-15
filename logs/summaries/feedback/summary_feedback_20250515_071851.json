@@ -1,0 +1,17 @@
+{
+  "timestamp": "20250515_071851",
+  "topic_id": "dummy2",
+  "keywords": [
+    "gaming",
+    "reddit",
+    "discussion",
+    "community",
+    "players"
+  ],
+  "original_length": 769,
+  "summary_length": 271,
+  "summary": " Reddit discussions on gaming often focus on new releases . Nostalgia for classic games is a common theme in gaming subreddits . Competitive gaming and esports have growing discussion communities . Mobile gaming is sometimes viewed with skepticism by traditional gamers .",
+  "gpt_feedback": {
+    "error": "Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-.... You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}"
+  }
+}

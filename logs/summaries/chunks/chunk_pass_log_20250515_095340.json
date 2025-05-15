@@ -1,0 +1,62 @@
+{
+  "timestamp": "20250515_095336",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "they freaked out saying i needed to go to the emergency room immediately.",
+          "source": "s_0"
+        },
+        {
+          "text": "they asked if i felt ok and could drive myself.",
+          "source": "s_1"
+        },
+        {
+          "text": "when i said yes, they said they\u2019d call the hospital and give them my info and let them know i\u2019m coming.",
+          "source": "s_2"
+        },
+        {
+          "text": "they said i may have to stay for a couple days on iv antibiotics because i had sepsis, an infection spreading through my blood stream.",
+          "source": "s_3"
+        },
+        {
+          "text": "i had to get lots of medicine, but only stayed in the hospital for one day.",
+          "source": "s_4"
+        },
+        {
+          "text": "apparently it was so serious because once the infection passes a certain threshold, people go from feeling fine like i did to deathly ill in minutes.",
+          "source": "s_5"
+        },
+        {
+          "text": "make sure to clean any cuts well right away.",
+          "source": "s_6"
+        },
+        {
+          "text": "sepsis is no joke.",
+          "source": "s_7"
+        },
+        {
+          "text": "my sister died from a antibiotic resistant blood infection back in 2021. she got a slight sunburn on her lip that got infected and was dead 2 weeks later.",
+          "source": "s_8"
+        },
+        {
+          "text": "this might not be \u201cimmediate trip to the er,\u201d but it certainly is \u201cimmediately make a doctor\u2019s appointment asap.\u201d.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": " i may have to stay for a couple days on iv antibiotics because i had sepsis, an infection spreading through my blood stream . My sister died from a antibiotic resistant blood infection back in 2021 . Make sure to clean any cuts well right away .",
+      "cleaned_summary": "may have to stay for a couple days on iv antibiotics because Make sure to clean any cuts well right away."
+    }
+  ]
+}

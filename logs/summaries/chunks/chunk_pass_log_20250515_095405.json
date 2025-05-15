@@ -1,0 +1,97 @@
+{
+  "timestamp": "20250515_095358",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "Sepsis is a life-threatening condition with warning signs including what is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the er?",
+          "source": "s_0"
+        },
+        {
+          "text": "Sepsis is a life-threatening condition with warning signs including mom had 3 strokes this way.",
+          "source": "s_8"
+        },
+        {
+          "text": "Sepsis is a life-threatening condition with warning signs including they started complaining about vision problems over the next several weeks.",
+          "source": "s_11"
+        },
+        {
+          "text": "Sepsis is a life-threatening condition with warning signs including a few days later there was no pain or discomfort so figured it would heal.",
+          "source": "s_3"
+        },
+        {
+          "text": "Sepsis is a life-threatening condition with warning signs including never write things off as something else, it\u2019s always better to look crazy than be dead.",
+          "source": "s_13"
+        },
+        {
+          "text": "Sepsis is a life-threatening condition with warning signs including may have to stay for a couple days on iv antibiotics because make sure to clean any cuts well right away.",
+          "source": "s_6"
+        },
+        {
+          "text": "Sepsis is a life-threatening condition with warning signs including if you notice a red spot on one breast that isn\u2019t going away, if you have new orange-peel-like dimpling, or one breast appears swollen, any of those can be a sign of inflammatory breast cancer.",
+          "source": "s_7"
+        },
+        {
+          "text": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis.",
+          "source": "s_15"
+        },
+        {
+          "text": "no typical signs just a severe headache then a bloodshot eye with the first.",
+          "source": "s_9"
+        },
+        {
+          "text": "figured needed antibiotics so made an appointment with doctor.",
+          "source": "s_5"
+        }
+      ],
+      "raw_summary": " Sepsis is a life-threatening condition with warning signs including what is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the er? Sepsis may have to stay for a couple days on iv antibiotics because make sure to clean any cuts well right away .",
+      "cleaned_summary": "Sepsis is a life-threatening condition with warning signs including what is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the er? Sepsis may have to stay for a couple days on iv antibiotics because make sure to clean any cuts well right away."
+    },
+    {
+      "chunk_id": 1,
+      "sentences": [
+        {
+          "text": "serious replies only.",
+          "source": "s_1"
+        },
+        {
+          "text": "superficial burns to the face typically from bbq or stove lighting accidents.",
+          "source": "s_2"
+        },
+        {
+          "text": "after a few days of it remaining the same, it suddenly grew larger and nastier looking.",
+          "source": "s_4"
+        },
+        {
+          "text": "morning she didn't know who was or recognize her own house.",
+          "source": "s_10"
+        },
+        {
+          "text": "their work performance suffered.",
+          "source": "s_12"
+        },
+        {
+          "text": "if you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured spleen.",
+          "source": "s_14"
+        },
+        {
+          "text": "sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.",
+          "source": "s_16"
+        }
+      ],
+      "raw_summary": " If you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured spleen . sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection .",
+      "cleaned_summary": "If you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured spleen. sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection."
+    }
+  ]
+}

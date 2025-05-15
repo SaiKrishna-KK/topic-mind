@@ -1,0 +1,77 @@
+{
+  "timestamp": "20250515_095421",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care.",
+          "source": "s_0"
+        },
+        {
+          "text": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent carerashawah.",
+          "source": "s_10"
+        },
+        {
+          "text": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent caredifficultywarming.Summarize these points focusing on: symptoms and warning signs.",
+          "source": "s_9"
+        },
+        {
+          "text": "Best.",
+          "source": "s_1"
+        },
+        {
+          "text": "automoderator.",
+          "source": "s_2"
+        },
+        {
+          "text": "mod.",
+          "source": "s_3"
+        },
+        {
+          "text": "r4dioc4mbodia.",
+          "source": "s_4"
+        },
+        {
+          "text": "nocook8739.",
+          "source": "s_5"
+        },
+        {
+          "text": "friendlycoconut.",
+          "source": "s_6"
+        },
+        {
+          "text": "@meinaltistgut.",
+          "source": "s_7"
+        }
+      ],
+      "raw_summary": " Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care .Summarize these points focusing on: symptoms and warning signs .",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care.Summarize these points focusing on: symptoms and warning signs."
+    },
+    {
+      "chunk_id": 1,
+      "sentences": [
+        {
+          "text": "@eithercow4727: eitherCow4727.",
+          "source": "s_8"
+        },
+        {
+          "text": "Share a resource here to help with abusive relationships.",
+          "source": "s_11"
+        }
+      ],
+      "raw_summary": " Share a resource here to help with abusive relationships . Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care .",
+      "cleaned_summary": "Share a resource here to help with abusive relationships. Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "timestamp": "20250515_085438",
+  "topic_id": "0",
+  "keywords": [
+    "sepsis",
+    "infection",
+    "emergency",
+    "urgent care",
+    "symptoms"
+  ],
+  "original_length": 1217,
+  "summary_length": 264,
+  "summary": "Sepsis is an infection spreading through the blood stream. Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection. Red streaks near a wound, particularly on the limbs, can indicate a spreading infection.",
+  "gpt_feedback": {
+    "feedback": "- **Clarity rating (3/5):** The summary is somewhat clear, but the connection between the symptoms and sepsis is implied rather than directly stated. It could be confusing as it jumps from sepsis to specific symptoms of bladder infections.\n\n- **Coherence rating (2/5):** The summary lacks coherence as it discusses multiple points without explicit connections. The information about bladder infections and red streaks on wounds is suddenly introduced without linking back to sepsis, making it disjointed.\n\n- **Relevance rating (2/5):** The summary mentions sepsis and infections, but it doesn't fully address the keywords like \"emergency\" and \"urgent care,\" nor does it emphasize the critical nature of recognizing and treating sepsis.\n\n**Suggestions for improvement:**\n\n1. **Focus on Key Concepts:** Ensure that the summary starts with the importance of recognizing sepsis as a medical emergency. For example: \"Sepsis is a life-threatening condition that arises when the body's response to an infection injures its own tissues and organs, requiring immediate medical attention.\"\n\n2. **Clarify Connections:** Make explicit connections between symptoms and sepsis. Clarify how sudden onset dementia and red streaks relate to sepsis or be clear if they are separate infection indicators.\n\n3. **Add Critical Keywords:** Integrate terms like \"emergency\" and \"urgent care\" more directly. For example: \"In cases of suspected sepsis, urgent care is essential to prevent serious complications.\"\n\n4. **Organize for Coherence:** Structure the summary so each point follows logically. Group related symptoms together and connect them to the concept of sepsis as both a cause and potential result of such symptoms.",
+    "scores": {
+      "clarity": 3,
+      "coherence": 2,
+      "relevance": 2,
+      "overall": 2.3333333333333335
+    }
+  }
+}

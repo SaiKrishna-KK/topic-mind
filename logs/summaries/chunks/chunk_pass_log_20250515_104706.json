@@ -1,0 +1,68 @@
+{
+  "timestamp": "20250515_104702",
+  "topic_id": null,
+  "topic_name": "Breast infection/sepsis symptoms",
+  "keywords": [
+    "er",
+    "infection",
+    "like",
+    "breast",
+    "people",
+    "going",
+    "red",
+    "said",
+    "sepsis",
+    "weeks"
+  ],
+  "chunk_prompt": "Summarize this content about Breast infection/sepsis symptoms:",
+  "final_prompt": "Summarize this content about Breast infection/sepsis symptoms:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "get it checked out.",
+          "source": "s_0"
+        },
+        {
+          "text": "i had a friend who fell out of a chair at a work party and hit their head hard on the ground.",
+          "source": "s_1"
+        },
+        {
+          "text": "started complaining about vision problems over the next several weeks.",
+          "source": "s_2"
+        },
+        {
+          "text": "long story short, it was a serious tbi.",
+          "source": "s_3"
+        },
+        {
+          "text": "before i was admitted to the icu for 2 weeks i had muscle tetany (felt like pins/needles) in my feet, arms, chest and weirdly enough what felt like my nose for weeks.",
+          "source": "s_4"
+        },
+        {
+          "text": "thought it was just poor circulation and turns out i had undetectable potassium and phosphate levels which did bad damage to my liver and kidneys!!",
+          "source": "s_5"
+        },
+        {
+          "text": "i went months without going to the er because i thought i was being dramatic.",
+          "source": "s_6"
+        },
+        {
+          "text": "also for those that are biologically female, losing your period or prolonged amenorrhea is oftentimes a sign of something larger going on thats attributed by doctors as stress.",
+          "source": "s_7"
+        },
+        {
+          "text": "always get it checked!!",
+          "source": "s_8"
+        },
+        {
+          "text": "if you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured spleen (though you\u2019ll most likely experience other symptoms).",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": "Breast infection/sepsis symptoms: get it checked out . Symptoms include muscle tetany (felt like pins/needles) in my feet, arms, chest and weirdly enough what felt like my nose .",
+      "cleaned_summary": "Breast infection/sepsis symptoms: get it checked out. Symptoms include muscle tetany (felt like pins/needles) in feet, arms, chest and weirdly enough what felt like nose."
+    }
+  ]
+}

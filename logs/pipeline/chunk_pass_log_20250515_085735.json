@@ -1,0 +1,43 @@
+{
+  "timestamp": "20250515_085731",
+  "topic_id": "0",
+  "topic_name": "career job interview",
+  "keywords": [
+    "career",
+    "job",
+    "interview",
+    "resume",
+    "workplace"
+  ],
+  "chunk_prompt": "Summarize the following discussion about career job interview into 2-3 clear, complete sentences:",
+  "final_prompt": "Create a coherent 2-3 sentence summary about career job interview. Focus on the most important information and ensure it flows well:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "Update your LinkedIn immediately and set to \"open to work\" - I got 3 interviews just from that.",
+          "source": "s_68_fa6e0612"
+        },
+        {
+          "text": "I regularly place people in their 40s and 50s in new career paths.",
+          "source": "s_110_79dfb999"
+        },
+        {
+          "text": "The key was staying structured in my approach and treating the job search like a job itself.",
+          "source": "s_79_e9ea138d"
+        },
+        {
+          "text": "I (35M) just got laid off from my job as a marketing manager at a mid-sized tech company after 5 years.",
+          "source": "s_3_90859c8b"
+        },
+        {
+          "text": "Use AI to your advantage - use ChatGPT to help update your resume and craft compelling cover letters.",
+          "source": "s_108_a7f7e1ff"
+        }
+      ],
+      "raw_summary": " The key was staying structured in my approach and treating the job search like a job itself . Update your LinkedIn immediately and set to \"open to work\" - I got 3 interviews just from that . Use ChatGPT to help update your resume and craft compelling cover letters .",
+      "cleaned_summary": "The key was staying structured in approach and treating the job search like a job itself. Update your LinkedIn immediately and set to \"open to work\" - got 3 interviews just from that. Use ChatGPT to help update your resume and craft compelling cover letters."
+    }
+  ]
+}

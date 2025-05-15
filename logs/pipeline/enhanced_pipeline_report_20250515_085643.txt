@@ -1,0 +1,63 @@
+TOPICMIND ENHANCED SUMMARIZATION PIPELINE REPORT
+============================================================
+
+Timestamp: 20250515_085643
+Input file: reddit_thread.txt
+Topic name: sepsis infection emergency
+Keywords: sepsis, infection, emergency, urgent care, symptoms
+Max sentences: 5
+Chunk size: 5
+Final compression: True
+
+PROMPTS USED
+------------------------------
+Custom prompt: None
+Chunk prompt: Summarize the following medical information about sepsis infection emergency into 2-3 clear, complete sentences.
+Focus ONLY on symptoms, warning signs, and medical facts - avoid personal anecdotes or stories:
+
+
+Final prompt: Create a coherent 2-3 sentence medical summary about sepsis infection emergency that explains key warning signs.
+Prioritize objective medical information, avoid personal stories, and ensure each sentence provides clear, actionable insights:
+
+
+
+REFINED SENTENCES
+------------------------------
+Total sentences: 5
+
+CHUNK SUMMARIES
+------------------------------
+Chunk 1:
+Red streaks near a wound, particularly on the limbs, can indicate a spreading infection. Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.
+
+FINAL SUMMARY
+------------------------------
+Red streaks near a wound, particularly on the limbs, can indicate a spreading infection. Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.
+
+EVALUATION SCORES
+------------------------------
+Clarity: 2/5 ★★☆☆☆
+Coherence: 2/5 ★★☆☆☆
+Relevance: 2/5 ★★☆☆☆
+Overall: 2.0/5 ★★☆☆☆
+
+Overall: 2.0/5 ★★☆☆☆
+
+FEEDBACK DETAILS
+------------------------------
+- **Clarity rating (2/5)**: The summary lacks clarity because it combines multiple health conditions without clearly explaining their significance or relation to sepsis specifically. Mentioning red streaks as indicative of a spreading infection is somewhat clear, but the leap to "sudden onset dementia" as a symptom is confusing without further context.
+
+- **Coherence rating (2/5)**: The summary lacks coherence as the statements seem disjointed and unrelated. There is no transition or explanation that links these symptoms to the core topic of sepsis or to each other within the context of emergency care.
+
+- **Relevance rating (2/5)**: The summary is only minimally relevant to the keywords. While it mentions infections, it fails to directly address sepsis, urgent care, or provide a clear, urgent action perspective that would be expected in the context of an "emergency."
+
+**Explanation for ratings**:
+- **Clarity**: The statements are confusing due to lack of context and specificity. It’s unclear how sudden onset dementia relates to sepsis or what specific urgent actions should be taken.
+- **Coherence**: The lack of logical flow between ideas makes it difficult for a reader to understand the relationship between the symptoms mentioned and the overall threat or urgency related to sepsis.
+- **Relevance**: Although symptoms are mentioned, there is no explicit link to sepsis as a medical emergency or how these symptoms connect to the keywords.
+
+**Suggestions for improvement**:
+1. **Clarify the connection**: Clearly explain how each symptom is related to sepsis as an indication of an emergency.
+2. **Include transitions**: Use transitions to connect different symptoms and explain why they are relevant to an emergency care context.
+3. **Focus on relevance**: Ensure the summary addresses the primary concern, which in this case should explicitly connect symptoms like red streaks and sudden confusion to sepsis and the necessary urgent response.
+4. **Expand on symptoms**: Briefly describe why these symptoms are important to monitor for sepsis, reinforcing the urgency with terms like 'emergency' or 'seek immediate medical attention'.

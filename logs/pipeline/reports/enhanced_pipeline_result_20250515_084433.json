@@ -1,0 +1,31 @@
+{
+  "timestamp": "20250515_084433",
+  "topic_name": "Sepsis and Emergency Warning Signs",
+  "keywords": [
+    "sepsis",
+    "infection",
+    "emergency",
+    "urgent care",
+    "symptoms"
+  ],
+  "max_sentences": 15,
+  "chunk_size": 5,
+  "final_compression": true,
+  "refined_sentences_count": 15,
+  "chunk_count": 3,
+  "chunk_summaries": [
+    " Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis . Sepsis is no joke. My sister died from a antibiotic resistant blood infection back in 2021 .",
+    " When talking to her mom, who is a nurse, on the phone she said it\u2019s serious and if I can\u2019t see the doctor that same day then I need to go to urgent care . Summarize these",
+    " Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection . If you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured"
+  ],
+  "final_summary": " Sepsis is no joke. My sister died from a antibiotic resistant blood infection back in 2021 . Red streaks near a wound, particularly on the limbs, can indicate a spreading infection . Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection .",
+  "evaluation": {
+    "feedback": "- **Clarity rating (3/5)**: The summary presents some clear information about sepsis and potential warning signs, but the personal anecdote at the beginning may cause some confusion about the primary focus. While the symptoms mentioned are specific, the transition between ideas and how they relate to sepsis overall could be clearer.\n\n- **Coherence rating (2/5)**: The ideas in the summary are somewhat disconnected. It starts with a personal anecdote about a sepsis-related death, then abruptly shifts to discussing symptoms with no clear connection or flow between the ideas. The relationship between sepsis, red streaks, sudden onset dementia, and bladder infections is not clearly established.\n\n- **Relevance rating (3/5)**: The summary includes relevant symptoms and the concept of infection, which is related to sepsis and emergency care. However, the personal anecdote and sudden focus on specific demographics (old women and diaper wearers) lacks a direct connection to the broader context of sepsis as a medical emergency.\n\n**Suggestions for improvement**:\n1. **Clarify Focus**: Start by defining sepsis and its significance as a medical emergency. This will set a clear context before mentioning specific warning signs.\n   \n2. **Improve Coherence**: Connect the symptoms more directly to sepsis. For example, explain how red streaks near wounds and sudden changes in mental status can be related to sepsis, rather than listing them without context.\n\n3. **Enhance Relevance**: Remove the personal anecdote unless it directly illustrates a specific point you're trying to make about the symptoms or emergency response to sepsis. Focus more on linking sepsis with urgent care needs using the keywords.\n\n4. **Organize Content**: Structure the summary to first describe what sepsis is, then move to symptoms that may require urgent care, making sure each point logically leads to the next.",
+    "scores": {
+      "clarity": 3,
+      "coherence": 2,
+      "relevance": 3,
+      "overall": 2.6666666666666665
+    }
+  }
+}

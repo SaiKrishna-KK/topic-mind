@@ -1,0 +1,43 @@
+{
+  "timestamp": "20250515_085747",
+  "topic_id": "0",
+  "topic_name": "game gaming console",
+  "keywords": [
+    "game",
+    "gaming",
+    "console",
+    "playstation",
+    "xbox"
+  ],
+  "chunk_prompt": "Summarize the following discussion about game gaming console into 2-3 clear, complete sentences:",
+  "final_prompt": "Create a coherent 2-3 sentence summary about game gaming console. Focus on the most important information and ensure it flows well:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "For those suggesting PC - I appreciate the advice, but I realize I really do prefer the simplicity of console gaming after a long day at work.",
+          "source": "s_108_bbd88739"
+        },
+        {
+          "text": "Don't let FOMO (fear of missing out) on a hypothetical console rob you of 1-2 years of great gaming.",
+          "source": "s_89_941b0e24"
+        },
+        {
+          "text": "C) Skip PlayStation entirely and build a gaming PC instead.",
+          "source": "s_7_6d59dd77"
+        },
+        {
+          "text": "I own every PlayStation console ever made, and here's my advice: the mid-generation \"Pro\" models are never as big a leap as the full generation jumps.",
+          "source": "s_47_81a07927"
+        },
+        {
+          "text": "That said, if you really love PlayStation exclusives and just want a simple plug-and-play experience, there's nothing wrong with the PS5.",
+          "source": "s_43_6aed1b37"
+        }
+      ],
+      "raw_summary": " Don't let FOMO (fear of missing out) on a hypothetical console rob you of 1-2 years of great gaming . Skip PlayStation entirely and build a gaming PC instead . If you really love PlayStation exclusives, there's nothing wrong with the PS5 .",
+      "cleaned_summary": "Don't let FOMO (fear of missing out) on a hypothetical console rob you of 1-2 years of great gaming. Skip PlayStation entirely and build a gaming PC instead. If you really love PlayStation exclusives, there's nothing wrong with the PS5."
+    }
+  ]
+}

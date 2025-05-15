@@ -1,0 +1,68 @@
+{
+  "timestamp": "20250515_104722",
+  "topic_id": null,
+  "topic_name": "Vision Rehabilitation Services",
+  "keywords": [
+    "didn",
+    "help",
+    "permanent",
+    "read",
+    "right",
+    "vision",
+    "work",
+    "recognize",
+    "rehabilitation",
+    "relationships"
+  ],
+  "chunk_prompt": "Summarize this content about Vision Rehabilitation Services:",
+  "final_prompt": "Summarize this content about Vision Rehabilitation Services:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "serious replies only.",
+          "source": "s_0"
+        },
+        {
+          "text": "the sort of thing one barely notices.",
+          "source": "s_1"
+        },
+        {
+          "text": "it was black with coal dust, so i rinsed it off.",
+          "source": "s_2"
+        },
+        {
+          "text": "i didn\u2019t give it a good soap and water scrub until i got home several hours later.",
+          "source": "s_3"
+        },
+        {
+          "text": "it was going to be a few days.",
+          "source": "s_4"
+        },
+        {
+          "text": "make sure to clean any cuts well right away.",
+          "source": "s_5"
+        },
+        {
+          "text": "i waited too long and now my vision loss is permanent.",
+          "source": "s_6"
+        },
+        {
+          "text": "but i went early enough to still be alive.",
+          "source": "s_7"
+        },
+        {
+          "text": "the following morning she didn't know who i was or recognize her own house.",
+          "source": "s_8"
+        },
+        {
+          "text": "she lived for 16 more months but mentally was gone.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": "It was black with coal dust, so i didn\u2019t give it a good soap and water scrub until i got home several hours later . The following morning she didn't know who i was or recognize her own house .",
+      "cleaned_summary": "It was black with coal dust, so didn\u2019t give it a good soap and water scrub until got home several hours later. morning she didn't know who was or recognize her own house."
+    }
+  ]
+}

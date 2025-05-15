@@ -1,0 +1,68 @@
+{
+  "timestamp": "20250515_104645",
+  "topic_id": null,
+  "topic_name": "Breast infection/sepsis symptoms",
+  "keywords": [
+    "er",
+    "infection",
+    "like",
+    "breast",
+    "people",
+    "going",
+    "red",
+    "said",
+    "sepsis",
+    "weeks"
+  ],
+  "chunk_prompt": "Summarize this content about Breast infection/sepsis symptoms:",
+  "final_prompt": "Summarize this content about Breast infection/sepsis symptoms:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "[serious] what is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the er?",
+          "source": "s_0"
+        },
+        {
+          "text": "superficial burns to the face typically from bbq or stove lighting accidents.",
+          "source": "s_1"
+        },
+        {
+          "text": "it may seem like just some singed eyebrows, but if you were inhaling at all when the accident happened you could have burned the inside of your throat.",
+          "source": "s_2"
+        },
+        {
+          "text": "most people present with normal breathing, but as the injured tissues swell, it can close the airway.",
+          "source": "s_3"
+        },
+        {
+          "text": "most of these people feel fine directly following the accident and end up intubated if they make it to the hospital.",
+          "source": "s_4"
+        },
+        {
+          "text": "i got a small cut, little more than a scratch, on my arm cleaning under a conveyor at work.",
+          "source": "s_5"
+        },
+        {
+          "text": "a few days later i had a dark red bump with what looked like a pimple on it where the scratch had been.",
+          "source": "s_6"
+        },
+        {
+          "text": "i figured it could be an infection, but there was no pain or discomfort so i figured it would heal.",
+          "source": "s_7"
+        },
+        {
+          "text": "after a few days of it remaining the same, it suddenly grew larger and nastier looking.",
+          "source": "s_8"
+        },
+        {
+          "text": "still no pain or discomfort.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": "What is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the er? superficial burns to the face typically from bbq or stove lighting accidents . Most people present with normal breathing, but as the injured tissues swell, it can close the airway .",
+      "cleaned_summary": "What is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the er? superficial burns to the face typically from bbq or stove lighting accidents. Most people present with normal breathing, but as the injured tissues swell, it can close the airway."
+    }
+  ]
+}

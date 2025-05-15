@@ -1,0 +1,22 @@
+{
+  "timestamp": "20250515_074106",
+  "topic_id": "dummy2",
+  "keywords": [
+    "gaming",
+    "reddit",
+    "discussion",
+    "community",
+    "players"
+  ],
+  "original_length": 769,
+  "summary_length": 271,
+  "summary": " Reddit discussions on gaming often focus on new releases . Nostalgia for classic games is a common theme in gaming subreddits . Competitive gaming and esports have growing discussion communities . Mobile gaming is sometimes viewed with skepticism by traditional gamers .",
+  "gpt_feedback": {
+    "feedback": "**Clarity: 4/5**\n\nThe summary is clear and straightforward, providing an overview of the main topics discussed within the Reddit gaming community. It mentions several distinct topics, such as new releases, nostalgia, competitive gaming, and mobile gaming, which are understandable without additional context. However, the phrase \"focus on new releases\" could be more specific, detailing whether these are discussions about anticipation, reviews, or features.\n\n**Coherence: 4/5**\n\nThe summary is generally coherent, linking various aspects of gaming discussions on Reddit. Each sentence presents a new theme found in these discussions, giving a fair sense of the breadth of topics covered. However, the summary could benefit from slightly more connective language or transitions that explain how these themes relate to each other within the community discussions.\n\n**Relevance to the Topic Keywords: 4/5**\n\nThe summary is largely relevant to the provided keywords. It touches upon \"gaming,\" \"Reddit,\" and \"discussion\" extensively. The mention of \"community\" can be inferred from \"gaming subreddits\" and \"discussion communities,\" but \"players\" is implied more than explicitly stated. Including more explicit mention of players' perspectives or involvement could better capture this keyword.",
+    "scores": {
+      "clarity": 4,
+      "coherence": 4,
+      "relevance": null
+    }
+  }
+}

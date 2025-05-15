@@ -1,0 +1,31 @@
+{
+  "timestamp": "20250515_084254",
+  "topic_name": "Sepsis and Emergency Medical Symptoms",
+  "keywords": [
+    "sepsis",
+    "infection",
+    "emergency",
+    "urgent care",
+    "symptoms"
+  ],
+  "max_sentences": 15,
+  "chunk_size": 5,
+  "final_compression": true,
+  "refined_sentences_count": 15,
+  "chunk_count": 3,
+  "chunk_summaries": [
+    " Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis . Sepsis is no joke. My sister died from a antibiotic resistant blood infection back in 2021 .",
+    " User experiences related to Sepsis and Emergency Medical Symptoms . Summarize the following user experiences . Sepsis is not always accompanied by the other well known symptoms .",
+    " Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection . If you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured"
+  ],
+  "final_summary": " Sepsis is not always accompanied by the other well known symptoms . Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection . If you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured .",
+  "evaluation": {
+    "feedback": "- **Clarity rating (2/5):** The summary lacks clarity because it abruptly shifts topics without providing necessary context or details. The sentences are incomplete, such as \"a ruptured\" at the end, leaving readers confused about what is meant.\n\n- **Coherence rating (2/5):** The summary does not flow well and lacks logical connections between its parts. It jumps from discussing sepsis to mentioning dementia and shoulder pain without clear transitions or explanations of how these ideas relate to each other or to the main topic.\n\n- **Relevance rating (2/5):** The summary is only marginally relevant to the keywords. While it mentions symptoms and infections, it fails to adequately address the specifics of sepsis or emergency care, and it introduces unrelated topics like dementia and shoulder pain that do not fit well with the focus on sepsis.\n\n**Suggestions for improvement:**\n1. **Clarify the Main Focus**: Begin with a clearer introductory sentence that defines sepsis and its general symptoms. Then, specify when these symptoms might not be present and the relevance of this to emergency care.\n2. **Ensure Complete Thoughts**: Finish the sentence about a \"ruptured\" with the complete term (presumably \"spleen\" or \"organ\").\n3. **Improve Structure and Coherence**: Group related ideas together and use transitions to connect different points logically. Explain how sudden onset dementia and shoulder pain are related to sepsis or infections.\n4. **Focus on Relevance to Keywords**: Stay focused on sepsis, emergencies, and the related symptoms, and minimize unrelated content. Ensure each part of the summary ties back to the main topic to maintain relevance.",
+    "scores": {
+      "clarity": 2,
+      "coherence": 2,
+      "relevance": 2,
+      "overall": 2.0
+    }
+  }
+}

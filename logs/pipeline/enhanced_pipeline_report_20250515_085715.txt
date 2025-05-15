@@ -1,0 +1,51 @@
+TOPICMIND ENHANCED SUMMARIZATION PIPELINE REPORT
+============================================================
+
+Timestamp: 20250515_085715
+Input file: reddit_thread_relationship.txt
+Topic name: relationship dating partner
+Keywords: relationship, dating, partner, breakup, marriage
+Max sentences: 5
+Chunk size: 5
+Final compression: True
+
+PROMPTS USED
+------------------------------
+Custom prompt: None
+Chunk prompt: Summarize the following discussion about relationship dating partner into 2-3 clear, complete sentences:
+Final prompt: Create a coherent 2-3 sentence summary about relationship dating partner. Focus on the most important information and ensure it flows well:
+
+REFINED SENTENCES
+------------------------------
+Total sentences: 5
+
+CHUNK SUMMARIES
+------------------------------
+Chunk 1:
+Wedding planning often reveals deeper issues in relationships because it involves money, family dynamics, personal values and the ability to problem-solve together. If he regularly dismisses your opinions and preferences, you might want to reconsider the whole relationship, not just the wedding plans.
+
+FINAL SUMMARY
+------------------------------
+Wedding planning often reveals deeper issues in relationships because it involves money, family dynamics, personal values and the ability to problem-solve together. If he regularly dismisses your opinions and preferences, you might want to reconsider the whole relationship, not just the wedding plans.
+
+EVALUATION SCORES
+------------------------------
+Clarity: 4/5 ★★★★☆
+Coherence: 3/5 ★★★☆☆
+Relevance: 3/5 ★★★☆☆
+Overall: 3.3333333333333335/5 ★★★☆☆
+
+Overall: 3.3/5 ★★★☆☆
+
+FEEDBACK DETAILS
+------------------------------
+- **Clarity rating (4/5):** The summary is mostly clear and understandable, though a bit more context or explanation could help. It effectively communicates the idea that wedding planning can expose deeper issues within a relationship. However, the transition to reconsidering the relationship based on specific behaviors could be articulated more explicitly.
+
+- **Coherence rating (3/5):** The summary has a logical structure, starting with a broad statement and narrowing down to specifics. However, the sentence about dismissing opinions and preferences feels slightly abrupt, lacking a smooth transition from the initial statement about wedding planning. It could better connect the two ideas.
+
+- **Relevance rating (3/5):** The summary is partially relevant to the keywords. It addresses relationships, dating, partners, and marriage to some extent. However, the notion of a breakup is only implied, not directly discussed, and the summary is more focused on wedding planning rather than broader aspects of relationships or dating.
+
+**Suggestions for improvement:**
+- Consider adding a brief sentence or phrase to explain the connection between dismissing opinions during wedding planning and broader relational issues, which could enhance clarity and coherence.
+- Expand the summary to include more direct references to all the keywords, particularly focusing on how these wedding planning issues might lead to the consideration of a breakup.
+- Provide examples or anecdotes to illustrate how these dynamics surface during wedding planning and affect the overall relationship.

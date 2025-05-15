@@ -1,0 +1,62 @@
+{
+  "timestamp": "20250515_094908",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "cat bites.",
+          "source": "s_0"
+        },
+        {
+          "text": "they can become infected super easily and be bad.",
+          "source": "s_1"
+        },
+        {
+          "text": "not an \"omg you gonna die\" but definitely take a trip soon to get any cat bites checked.",
+          "source": "s_2"
+        },
+        {
+          "text": "even if not deep.",
+          "source": "s_3"
+        },
+        {
+          "text": "if you've been strangled always go to the er after.",
+          "source": "s_4"
+        },
+        {
+          "text": "just to add to this for awareness - if you were strangled by a romantic partner, you are 750% more likely to be killed by them.",
+          "source": "s_5"
+        },
+        {
+          "text": "red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis.",
+          "source": "s_6"
+        },
+        {
+          "text": "i know two people who had no other symptoms besides the streaks both were admitted for sepsis and in hospital for a while.",
+          "source": "s_7"
+        },
+        {
+          "text": "sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.",
+          "source": "s_8"
+        },
+        {
+          "text": "if it is that, antibiotics will fix it.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": " Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis . sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection .",
+      "cleaned_summary": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis. sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection."
+    }
+  ]
+}

@@ -1,0 +1,375 @@
+{
+  "timestamp": "20250515_094441",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "best.",
+          "source": "s_0"
+        },
+        {
+          "text": "automoderator.",
+          "source": "s_1"
+        },
+        {
+          "text": "mod.",
+          "source": "s_2"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_3"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_4"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_5"
+        },
+        {
+          "text": "reply.",
+          "source": "s_6"
+        },
+        {
+          "text": "reply.",
+          "source": "s_7"
+        },
+        {
+          "text": "reply.",
+          "source": "s_11"
+        },
+        {
+          "text": "reply.",
+          "source": "s_12"
+        }
+      ],
+      "raw_summary": " Summarize the main points of discussion focusing on: symptoms, warning signs, medical emergency, urgent care best. reply . Replie. reply. Replie: \"Best. Autom",
+      "cleaned_summary": "Summarize the main points of discussion focusing on: symptoms, warning signs, medical emergency, urgent care best. reply. Replie. reply. Replie: \"Best. Autom."
+    },
+    {
+      "chunk_id": 1,
+      "sentences": [
+        {
+          "text": "puzzled-dust-7818.",
+          "source": "s_8"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_9"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_10"
+        },
+        {
+          "text": "nocook8739.",
+          "source": "s_13"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_14"
+        },
+        {
+          "text": "reply.",
+          "source": "s_15"
+        },
+        {
+          "text": "reply.",
+          "source": "s_16"
+        },
+        {
+          "text": "reply.",
+          "source": "s_19"
+        },
+        {
+          "text": "reply.",
+          "source": "s_20"
+        },
+        {
+          "text": "reply.",
+          "source": "s_23"
+        }
+      ],
+      "raw_summary": " Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care . reply. reply .",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care. reply. reply."
+    },
+    {
+      "chunk_id": 2,
+      "sentences": [
+        {
+          "text": "friendlycoconut.",
+          "source": "s_17"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_18"
+        },
+        {
+          "text": "@meinaltistgut: meinaltistgut.",
+          "source": "s_21"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_22"
+        },
+        {
+          "text": "reply.",
+          "source": "s_24"
+        },
+        {
+          "text": "reply.",
+          "source": "s_27"
+        },
+        {
+          "text": "reply.",
+          "source": "s_28"
+        },
+        {
+          "text": "reply.",
+          "source": "s_31"
+        },
+        {
+          "text": "reply.",
+          "source": "s_32"
+        },
+        {
+          "text": "reply.",
+          "source": "s_34"
+        }
+      ],
+      "raw_summary": " Talk about symptoms, warning signs, medical emergency, urgent care . Summarize this discussion focusing on the main points related to: symptoms and warning signs .",
+      "cleaned_summary": "Talk about symptoms, warning signs, medical emergency, urgent care. Summarize this discussion focusing on the main points : symptoms and warning signs."
+    },
+    {
+      "chunk_id": 3,
+      "sentences": [
+        {
+          "text": "@eithercow4727: eithercow4727.",
+          "source": "s_25"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_26"
+        },
+        {
+          "text": "aijahemerald.",
+          "source": "s_29"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_30"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_33"
+        },
+        {
+          "text": "reply.",
+          "source": "s_35"
+        },
+        {
+          "text": "reply.",
+          "source": "s_38"
+        },
+        {
+          "text": "reply.",
+          "source": "s_39"
+        },
+        {
+          "text": "reply.",
+          "source": "s_42"
+        },
+        {
+          "text": "reply.",
+          "source": "s_43"
+        }
+      ],
+      "raw_summary": " Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care . @eithercow4727.com: \"Aijahemerald",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care. @eithercow4727.com: \"Aijahemerald."
+    },
+    {
+      "chunk_id": 4,
+      "sentences": [
+        {
+          "text": "@hellchron: hellchron.",
+          "source": "s_36"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_37"
+        },
+        {
+          "text": "@away-meal-9313: away-meal-9313.",
+          "source": "s_40"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_41"
+        },
+        {
+          "text": "@pxtwisty: pxtwisty.",
+          "source": "s_44"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_45"
+        },
+        {
+          "text": "reply.",
+          "source": "s_46"
+        },
+        {
+          "text": "reply.",
+          "source": "s_47"
+        },
+        {
+          "text": "reply.",
+          "source": "s_50"
+        },
+        {
+          "text": "reply.",
+          "source": "s_51"
+        }
+      ],
+      "raw_summary": " Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care . @away-meal-9313 and @pxtwist",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care. @away-meal-9313 and @pxtwist."
+    },
+    {
+      "chunk_id": 5,
+      "sentences": [
+        {
+          "text": "@customerdelicious816: customerdelicious816.",
+          "source": "s_48"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_49"
+        },
+        {
+          "text": "@almightychloee: almightychloee.",
+          "source": "s_52"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_53"
+        },
+        {
+          "text": "reply.",
+          "source": "s_54"
+        },
+        {
+          "text": "reply.",
+          "source": "s_55"
+        },
+        {
+          "text": "reply.",
+          "source": "s_58"
+        },
+        {
+          "text": "reply.",
+          "source": "s_59"
+        },
+        {
+          "text": "reply.",
+          "source": "s_62"
+        },
+        {
+          "text": "reply.",
+          "source": "s_63"
+        }
+      ],
+      "raw_summary": " Summarize the main points related to: symptoms, warning signs, medical emergency, urgent care . @almightychloee: AlmightyChloee. reply. reply",
+      "cleaned_summary": "Summarize the main points : symptoms, warning signs, medical emergency, urgent care. @almightychloee: AlmightyChloee. reply. reply."
+    },
+    {
+      "chunk_id": 6,
+      "sentences": [
+        {
+          "text": "skiergirl78.",
+          "source": "s_56"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_57"
+        },
+        {
+          "text": "@restinmanypieces: restinmanypieces.",
+          "source": "s_60"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_61"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_64"
+        },
+        {
+          "text": "reply.",
+          "source": "s_65"
+        },
+        {
+          "text": "reply.",
+          "source": "s_66"
+        },
+        {
+          "text": "reply.",
+          "source": "s_68"
+        },
+        {
+          "text": "reply.",
+          "source": "s_69"
+        },
+        {
+          "text": "reply.",
+          "source": "s_72"
+        }
+      ],
+      "raw_summary": " Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent cares . \u2022. @restinmanypieces: restinman",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent cares. \u2022. @restinmanypieces: restinman."
+    },
+    {
+      "chunk_id": 7,
+      "sentences": [
+        {
+          "text": "\u2022.",
+          "source": "s_67"
+        },
+        {
+          "text": "@landandrow: landandrow.",
+          "source": "s_70"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_71"
+        },
+        {
+          "text": "reply.",
+          "source": "s_73"
+        },
+        {
+          "text": "@glittering-gur5513: glittering-gur5513.",
+          "source": "s_74"
+        },
+        {
+          "text": "\u2022.",
+          "source": "s_75"
+        }
+      ],
+      "raw_summary": " Summarize the main points related to: symptoms, warning signs, medical emergency, urgent care . @landandrow: landandrow.com . @glittering-gur",
+      "cleaned_summary": "Summarize the main points : symptoms, warning signs, medical emergency, urgent care. @landandrow: landandrow.com. @glittering-gur."
+    }
+  ]
+}

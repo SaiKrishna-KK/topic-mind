@@ -1,0 +1,68 @@
+{
+  "timestamp": "20250515_103657",
+  "topic_id": null,
+  "topic_name": "Topic: er, infection, like",
+  "keywords": [
+    "er",
+    "infection",
+    "like",
+    "breast",
+    "people",
+    "going",
+    "red",
+    "said",
+    "sepsis",
+    "weeks"
+  ],
+  "chunk_prompt": "Summarize this content about Topic: er, infection, like:",
+  "final_prompt": "Summarize this content about Topic: er, infection, like:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "apparently it was so serious because once the infection passes a certain threshold, people go from feeling fine like i did to deathly ill in minutes.",
+          "source": "s_0"
+        },
+        {
+          "text": "sepsis is no joke.",
+          "source": "s_1"
+        },
+        {
+          "text": "my sister died from a antibiotic resistant blood infection back in 2021. she got a slight sunburn on her lip that got infected and was dead 2 weeks later.",
+          "source": "s_2"
+        },
+        {
+          "text": "this might not be \u201cimmediate trip to the er,\u201d but it certainly is \u201cimmediately make a doctor\u2019s appointment asap.\u201d.",
+          "source": "s_3"
+        },
+        {
+          "text": "if you notice a red spot on one breast that isn\u2019t going away, if you have new orange-peel-like dimpling on one breast, or one breast appears swollen, any of those can be a sign of inflammatory breast cancer.",
+          "source": "s_4"
+        },
+        {
+          "text": "that\u2019s a particularly aggressive form of breast cancer that\u2019s usually only found in more advanced stages.",
+          "source": "s_5"
+        },
+        {
+          "text": "you usually don\u2019t have a lump.",
+          "source": "s_6"
+        },
+        {
+          "text": "sudden change in vision.",
+          "source": "s_7"
+        },
+        {
+          "text": "in my case it turned out to be a brain tumor.",
+          "source": "s_8"
+        },
+        {
+          "text": "a migraine that's much more painful than usual.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": "If you notice a red spot on one breast that isn\u2019t going away, if you have new orange-peel-like dimpling, or one breast appears swollen, any of those can be a sign of inflammatory breast cancer .",
+      "cleaned_summary": "If you notice a red spot on one breast that isn\u2019t going away, if you have new orange-peel-like dimpling, or one breast appears swollen, any of those can be a sign of inflammatory breast cancer."
+    }
+  ]
+}

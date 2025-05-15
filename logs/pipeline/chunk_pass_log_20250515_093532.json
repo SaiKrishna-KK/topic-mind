@@ -1,0 +1,187 @@
+{
+  "timestamp": "20250515_093523",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "reply.",
+          "source": "s_0"
+        },
+        {
+          "text": "reply.",
+          "source": "s_1"
+        },
+        {
+          "text": "reply.",
+          "source": "s_2"
+        },
+        {
+          "text": "reply.",
+          "source": "s_3"
+        },
+        {
+          "text": "reply.",
+          "source": "s_4"
+        },
+        {
+          "text": "reply.",
+          "source": "s_5"
+        },
+        {
+          "text": "reply.",
+          "source": "s_6"
+        },
+        {
+          "text": "reply.",
+          "source": "s_7"
+        },
+        {
+          "text": "reply.",
+          "source": "s_8"
+        },
+        {
+          "text": "reply.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": " Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care . reply . reply. reply .",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care. reply. reply. reply."
+    },
+    {
+      "chunk_id": 1,
+      "sentences": [
+        {
+          "text": "reply.",
+          "source": "s_10"
+        },
+        {
+          "text": "reply.",
+          "source": "s_11"
+        },
+        {
+          "text": "reply.",
+          "source": "s_12"
+        },
+        {
+          "text": "reply.",
+          "source": "s_13"
+        },
+        {
+          "text": "reply.",
+          "source": "s_14"
+        },
+        {
+          "text": "reply.",
+          "source": "s_15"
+        },
+        {
+          "text": "reply.",
+          "source": "s_16"
+        },
+        {
+          "text": "reply.",
+          "source": "s_17"
+        },
+        {
+          "text": "reply.",
+          "source": "s_18"
+        },
+        {
+          "text": "reply.",
+          "source": "s_19"
+        }
+      ],
+      "raw_summary": " Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care . reply . reply. reply .",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care. reply. reply. reply."
+    },
+    {
+      "chunk_id": 2,
+      "sentences": [
+        {
+          "text": "reply.",
+          "source": "s_20"
+        },
+        {
+          "text": "reply.",
+          "source": "s_21"
+        },
+        {
+          "text": "reply.",
+          "source": "s_22"
+        },
+        {
+          "text": "reply.",
+          "source": "s_23"
+        },
+        {
+          "text": "reply.",
+          "source": "s_24"
+        },
+        {
+          "text": "reply.",
+          "source": "s_25"
+        },
+        {
+          "text": "reply.",
+          "source": "s_26"
+        },
+        {
+          "text": "reply.",
+          "source": "s_27"
+        },
+        {
+          "text": "reply.",
+          "source": "s_28"
+        },
+        {
+          "text": "reply.",
+          "source": "s_29"
+        }
+      ],
+      "raw_summary": " Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care . reply . reply. reply .",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care. reply. reply. reply."
+    },
+    {
+      "chunk_id": 3,
+      "sentences": [
+        {
+          "text": "reply.",
+          "source": "s_30"
+        },
+        {
+          "text": "reply.",
+          "source": "s_31"
+        },
+        {
+          "text": "reply.",
+          "source": "s_32"
+        },
+        {
+          "text": "reply.",
+          "source": "s_33"
+        },
+        {
+          "text": "reply.",
+          "source": "s_34"
+        },
+        {
+          "text": "reply.",
+          "source": "s_35"
+        }
+      ],
+      "raw_summary": " Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care . reply . reply. reply .",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care. reply. reply. reply."
+    }
+  ]
+}

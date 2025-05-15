@@ -1,0 +1,42 @@
+{
+  "timestamp": "20250515_103214",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this text concisely:",
+  "final_prompt": "Summarize this text concisely:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "they asked if i felt ok and could drive myself.",
+          "source": "s_0"
+        },
+        {
+          "text": "when i said yes, they said they\u2019d call the hospital and give them my info and let them know i\u2019m coming.",
+          "source": "s_1"
+        },
+        {
+          "text": "they said i may have to stay for a couple days on iv antibiotics because i had sepsis, an infection spreading through my blood stream.",
+          "source": "s_2"
+        },
+        {
+          "text": "i had to get lots of medicine, but only stayed in the hospital for one day.",
+          "source": "s_3"
+        },
+        {
+          "text": "apparently it was so serious because once the infection passes a certain threshold, people go from feeling fine like i did to deathly ill in minutes.",
+          "source": "s_4"
+        }
+      ],
+      "raw_summary": "i had sepsis, an infection spreading through my blood stream . i had to get lots of medicine, but only stayed in the hospital for one day . Apparently it was so serious because once the infection passes a certain threshold, people go from feeling fine like i did to deathly ill in minutes .",
+      "cleaned_summary": "Apparently it was so serious because once the infection passes a certain threshold, people go from feeling fine like did to deathly ill in minutes."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "timestamp": "20250515_095344",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "my mom had 3 strokes this way.",
+          "source": "s_0"
+        },
+        {
+          "text": "no typical signs just a severe headache then a bloodshot eye with the first.",
+          "source": "s_1"
+        },
+        {
+          "text": "about 9 months later she complained of a severe headache and declined my offer to take her to the er.",
+          "source": "s_2"
+        },
+        {
+          "text": "the following morning she didn't know who i was or recognize her own house.",
+          "source": "s_3"
+        },
+        {
+          "text": "she lived for 16 more months but mentally was gone.",
+          "source": "s_4"
+        },
+        {
+          "text": "i... should not have read all of these right before bedtime.",
+          "source": "s_5"
+        },
+        {
+          "text": "my foot itches with a thousand cancers.",
+          "source": "s_6"
+        },
+        {
+          "text": "sudden hearing loss in one ear.",
+          "source": "s_7"
+        },
+        {
+          "text": "if it doesn't recover within a few hours, get yourself to er immediately.",
+          "source": "s_8"
+        },
+        {
+          "text": "you have about 24-26 hours during which treatment can bring your hearing back.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": " My mom had 3 strokes this way. No typical signs just a severe headache then a bloodshot eye with the first . The following morning she didn't know who i was or recognize her own house .",
+      "cleaned_summary": "mom had 3 strokes this way. No typical signs just a severe headache then a bloodshot eye with the first. morning she didn't know who was or recognize her own house."
+    }
+  ]
+}

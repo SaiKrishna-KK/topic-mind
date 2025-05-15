@@ -1,0 +1,115 @@
+{
+  "timestamp": "20250515_103758",
+  "topic_id": null,
+  "topic_name": "Topic: replies, eithercow4727, glittering",
+  "keywords": [
+    "replies",
+    "eithercow4727",
+    "glittering",
+    "gur5513",
+    "hellchron",
+    "landandrow",
+    "meal",
+    "meinaltistgut",
+    "pxtwisty",
+    "restinmanypieces"
+  ],
+  "chunk_prompt": "Create a coherent summary about Topic: replies, eithercow4727, glittering:",
+  "final_prompt": "Create a coherent summary about Topic: replies, eithercow4727, glittering:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "Sepsis is a life-threatening condition with warning signs including more than 1,000 people have replied to this article.",
+          "source": "s_0"
+        },
+        {
+          "text": "use the weekly newsquiz to test your knowledge of stories you saw on cnn ireport.",
+          "source": "s_1"
+        },
+        {
+          "text": "please submit your comments to the post.",
+          "source": "s_2"
+        },
+        {
+          "text": "Eithercow4727, glittering: more replies.",
+          "source": "s_3"
+        },
+        {
+          "text": "Eithercow4727, glittering: @restinmanypieces.",
+          "source": "s_16"
+        },
+        {
+          "text": "Eithercow4727, glittering: @away-meal-9313.",
+          "source": "s_9"
+        },
+        {
+          "text": "@glittering-gur5513: glittering-ur5513.",
+          "source": "s_19"
+        },
+        {
+          "text": "more replies.",
+          "source": "s_5"
+        },
+        {
+          "text": "more replies.",
+          "source": "s_11"
+        },
+        {
+          "text": "more replies.",
+          "source": "s_14"
+        }
+      ],
+      "raw_summary": "Sepsis is a life-threatening condition with warning signs including more than 1,000 people have replied to this article . use the weekly newsquiz to test your knowledge of stories you saw on cnn ireport .",
+      "cleaned_summary": "Sepsis is a life-threatening condition with warning signs including more than 1,000 people have replied to this article. use the weekly newsquiz to test your knowledge of stories you saw on cnn ireport."
+    },
+    {
+      "chunk_id": 1,
+      "sentences": [
+        {
+          "text": "@hellchron: hellchron.",
+          "source": "s_4"
+        },
+        {
+          "text": "@meinaltistgut: meinaltiangut.",
+          "source": "s_6"
+        },
+        {
+          "text": "more.",
+          "source": "s_7"
+        },
+        {
+          "text": "@hell chronicles.",
+          "source": "s_8"
+        },
+        {
+          "text": "@pxtwisty: @pxWisty.",
+          "source": "s_10"
+        },
+        {
+          "text": "@almightychloee: almightyChloee.",
+          "source": "s_12"
+        },
+        {
+          "text": "more.",
+          "source": "s_13"
+        },
+        {
+          "text": "@customerdelicious816: customerdelicious.816.",
+          "source": "s_15"
+        },
+        {
+          "text": "@landandrow: landandrow.",
+          "source": "s_17"
+        },
+        {
+          "text": "more replies.",
+          "source": "s_18"
+        }
+      ],
+      "raw_summary": "@hell chronicles. @pxtwisty: @pxWisty. @almightychloee: @almightyChloee. @customerdelicious816: customerdelicious.816. @landandrow: landandrow. more replies .",
+      "cleaned_summary": "@hell chronicles. @pxtwisty: @pxWisty. @almightychloee: @almightyChloee. @customerdelicious816: customerdelicious.816. @landandrow: landandrow. more replies."
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "timestamp": "20250515_104649",
+  "topic_id": null,
+  "topic_name": "Breast infection/sepsis symptoms",
+  "keywords": [
+    "er",
+    "infection",
+    "like",
+    "breast",
+    "people",
+    "going",
+    "red",
+    "said",
+    "sepsis",
+    "weeks"
+  ],
+  "chunk_prompt": "Summarize this content about Breast infection/sepsis symptoms:",
+  "final_prompt": "Summarize this content about Breast infection/sepsis symptoms:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "i figured i needed antibiotics, so i made an appointment with my doctor.",
+          "source": "s_0"
+        },
+        {
+          "text": "when talking to my mom, who is a nurse, on the phone she said it\u2019s serious and if i can\u2019t see the doctor that same day then i need to go to urgent care.",
+          "source": "s_1"
+        },
+        {
+          "text": "i went to urgent care and the nurse practitioner didn\u2019t seem too worried.",
+          "source": "s_2"
+        },
+        {
+          "text": "then i rolled my sleeve all the way up and they saw red streaks going from the infected area up towards my arm pit.",
+          "source": "s_3"
+        },
+        {
+          "text": "i was very surprised what happened next since i imagine people in urgent care see all sorts of bad stuff.",
+          "source": "s_4"
+        },
+        {
+          "text": "they freaked out saying i needed to go to the emergency room immediately.",
+          "source": "s_5"
+        },
+        {
+          "text": "they asked if i felt ok and could drive myself.",
+          "source": "s_6"
+        },
+        {
+          "text": "when i said yes, they said they\u2019d call the hospital and give them my info and let them know i\u2019m coming.",
+          "source": "s_7"
+        },
+        {
+          "text": "they said i may have to stay for a couple days on iv antibiotics because i had sepsis, an infection spreading through my blood stream.",
+          "source": "s_8"
+        },
+        {
+          "text": "i had to get lots of medicine, but only stayed in the hospital for one day.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": "i figured i needed antibiotics, so i made an appointment with my doctor . when talking to my mom, who is a nurse, on the phone she said it\u2019s serious and if i can\u2019t see the doctor that same day then i need to go to urgent care . i rolled my sleeve all the way up and they saw red streaks going from the infected area up towards my arm pit . i was very surprised what happened next .",
+      "cleaned_summary": "figured needed antibiotics, so made an appointment with doctor. when talking to mom, who is a nurse, on the phone she said it\u2019s serious and if can\u2019t see the doctor that same day then need to go to urgent care. rolled sleeve all the way up and they saw red streaks going from the infected area up towards arm pit. was very surprised what happened next."
+    }
+  ]
+}

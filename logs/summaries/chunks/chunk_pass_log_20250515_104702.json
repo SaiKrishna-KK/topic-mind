@@ -1,0 +1,68 @@
+{
+  "timestamp": "20250515_104659",
+  "topic_id": null,
+  "topic_name": "Breast infection/sepsis symptoms",
+  "keywords": [
+    "er",
+    "infection",
+    "like",
+    "breast",
+    "people",
+    "going",
+    "red",
+    "said",
+    "sepsis",
+    "weeks"
+  ],
+  "chunk_prompt": "Summarize this content about Breast infection/sepsis symptoms:",
+  "final_prompt": "Summarize this content about Breast infection/sepsis symptoms:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "apparently a stroke is not always accompanied by the other well known symptoms.",
+          "source": "s_0"
+        },
+        {
+          "text": "i'm on blood thinners now.",
+          "source": "s_1"
+        },
+        {
+          "text": "my mom had 3 strokes this way.",
+          "source": "s_2"
+        },
+        {
+          "text": "no typical signs just a severe headache then a bloodshot eye with the first.",
+          "source": "s_3"
+        },
+        {
+          "text": "about 9 months later she complained of a severe headache and declined my offer to take her to the er.",
+          "source": "s_4"
+        },
+        {
+          "text": "sudden hearing loss in one ear.",
+          "source": "s_5"
+        },
+        {
+          "text": "if it doesn't recover within a few hours, get yourself to er immediately.",
+          "source": "s_6"
+        },
+        {
+          "text": "you have about 24-26 hours during which treatment can bring your hearing back.",
+          "source": "s_7"
+        },
+        {
+          "text": "one pupil is dilated while the other is normal.",
+          "source": "s_8"
+        },
+        {
+          "text": "hit your head hard?",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": "A stroke is not always accompanied by the other well known symptoms such as a bloodshot eye . Symptoms include a severe headache, sudden hearing loss in one ear and a dilated pupil .",
+      "cleaned_summary": "A stroke is not always accompanied by the other well known symptoms such as a bloodshot eye. Symptoms include a severe headache, sudden hearing loss in one ear and a dilated pupil."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "timestamp": "20250515_085715",
+  "topic_id": "0",
+  "keywords": [
+    "sepsis",
+    "infection",
+    "emergency",
+    "urgent care",
+    "symptoms"
+  ],
+  "original_length": 651,
+  "summary_length": 205,
+  "summary": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection. Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.",
+  "gpt_feedback": {
+    "feedback": "- **Clarity rating (2/5)**: The summary lacks clarity because it combines multiple health conditions without clearly explaining their significance or relation to sepsis specifically. Mentioning red streaks as indicative of a spreading infection is somewhat clear, but the leap to \"sudden onset dementia\" as a symptom is confusing without further context.\n\n- **Coherence rating (2/5)**: The summary lacks coherence as the statements seem disjointed and unrelated. There is no transition or explanation that links these symptoms to the core topic of sepsis or to each other within the context of emergency care.\n\n- **Relevance rating (2/5)**: The summary is only minimally relevant to the keywords. While it mentions infections, it fails to directly address sepsis, urgent care, or provide a clear, urgent action perspective that would be expected in the context of an \"emergency.\"\n\n**Explanation for ratings**:\n- **Clarity**: The statements are confusing due to lack of context and specificity. It\u2019s unclear how sudden onset dementia relates to sepsis or what specific urgent actions should be taken.\n- **Coherence**: The lack of logical flow between ideas makes it difficult for a reader to understand the relationship between the symptoms mentioned and the overall threat or urgency related to sepsis.\n- **Relevance**: Although symptoms are mentioned, there is no explicit link to sepsis as a medical emergency or how these symptoms connect to the keywords.\n\n**Suggestions for improvement**:\n1. **Clarify the connection**: Clearly explain how each symptom is related to sepsis as an indication of an emergency.\n2. **Include transitions**: Use transitions to connect different symptoms and explain why they are relevant to an emergency care context.\n3. **Focus on relevance**: Ensure the summary addresses the primary concern, which in this case should explicitly connect symptoms like red streaks and sudden confusion to sepsis and the necessary urgent response.\n4. **Expand on symptoms**: Briefly describe why these symptoms are important to monitor for sepsis, reinforcing the urgency with terms like 'emergency' or 'seek immediate medical attention'.",
+    "scores": {
+      "clarity": 2,
+      "coherence": 2,
+      "relevance": 2,
+      "overall": 2.0
+    }
+  }
+}

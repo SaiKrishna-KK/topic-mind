@@ -1,0 +1,426 @@
+{
+  "timestamp": "20250515_094411",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "[serious] what is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the er?",
+          "source": "s_0"
+        },
+        {
+          "text": "this might not be \u201cimmediate trip to the er,\u201d but it certainly is \u201cimmediately make a doctor\u2019s appointment asap.\u201d.",
+          "source": "s_30"
+        },
+        {
+          "text": "if it doesn't recover within a few hours, get yourself to er immediately.",
+          "source": "s_51"
+        },
+        {
+          "text": "if you've been strangled always go to the er after.",
+          "source": "s_78"
+        },
+        {
+          "text": "i went months without going to the er because i thought i was being dramatic.",
+          "source": "s_68"
+        },
+        {
+          "text": "about 9 months later she complained of a severe headache and declined my offer to take her to the er.",
+          "source": "s_43"
+        },
+        {
+          "text": "i figured i needed antibiotics, so i made an appointment with my doctor.",
+          "source": "s_15"
+        },
+        {
+          "text": "they freaked out saying i needed to go to the emergency room immediately.",
+          "source": "s_21"
+        },
+        {
+          "text": "i figured it could be an infection, but there was no pain or discomfort so i figured it would heal.",
+          "source": "s_12"
+        },
+        {
+          "text": "still no pain or discomfort.",
+          "source": "s_14"
+        }
+      ],
+      "raw_summary": " What is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the er? this might not be \u201cimmediate trip to . the er,\ufffd",
+      "cleaned_summary": "What is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the er? this might not be \u201cimmediate trip to."
+    },
+    {
+      "chunk_id": 1,
+      "sentences": [
+        {
+          "text": "serious replies only.",
+          "source": "s_1"
+        },
+        {
+          "text": "r4dioc4mbodia.",
+          "source": "s_2"
+        },
+        {
+          "text": "superficial burns to the face typically from bbq or stove lighting accidents.",
+          "source": "s_3"
+        },
+        {
+          "text": "it may seem like just some singed eyebrows, but if you were inhaling at all when the accident happened you could have burned the inside of your throat.",
+          "source": "s_4"
+        },
+        {
+          "text": "i was very surprised what happened next since i imagine people in urgent care see all sorts of bad stuff.",
+          "source": "s_20"
+        },
+        {
+          "text": "i went to urgent care and the nurse practitioner didn\u2019t seem too worried.",
+          "source": "s_18"
+        },
+        {
+          "text": "when talking to my mom, who is a nurse, on the phone she said it\u2019s serious and if i can\u2019t see the doctor that same day then i need to go to urgent care.",
+          "source": "s_17"
+        },
+        {
+          "text": "but i went early enough to still be alive.",
+          "source": "s_37"
+        },
+        {
+          "text": "my mom had 3 strokes this way.",
+          "source": "s_41"
+        },
+        {
+          "text": "when i said yes, they said they\u2019d call the hospital and give them my info and let them know i\u2019m coming.",
+          "source": "s_23"
+        }
+      ],
+      "raw_summary": " i was very surprised what happened next since i imagine people in urgent care see all sorts of bad stuff . i went to urgent care and the nurse practitioner didn\u2019t seem too worried",
+      "cleaned_summary": "was very surprised what happened next since imagine people in urgent care see all sorts of bad stuff. went to urgent care and the nurse practitioner didn\u2019t seem too worried."
+    },
+    {
+      "chunk_id": 2,
+      "sentences": [
+        {
+          "text": "most people present with normal breathing, but as the injured tissues swell, it can close the airway.",
+          "source": "s_5"
+        },
+        {
+          "text": "one pupil is dilated while the other is normal.",
+          "source": "s_54"
+        },
+        {
+          "text": "i know two people who had no other symptoms besides the streaks both were admitted for sepsis and in hospital for a while.",
+          "source": "s_83"
+        },
+        {
+          "text": "most of these people feel fine directly following the accident and end up intubated if they make it to the hospital.",
+          "source": "s_6"
+        },
+        {
+          "text": "apparently it was so serious because once the infection passes a certain threshold, people go from feeling fine like i did to deathly ill in minutes.",
+          "source": "s_26"
+        },
+        {
+          "text": "then, between work and their wife, the people around them pieced together that they could no longer read at the same level.",
+          "source": "s_61"
+        },
+        {
+          "text": "apparently a stroke is not always accompanied by the other well known symptoms.",
+          "source": "s_39"
+        },
+        {
+          "text": "the following morning she didn't know who i was or recognize her own house.",
+          "source": "s_44"
+        },
+        {
+          "text": "red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis.",
+          "source": "s_82"
+        },
+        {
+          "text": "sepsis is no joke.",
+          "source": "s_28"
+        }
+      ],
+      "raw_summary": " Most people present with normal breathing, but as the injured tissues swell, it can close the airway . Red streaks near a wound, particularly on the limbs, can indicate a spreading infection",
+      "cleaned_summary": "Most people present with normal breathing, but as the injured tissues swell, it can close the airway."
+    },
+    {
+      "chunk_id": 3,
+      "sentences": [
+        {
+          "text": "i got a small cut, little more than a scratch, on my arm cleaning under a conveyor at work.",
+          "source": "s_7"
+        },
+        {
+          "text": "their work performance suffered.",
+          "source": "s_60"
+        },
+        {
+          "text": "i had a friend who fell out of a chair at a work party and hit their head hard on the ground.",
+          "source": "s_57"
+        },
+        {
+          "text": "hit your head hard?",
+          "source": "s_55"
+        },
+        {
+          "text": "my sister died from a antibiotic resistant blood infection back in 2021. she got a slight sunburn on her lip that got infected and was dead 2 weeks later.",
+          "source": "s_29"
+        },
+        {
+          "text": "i didn\u2019t give it a good soap and water scrub until i got home several hours later.",
+          "source": "s_10"
+        },
+        {
+          "text": "a few days later i had a dark red bump with what looked like a pimple on it where the scratch had been.",
+          "source": "s_11"
+        },
+        {
+          "text": "then i rolled my sleeve all the way up and they saw red streaks going from the infected area up towards my arm pit.",
+          "source": "s_19"
+        },
+        {
+          "text": "it was going to be a few days.",
+          "source": "s_16"
+        },
+        {
+          "text": "they said i may have to stay for a couple days on iv antibiotics because i had sepsis, an infection spreading through my blood stream.",
+          "source": "s_24"
+        }
+      ],
+      "raw_summary": " i got a small cut, little more than a scratch, on my arm cleaning under a conveyor at work . i didn\u2019t give it a good soap and water scrub until",
+      "cleaned_summary": "got a small cut, little more than a scratch, on arm cleaning under a conveyor at work. didn\u2019t give it a good soap and water scrub until."
+    },
+    {
+      "chunk_id": 4,
+      "sentences": [
+        {
+          "text": "the sort of thing one barely notices.",
+          "source": "s_8"
+        },
+        {
+          "text": "it was black with coal dust, so i rinsed it off.",
+          "source": "s_9"
+        },
+        {
+          "text": "after a few days of it remaining the same, it suddenly grew larger and nastier looking.",
+          "source": "s_13"
+        },
+        {
+          "text": "also for those that are biologically female, losing your period or prolonged amenorrhea is oftentimes a sign of something larger going on thats attributed by doctors as stress.",
+          "source": "s_70"
+        },
+        {
+          "text": "if you notice a red spot on one breast that isn\u2019t going away, if you have new orange-peel-like dimpling on one breast, or one breast appears swollen, any of those can be a sign of inflammatory breast cancer.",
+          "source": "s_31"
+        },
+        {
+          "text": "that\u2019s a particularly aggressive form of breast cancer that\u2019s usually only found in more advanced stages.",
+          "source": "s_32"
+        },
+        {
+          "text": "you usually don\u2019t have a lump.",
+          "source": "s_33"
+        },
+        {
+          "text": "make sure to clean any cuts well right away.",
+          "source": "s_27"
+        },
+        {
+          "text": "i... should not have read all of these right before bedtime.",
+          "source": "s_47"
+        },
+        {
+          "text": "before i was admitted to the icu for 2 weeks i had muscle tetany (felt like pins/needles) in my feet, arms, chest and weirdly enough what felt like my nose for weeks.",
+          "source": "s_66"
+        }
+      ],
+      "raw_summary": " If you notice a red spot on one breast that isn\u2019t going away, if you have new orange-peel-like dimpling, or one breast appears swollen, any",
+      "cleaned_summary": "If you notice a red spot on one breast that isn\u2019t going away, if you have new orange-peel-like dimpling, or one breast appears swollen, any."
+    },
+    {
+      "chunk_id": 5,
+      "sentences": [
+        {
+          "text": "they asked if i felt ok and could drive myself.",
+          "source": "s_22"
+        },
+        {
+          "text": "i had to get lots of medicine, but only stayed in the hospital for one day.",
+          "source": "s_25"
+        },
+        {
+          "text": "sudden change in vision.",
+          "source": "s_34"
+        },
+        {
+          "text": "it wasn't their vision, it was their comprehension.",
+          "source": "s_62"
+        },
+        {
+          "text": "i waited too long and now my vision loss is permanent.",
+          "source": "s_36"
+        },
+        {
+          "text": "started complaining about vision problems over the next several weeks.",
+          "source": "s_59"
+        },
+        {
+          "text": "sudden hearing loss in one ear.",
+          "source": "s_50"
+        },
+        {
+          "text": "after that its permanent.",
+          "source": "s_53"
+        },
+        {
+          "text": "sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.",
+          "source": "s_85"
+        },
+        {
+          "text": "long story short, it was a serious tbi.",
+          "source": "s_64"
+        }
+      ],
+      "raw_summary": " A bladder infection might be the only symptom of a bladder infection . It might also be a sign of dementia in old women and diaper wearers .",
+      "cleaned_summary": "A bladder infection might be the only symptom of a bladder infection. It might also be a sign of dementia in old women and diaper wearers."
+    },
+    {
+      "chunk_id": 6,
+      "sentences": [
+        {
+          "text": "in my case it turned out to be a brain tumor.",
+          "source": "s_35"
+        },
+        {
+          "text": "sharing a resource here to help with abusive relationships in case anyone reading this needs help.",
+          "source": "s_81"
+        },
+        {
+          "text": "a migraine that's much more painful than usual.",
+          "source": "s_38"
+        },
+        {
+          "text": "i'm on blood thinners now.",
+          "source": "s_40"
+        },
+        {
+          "text": "no typical signs just a severe headache then a bloodshot eye with the first.",
+          "source": "s_42"
+        },
+        {
+          "text": "just to add to this for awareness - if you were strangled by a romantic partner, you are 750% more likely to be killed by them.",
+          "source": "s_80"
+        },
+        {
+          "text": "thought it was just poor circulation and turns out i had undetectable potassium and phosphate levels which did bad damage to my liver and kidneys!!",
+          "source": "s_67"
+        },
+        {
+          "text": "they can become infected super easily and be bad.",
+          "source": "s_74"
+        },
+        {
+          "text": "if you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured spleen (though you\u2019ll most likely experience other symptoms).",
+          "source": "s_72"
+        },
+        {
+          "text": "she lived for 16 more months but mentally was gone.",
+          "source": "s_45"
+        }
+      ],
+      "raw_summary": " If you were strangled by a romantic partner, you are 750% more likely to be killed by them . If you\u2019ve recently taken an impact to the abdomen, pain in",
+      "cleaned_summary": "If you were strangled by a romantic partner, you are 750% more likely to be killed by them."
+    },
+    {
+      "chunk_id": 7,
+      "sentences": [
+        {
+          "text": "difficultywarming.",
+          "source": "s_46"
+        },
+        {
+          "text": "lol.",
+          "source": "s_48"
+        },
+        {
+          "text": "my foot itches with a thousand cancers.",
+          "source": "s_49"
+        },
+        {
+          "text": "you have about 24-26 hours during which treatment can bring your hearing back.",
+          "source": "s_52"
+        },
+        {
+          "text": "get it checked out.",
+          "source": "s_56"
+        },
+        {
+          "text": "always get it checked!!",
+          "source": "s_71"
+        },
+        {
+          "text": "not an \"omg you gonna die\" but definitely take a trip soon to get any cat bites checked.",
+          "source": "s_75"
+        },
+        {
+          "text": "cat bites.",
+          "source": "s_73"
+        },
+        {
+          "text": "they shook it off.",
+          "source": "s_58"
+        },
+        {
+          "text": "they couldn't even perceive what was actually wrong.",
+          "source": "s_63"
+        }
+      ],
+      "raw_summary": " You have about 24-26 hours during which treatment can bring your hearing back . always get it checked!! not an \"omg you gonna die\" but definitely take a trip soon to",
+      "cleaned_summary": "You have about 24-26 hours during which treatment can bring your hearing back. always get it checked!!"
+    },
+    {
+      "chunk_id": 8,
+      "sentences": [
+        {
+          "text": "they had to go on disability and into rehabilitation therapy for over a year.",
+          "source": "s_65"
+        },
+        {
+          "text": "literally never write things off as something else, it\u2019s always better to look crazy than be dead.",
+          "source": "s_69"
+        },
+        {
+          "text": "even if not deep.",
+          "source": "s_76"
+        },
+        {
+          "text": "beefcake-pantyhose.",
+          "source": "s_77"
+        },
+        {
+          "text": "rashawah.",
+          "source": "s_79"
+        },
+        {
+          "text": "how about the reverse?",
+          "source": "s_84"
+        },
+        {
+          "text": "if it is that, antibiotics will fix it.",
+          "source": "s_86"
+        }
+      ],
+      "raw_summary": " They had to go on disability and into rehabilitation therapy for over a year . Never write things off as something else, it\u2019s always better to look crazy than be dead .",
+      "cleaned_summary": "They had to go on disability and into rehabilitation therapy for over a year. Never write things off as something else, it\u2019s always better to look crazy than be dead."
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "refined_sentences": [
+    {
+      "text": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis.",
+      "source": "s_175_0f4bb1e5",
+      "index": 175,
+      "hash": "0f4bb1e5",
+      "relevance_score": 8.467519833246794
+    },
+    {
+      "text": "I know two people who had no other symptoms besides the streaks both were admitted for sepsis and in hospital for a while.",
+      "source": "s_176_401c2b95",
+      "index": 176,
+      "hash": "401c2b95",
+      "relevance_score": 8.449862340448622
+    },
+    {
+      "text": "They said I may have to stay for a couple days on IV antibiotics because I had sepsis, an infection spreading through my blood stream.",
+      "source": "s_39_f2157e61",
+      "index": 39,
+      "hash": "f2157e61",
+      "relevance_score": 8.431606213733561
+    },
+    {
+      "text": "When talking to my mom, who is a nurse, on the phone she said it\u2019s serious and if I can\u2019t see the doctor that same day then I need to go to urgent care.",
+      "source": "s_32_4754f012",
+      "index": 32,
+      "hash": "4754f012",
+      "relevance_score": 5.457499561940525
+    },
+    {
+      "text": "Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.",
+      "source": "s_183_5edc001f",
+      "index": 183,
+      "hash": "5edc001f",
+      "relevance_score": 5.434923306530831
+    },
+    {
+      "text": "I was very surprised what happened next since I imagine people in urgent care see all sorts of bad stuff.",
+      "source": "s_35_d00e386f",
+      "index": 35,
+      "hash": "d00e386f",
+      "relevance_score": 5.42684441374634
+    },
+    {
+      "text": "I went to urgent care and the nurse practitioner didn\u2019t seem too worried.",
+      "source": "s_33_eee98bfd",
+      "index": 33,
+      "hash": "eee98bfd",
+      "relevance_score": 5.38992974723363
+    },
+    {
+      "text": "If you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured spleen (though you\u2019ll most likely experience other symptoms).",
+      "source": "s_147_e9dd3ad3",
+      "index": 147,
+      "hash": "e9dd3ad3",
+      "relevance_score": 5.275804056115954
+    },
+    {
+      "text": "Apparently it was so serious because once the infection passes a certain threshold, people go from feeling fine like I did to deathly ill in minutes.",
+      "source": "s_41_29891950",
+      "index": 41,
+      "hash": "29891950",
+      "relevance_score": 5.125235013863426
+    },
+    {
+      "text": "They freaked out saying I needed to go to the emergency room immediately.",
+      "source": "s_36_dbbfd298",
+      "index": 36,
+      "hash": "dbbfd298",
+      "relevance_score": 4.853052829888005
+    },
+    {
+      "text": "My sister died from a antibiotic resistant blood infection back in 2021.",
+      "source": "s_49_0c69f697",
+      "index": 49,
+      "hash": "0c69f697",
+      "relevance_score": 4.760842831364609
+    },
+    {
+      "text": "Apparently a stroke is not always accompanied by the other well known symptoms.",
+      "source": "s_75_dc77ecc9",
+      "index": 75,
+      "hash": "dc77ecc9",
+      "relevance_score": 4.71754481161339
+    },
+    {
+      "text": "Sepsis is no joke.",
+      "source": "s_48_89386d72",
+      "index": 48,
+      "hash": "89386d72",
+      "relevance_score": 4.6490899718277685
+    },
+    {
+      "text": "I figured it could be an infection, but there was no pain or discomfort so I figured it would heal.",
+      "source": "s_27_3f5bf245",
+      "index": 27,
+      "hash": "3f5bf245",
+      "relevance_score": 4.487851240898125
+    },
+    {
+      "text": "[Serious] What is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the ER?",
+      "source": "s_0_08e91ded",
+      "index": 0,
+      "hash": "08e91ded",
+      "relevance_score": 2.3244505835569846
+    }
+  ],
+  "summary_result": {
+    "summary": " Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis . Sudden onset dementia, especially in old women and diaper wearers might be the only symptom of a bladder infection . Sepsis is no joke .",
+    "source_sentences": [
+      {
+        "text": "Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis.",
+        "source": "s_175_0f4bb1e5",
+        "index": 175,
+        "hash": "0f4bb1e5",
+        "relevance_score": 8.467519833246794
+      },
+      {
+        "text": "I know two people who had no other symptoms besides the streaks both were admitted for sepsis and in hospital for a while.",
+        "source": "s_176_401c2b95",
+        "index": 176,
+        "hash": "401c2b95",
+        "relevance_score": 8.449862340448622
+      },
+      {
+        "text": "They said I may have to stay for a couple days on IV antibiotics because I had sepsis, an infection spreading through my blood stream.",
+        "source": "s_39_f2157e61",
+        "index": 39,
+        "hash": "f2157e61",
+        "relevance_score": 8.431606213733561
+      },
+      {
+        "text": "When talking to my mom, who is a nurse, on the phone she said it\u2019s serious and if I can\u2019t see the doctor that same day then I need to go to urgent care.",
+        "source": "s_32_4754f012",
+        "index": 32,
+        "hash": "4754f012",
+        "relevance_score": 5.457499561940525
+      },
+      {
+        "text": "Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection.",
+        "source": "s_183_5edc001f",
+        "index": 183,
+        "hash": "5edc001f",
+        "relevance_score": 5.434923306530831
+      },
+      {
+        "text": "I was very surprised what happened next since I imagine people in urgent care see all sorts of bad stuff.",
+        "source": "s_35_d00e386f",
+        "index": 35,
+        "hash": "d00e386f",
+        "relevance_score": 5.42684441374634
+      },
+      {
+        "text": "I went to urgent care and the nurse practitioner didn\u2019t seem too worried.",
+        "source": "s_33_eee98bfd",
+        "index": 33,
+        "hash": "eee98bfd",
+        "relevance_score": 5.38992974723363
+      },
+      {
+        "text": "If you\u2019ve recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured spleen (though you\u2019ll most likely experience other symptoms).",
+        "source": "s_147_e9dd3ad3",
+        "index": 147,
+        "hash": "e9dd3ad3",
+        "relevance_score": 5.275804056115954
+      },
+      {
+        "text": "Apparently it was so serious because once the infection passes a certain threshold, people go from feeling fine like I did to deathly ill in minutes.",
+        "source": "s_41_29891950",
+        "index": 41,
+        "hash": "29891950",
+        "relevance_score": 5.125235013863426
+      },
+      {
+        "text": "They freaked out saying I needed to go to the emergency room immediately.",
+        "source": "s_36_dbbfd298",
+        "index": 36,
+        "hash": "dbbfd298",
+        "relevance_score": 4.853052829888005
+      },
+      {
+        "text": "My sister died from a antibiotic resistant blood infection back in 2021.",
+        "source": "s_49_0c69f697",
+        "index": 49,
+        "hash": "0c69f697",
+        "relevance_score": 4.760842831364609
+      },
+      {
+        "text": "Apparently a stroke is not always accompanied by the other well known symptoms.",
+        "source": "s_75_dc77ecc9",
+        "index": 75,
+        "hash": "dc77ecc9",
+        "relevance_score": 4.71754481161339
+      },
+      {
+        "text": "Sepsis is no joke.",
+        "source": "s_48_89386d72",
+        "index": 48,
+        "hash": "89386d72",
+        "relevance_score": 4.6490899718277685
+      },
+      {
+        "text": "I figured it could be an infection, but there was no pain or discomfort so I figured it would heal.",
+        "source": "s_27_3f5bf245",
+        "index": 27,
+        "hash": "3f5bf245",
+        "relevance_score": 4.487851240898125
+      },
+      {
+        "text": "[Serious] What is a \u201cseems to be harmless\u201d symptom that requires an immediate trip to the ER?",
+        "source": "s_0_08e91ded",
+        "index": 0,
+        "hash": "08e91ded",
+        "relevance_score": 2.3244505835569846
+      }
+    ],
+    "keywords": [
+      "sepsis",
+      "infection",
+      "emergency",
+      "urgent care",
+      "symptoms"
+    ],
+    "chunked": true,
+    "timestamp": "20250515_083222",
+    "evaluation": {
+      "feedback": "**Clarity: 3**\n\nThe summary is generally clear in describing the signs that might suggest a serious infection. However, it could be clearer by more explicitly connecting these symptoms to the need for urgent care or emergency response, particularly regarding sepsis.\n\n**Coherence: 3**\n\nThe ideas presented are somewhat disjointed. While the symptoms of sepsis and infections are discussed, the transition between red streaks, sudden onset dementia, and their links to sepsis and infections isn't fully coherent. The mention of \"diaper wearers\" feels abrupt and lacks context connecting it fluidly to the rest of the summary.\n\n**Relevance to the Topic Keywords: 4**\n\nThe summary is relevant as it addresses \"sepsis,\" \"infection,\" and \"symptoms,\" which align well with the keywords provided. However, it doesn't directly mention \"emergency\" or \"urgent care,\" which are crucial aspects of the topic when discussing symptoms that might indicate sepsis or severe infections. Adding these aspects would strengthen the relevance. \n\nOverall, the summary covers some of the key points related to sepsis and infections but could improve by explicitly linking symptoms to emergency concerns and ensuring that all points flow logically together.",
+      "scores": {
+        "clarity": 3,
+        "coherence": 3,
+        "relevance": null
+      }
+    }
+  }
+}

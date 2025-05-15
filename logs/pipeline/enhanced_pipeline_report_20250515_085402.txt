@@ -1,0 +1,65 @@
+TOPICMIND ENHANCED SUMMARIZATION PIPELINE REPORT
+============================================================
+
+Timestamp: 20250515_085402
+Input file: reddit_thread.txt
+Topic name: sepsis infection emergency
+Keywords: sepsis, infection, emergency, urgent care, symptoms
+Max sentences: 10
+Chunk size: 5
+Final compression: True
+
+PROMPTS USED
+------------------------------
+Custom prompt: None
+Chunk prompt: Summarize the following medical information about sepsis infection emergency into 2-3 clear, complete sentences.
+Focus ONLY on symptoms, warning signs, and medical facts - avoid personal anecdotes or stories:
+
+
+Final prompt: Create a coherent 2-3 sentence medical summary about sepsis infection emergency that explains key warning signs.
+Prioritize objective medical information, avoid personal stories, and ensure each sentence provides clear, actionable insights:
+
+
+
+REFINED SENTENCES
+------------------------------
+Total sentences: 10
+
+CHUNK SUMMARIES
+------------------------------
+Chunk 1:
+Red streaks near a wound, particularly on the limbs, can indicate a spreading infection and may be an early sign of sepsis. Sepsis is an infection spreading through the blood stream.
+
+Chunk 2:
+Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection. If you've recently taken an impact to the abdomen, pain in the left shoulder can signify a ruptured spleen.
+
+FINAL SUMMARY
+------------------------------
+Sepsis is an infection spreading through the blood stream. Sudden onset dementia, especially in old women and diaper wearers, might be the only symptom of a bladder infection. Red streaks near a wound, particularly on the limbs, can indicate a spreading infection.
+
+EVALUATION SCORES
+------------------------------
+Clarity: 3/5 ★★★☆☆
+Coherence: 2/5 ★★☆☆☆
+Relevance: 2/5 ★★☆☆☆
+Overall: 2.3333333333333335/5 ★★☆☆☆
+
+Overall: 2.3/5 ★★☆☆☆
+
+FEEDBACK DETAILS
+------------------------------
+- **Clarity rating (3/5):** The summary is somewhat clear, but the connection between the symptoms and sepsis is implied rather than directly stated. It could be confusing as it jumps from sepsis to specific symptoms of bladder infections.
+
+- **Coherence rating (2/5):** The summary lacks coherence as it discusses multiple points without explicit connections. The information about bladder infections and red streaks on wounds is suddenly introduced without linking back to sepsis, making it disjointed.
+
+- **Relevance rating (2/5):** The summary mentions sepsis and infections, but it doesn't fully address the keywords like "emergency" and "urgent care," nor does it emphasize the critical nature of recognizing and treating sepsis.
+
+**Suggestions for improvement:**
+
+1. **Focus on Key Concepts:** Ensure that the summary starts with the importance of recognizing sepsis as a medical emergency. For example: "Sepsis is a life-threatening condition that arises when the body's response to an infection injures its own tissues and organs, requiring immediate medical attention."
+
+2. **Clarify Connections:** Make explicit connections between symptoms and sepsis. Clarify how sudden onset dementia and red streaks relate to sepsis or be clear if they are separate infection indicators.
+
+3. **Add Critical Keywords:** Integrate terms like "emergency" and "urgent care" more directly. For example: "In cases of suspected sepsis, urgent care is essential to prevent serious complications."
+
+4. **Organize for Coherence:** Structure the summary so each point follows logically. Group related symptoms together and connect them to the concept of sepsis as both a cause and potential result of such symptoms.

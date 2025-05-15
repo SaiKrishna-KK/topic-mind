@@ -1,0 +1,62 @@
+{
+  "timestamp": "20250515_095348",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "after that its permanent.",
+          "source": "s_0"
+        },
+        {
+          "text": "one pupil is dilated while the other is normal.",
+          "source": "s_1"
+        },
+        {
+          "text": "hit your head hard?",
+          "source": "s_2"
+        },
+        {
+          "text": "get it checked out.",
+          "source": "s_3"
+        },
+        {
+          "text": "i had a friend who fell out of a chair at a work party and hit their head hard on the ground.",
+          "source": "s_4"
+        },
+        {
+          "text": "they shook it off.",
+          "source": "s_5"
+        },
+        {
+          "text": "started complaining about vision problems over the next several weeks.",
+          "source": "s_6"
+        },
+        {
+          "text": "their work performance suffered.",
+          "source": "s_7"
+        },
+        {
+          "text": "then, between work and their wife, the people around them pieced together that they could no longer read at the same level.",
+          "source": "s_8"
+        },
+        {
+          "text": "it wasn't their vision, it was their comprehension.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": " i had a friend who fell out of a chair at a work party and hit their head hard on the ground . They started complaining about vision problems over the next several weeks . Their work performance suffered .",
+      "cleaned_summary": "They started complaining about vision problems over the next several weeks. Their work performance suffered."
+    }
+  ]
+}

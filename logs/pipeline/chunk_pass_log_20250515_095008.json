@@ -1,0 +1,62 @@
+{
+  "timestamp": "20250515_095006",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "14h ago.",
+          "source": "s_0"
+        },
+        {
+          "text": "8h ago.",
+          "source": "s_1"
+        },
+        {
+          "text": "5h ago.",
+          "source": "s_2"
+        },
+        {
+          "text": "edited 5h ago.",
+          "source": "s_3"
+        },
+        {
+          "text": "2h ago.",
+          "source": "s_4"
+        },
+        {
+          "text": "6h ago.",
+          "source": "s_5"
+        },
+        {
+          "text": "6h ago.",
+          "source": "s_6"
+        },
+        {
+          "text": "9h ago.",
+          "source": "s_7"
+        },
+        {
+          "text": "4h ago.",
+          "source": "s_8"
+        },
+        {
+          "text": "7h ago.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care . Summarize the main point of the discussion .",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent care. Summarize the main point of the discussion."
+    }
+  ]
+}

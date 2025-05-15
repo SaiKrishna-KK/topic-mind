@@ -1,0 +1,68 @@
+{
+  "timestamp": "20250515_104726",
+  "topic_id": null,
+  "topic_name": "Vision Rehabilitation Services",
+  "keywords": [
+    "didn",
+    "help",
+    "permanent",
+    "read",
+    "right",
+    "vision",
+    "work",
+    "recognize",
+    "rehabilitation",
+    "relationships"
+  ],
+  "chunk_prompt": "Summarize this content about Vision Rehabilitation Services:",
+  "final_prompt": "Summarize this content about Vision Rehabilitation Services:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "difficultywarming.",
+          "source": "s_0"
+        },
+        {
+          "text": "i. should not have read all of these right before bedtime.",
+          "source": "s_1"
+        },
+        {
+          "text": "lol.",
+          "source": "s_2"
+        },
+        {
+          "text": "my foot itches with a thousand cancers.",
+          "source": "s_3"
+        },
+        {
+          "text": "after that its permanent.",
+          "source": "s_4"
+        },
+        {
+          "text": "they shook it off.",
+          "source": "s_5"
+        },
+        {
+          "text": "their work performance suffered.",
+          "source": "s_6"
+        },
+        {
+          "text": "then, between work and their wife, the people around them pieced together that they could no longer read at the same level.",
+          "source": "s_7"
+        },
+        {
+          "text": "it wasn't their vision, it was their comprehension.",
+          "source": "s_8"
+        },
+        {
+          "text": "they couldn't even perceive what was actually wrong.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": "Vision Rehabilitation Services: difficultywarming. i. should not have read all of these right before bedtime. My foot itches with a thousand cancers after that its permanent. after that, they shook it off. their work performance suffered. then, between work and their wife, the people around them pieced together that they could no longer read .",
+      "cleaned_summary": "Vision Rehabilitation Services: difficultywarming.. should not have read all of these right before bedtime. foot itches with a thousand cancers after that its permanent. after that, they shook it off. their work performance suffered. then, between work and their wife, the people around them pieced together that they could no longer read."
+    }
+  ]
+}

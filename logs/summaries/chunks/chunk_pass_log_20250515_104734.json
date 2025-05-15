@@ -1,0 +1,68 @@
+{
+  "timestamp": "20250515_104731",
+  "topic_id": null,
+  "topic_name": "Vision Rehabilitation Services",
+  "keywords": [
+    "didn",
+    "help",
+    "permanent",
+    "read",
+    "right",
+    "vision",
+    "work",
+    "recognize",
+    "rehabilitation",
+    "relationships"
+  ],
+  "chunk_prompt": "Summarize this content about Vision Rehabilitation Services:",
+  "final_prompt": "Summarize this content about Vision Rehabilitation Services:",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "they had to go on disability and into rehabilitation therapy for over a year.",
+          "source": "s_0"
+        },
+        {
+          "text": "literally never write things off as something else, it\u2019s always better to look crazy than be dead.",
+          "source": "s_1"
+        },
+        {
+          "text": "cat bites.",
+          "source": "s_2"
+        },
+        {
+          "text": "they can become infected super easily and be bad.",
+          "source": "s_3"
+        },
+        {
+          "text": "even if not deep.",
+          "source": "s_4"
+        },
+        {
+          "text": "beefcake-pantyhose.",
+          "source": "s_5"
+        },
+        {
+          "text": "rashawah.",
+          "source": "s_6"
+        },
+        {
+          "text": "just to add to this for awareness - if you were strangled by a romantic partner, you are 750% more likely to be killed by them.",
+          "source": "s_7"
+        },
+        {
+          "text": "sharing a resource here to help with abusive relationships in case anyone reading this needs help.",
+          "source": "s_8"
+        },
+        {
+          "text": "how about the reverse?",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": "Vision Rehabilitation Services had to go on disability and into rehabilitation therapy for over a year . If you were strangled by a romantic partner, you are 750% more likely to be killed by them .",
+      "cleaned_summary": "Vision Rehabilitation Services had to go on disability and into rehabilitation therapy for over a year. If you were strangled by a romantic partner, you are 750% more likely to be killed by them."
+    }
+  ]
+}

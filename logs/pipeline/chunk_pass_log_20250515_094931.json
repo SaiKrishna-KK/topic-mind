@@ -1,0 +1,62 @@
+{
+  "timestamp": "20250515_094928",
+  "topic_id": null,
+  "topic_name": null,
+  "keywords": [
+    "symptoms",
+    "warning signs",
+    "medical emergency",
+    "urgent care"
+  ],
+  "chunk_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "final_prompt": "Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent care",
+  "chunks": [
+    {
+      "chunk_id": 0,
+      "sentences": [
+        {
+          "text": "difficultywarming.",
+          "source": "s_0"
+        },
+        {
+          "text": "lol.",
+          "source": "s_1"
+        },
+        {
+          "text": "@hellchron: hellchron.",
+          "source": "s_2"
+        },
+        {
+          "text": "@away-meal-9313: away-meal-9313.",
+          "source": "s_3"
+        },
+        {
+          "text": "@pxtwisty: pxtwisty.",
+          "source": "s_4"
+        },
+        {
+          "text": "@customerdelicious816: customerdelicious816.",
+          "source": "s_5"
+        },
+        {
+          "text": "@almightychloee: almightychloee.",
+          "source": "s_6"
+        },
+        {
+          "text": "skiergirl78.",
+          "source": "s_7"
+        },
+        {
+          "text": "@restinmanypieces: restinmanypieces.",
+          "source": "s_8"
+        },
+        {
+          "text": "beefcake-pantyhose.",
+          "source": "s_9"
+        }
+      ],
+      "raw_summary": " Summarize this discussion focusing on the main points related to: symptoms, warning signs, medical emergency, urgent caredifficultywarming.Summarize these points focusing on: symptoms and warning signs .",
+      "cleaned_summary": "Summarize this discussion focusing on the main points : symptoms, warning signs, medical emergency, urgent caredifficultywarming.Summarize these points focusing on: symptoms and warning signs."
+    }
+  ]
+}
