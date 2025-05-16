@@ -392,13 +392,13 @@ def group_sentences_by_context(sentences_with_metadata: List[Dict[str, Any]], ma
 def summarize_chunk(text: str, max_length: int = 100, min_length: int = 30, prompt_prefix: str = None) -> str:
     """
     Summarize a chunk of text using the BART model.
-    
+
     Args:
         text: Text to summarize
         max_length: Maximum length of the summary
         min_length: Minimum length of the summary
         prompt_prefix: Optional prefix for guided summarization
-        
+
     Returns:
         Generated summary or error message
     """
@@ -420,7 +420,7 @@ def summarize_chunk(text: str, max_length: int = 100, min_length: int = 30, prom
             
         # Tokenize
         inputs = _tokenizer(full_text, return_tensors="pt", max_length=1024, truncation=True).to(device)
-        
+
         # Generate summary
         with torch.no_grad():
             summary_ids = _model.generate(
@@ -445,7 +445,7 @@ def summarize_chunk(text: str, max_length: int = 100, min_length: int = 30, prom
             logger.info(f"Generated summary of length {len(summary)} chars / ~{len(summary.split())} words")
             
         return summary
-        
+
     except Exception as e:
         error_msg = f"Error in summarization: {str(e)}"
         logger.error(error_msg)
