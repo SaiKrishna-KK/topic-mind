@@ -82,7 +82,7 @@ TopicMind is an advanced text analysis tool that uses state-of-the-art NLP techn
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/topicmind.git
+   git clone https://github.com/SaiKrishna-KK/topic-mind
    cd topicmind
    ```
 
