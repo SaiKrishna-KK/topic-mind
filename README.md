@@ -41,9 +41,7 @@ Access the web interface at http://localhost:8502
 
 # TopicMind: Smart Text Summarization
 
-<p align="center">
-  <img src="static/topicmind_logo.png" alt="TopicMind Logo" width="180"/>
-</p>
+
 
 <p align="center">
   <a href="#features">Features</a> •
@@ -71,11 +69,11 @@ TopicMind is an advanced text analysis tool that uses state-of-the-art NLP techn
 - 📱 **Modern Web Interface**: User-friendly Streamlit dashboard with export functionality
 - 🔧 **Highly Configurable**: Adjustable parameters for fine-tuning the summarization process
 
-## Installation
 
-### Prerequisites
 
-- Python 3.9+
+
+### Install Dependencies
+
 - pip (Python package manager)
 
 ### Setup
@@ -86,11 +84,28 @@ TopicMind is an advanced text analysis tool that uses state-of-the-art NLP techn
    cd topicmind
     ```
 
-2. Create a virtual environment (recommended):
-    ```bash
-    python -m venv venv
-   source venv/bin/activate  # On Windows, use: venv\Scripts\activate
-    ```
+2. Set up Python 3.11.4 Virtual Environment
+
+Mac:
+```bash
+brew install pyenv
+pyenv install 3.11.4
+pyenv virtualenv 3.11.4 topicmind-env
+pyenv activate topicmind-env
+````
+
+Windows (PowerShell):
+
+```powershell
+python -m venv venv
+.\venv\Scripts\activate
+```
+
+> Make sure Python version is 3.11.4. You can verify with:
+
+```bash
+python --version
+```
 
 3. Install dependencies:
     ```bash
