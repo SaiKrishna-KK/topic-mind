@@ -614,7 +614,7 @@ def process_topics(text, num_topics=5):
             "topic_count": len(results),
             "topics": results
         }
-        
+
     except Exception as e:
         logging.exception(f"Error processing topics: {e}")
         return {"error": str(e)}

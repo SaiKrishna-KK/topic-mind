@@ -84,7 +84,7 @@ TopicMind is an advanced text analysis tool that uses state-of-the-art NLP techn
    ```bash
    git clone https://github.com/SaiKrishna-KK/topic-mind
    cd topicmind
-   ```
+    ```
 
 2. Create a virtual environment (recommended):
     ```bash
